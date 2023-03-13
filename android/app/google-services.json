@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "653387730810",
+    "project_id": "chat-app-f307d",
+    "storage_bucket": "chat-app-f307d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653387730810:android:087d245258a2dfe00e10c3",
+        "android_client_info": {
+          "package_name": "com.example.scholarchat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653387730810-ei85jcju5edqfvtd1h9vcbbmaafv43vr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLRwdc12SrasDDsHz6J2-yhk5fL6sDv3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653387730810-ei85jcju5edqfvtd1h9vcbbmaafv43vr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
