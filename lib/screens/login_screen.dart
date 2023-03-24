@@ -1,18 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:scholarchat_app/screens/cubits/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/screens/cubits/login_cubit/login_cubit.dart';
 import 'package:scholarchat_app/widgets/text_filed_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key});
+class LogInScreen extends StatelessWidget {
+  LogInScreen({super.key});
 
-  @override
-  State<LogInScreen> createState() => _LogInScreenState();
-}
-
-class _LogInScreenState extends State<LogInScreen> {
   String? email;
 
   String? password;
@@ -34,6 +30,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ));
                 });
           } else if (state is LoginSuccess) {
+            BlocProvider.of<ChatCubit>(context).getMessages();
             Navigator.of(context)
                 .pushReplacementNamed('chatScreen', arguments: email);
           } else if (state is LoginFailure) {
