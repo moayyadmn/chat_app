@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/screens/cubits/chat_cubit/chat_cubit.dart';
+import '../cubits/chat_cubit/chat_cubit.dart';
+import '../cubits/chat_cubit/chat_state.dart';
 import '../models/message.dart';
 import '../widgets/chat_buble_widget.dart';
-import 'cubits/chat_cubit/chat_state.dart';
 
 class ChatScreen extends StatelessWidget {
   ChatScreen({super.key});

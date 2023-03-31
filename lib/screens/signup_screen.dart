@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/screens/cubits/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/screens/cubits/signup_cubit/signup_cubit.dart';
 
+import '../cubits/chat_cubit/chat_cubit.dart';
+import '../cubits/signup_cubit/signup_cubit.dart';
+import '../cubits/signup_cubit/signup_state.dart';
 import '../widgets/text_filed_widget.dart';
-import 'cubits/signup_cubit/signup_state.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});

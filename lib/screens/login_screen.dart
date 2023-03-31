@@ -1,10 +1,12 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:scholarchat_app/screens/cubits/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/screens/cubits/login_cubit/login_cubit.dart';
+
 import 'package:scholarchat_app/widgets/text_filed_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../cubits/chat_cubit/chat_cubit.dart';
+import '../cubits/login_cubit/login_cubit.dart';
 
 class LogInScreen extends StatelessWidget {
   LogInScreen({super.key});
