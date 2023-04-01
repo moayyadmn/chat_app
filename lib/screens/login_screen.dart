@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:scholarchat_app/constants.dart';
 
 import 'package:scholarchat_app/widgets/text_filed_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +29,7 @@ class LogInScreen extends StatelessWidget {
                 builder: (context) {
                   return const Center(
                       child: CircularProgressIndicator(
-                    color: Color(0xff645ce6),
+                    color: kMainColor,
                   ));
                 });
           } else if (state is LoginSuccess) {
@@ -59,7 +60,7 @@ class LogInScreen extends StatelessWidget {
                         textAlign: TextAlign.start,
                         'Login Now',
                         style: TextStyle(
-                          color: Color(0xff645ce6),
+                          color: kMainColor,
                           fontSize: 40,
                           fontFamily: 'Title',
                         ),
@@ -132,7 +133,7 @@ class LogInScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color(0xff645ce6),
+                            color:  kMainColor,
                           ),
                           width: double.infinity,
                           height: 50,
@@ -161,7 +162,7 @@ class LogInScreen extends StatelessWidget {
                               child: const Text(
                                 'Sign Up',
                                 style: TextStyle(
-                                    color: Color(0xff645ce6),
+                                    color: kMainColor,
                                     fontWeight: FontWeight.bold),
                               )),
                         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scholarchat_app/constants.dart';
 
 import '../cubits/chat_cubit/chat_cubit.dart';
 import '../cubits/signup_cubit/signup_cubit.dart';
@@ -26,7 +27,7 @@ class SignUpScreen extends StatelessWidget {
                 builder: (context) {
                   return const Center(
                       child: CircularProgressIndicator(
-                    color: Color(0xff645ce6),
+                    color: kMainColor,
                   ));
                 });
           } else if (state is SignupSuccess) {
@@ -57,7 +58,7 @@ class SignUpScreen extends StatelessWidget {
                         textAlign: TextAlign.start,
                         'Sign Up',
                         style: TextStyle(
-                          color: Color(0xff645ce6),
+                          color: kMainColor,
                           fontSize: 40,
                           fontFamily: 'Title',
                         ),
@@ -130,7 +131,7 @@ class SignUpScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color(0xff645ce6),
+                            color: kMainColor,
                           ),
                           width: double.infinity,
                           height: 50,
@@ -160,7 +161,7 @@ class SignUpScreen extends StatelessWidget {
                               child: const Text(
                                 'Login',
                                 style: TextStyle(
-                                    color: Color(0xff645ce6),
+                                    color: kMainColor,
                                     fontWeight: FontWeight.bold),
                               )),
                         ],
