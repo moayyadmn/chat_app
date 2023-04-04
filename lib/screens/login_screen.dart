@@ -35,7 +35,7 @@ class LogInScreen extends StatelessWidget {
           } else if (state is LoginSuccess) {
             BlocProvider.of<ChatCubit>(context).getMessages();
             Navigator.of(context)
-                .pushReplacementNamed('chatScreen', arguments: email);
+                .pushReplacementNamed(kUserChatRoute, arguments: email);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errMessage)));
@@ -133,7 +133,7 @@ class LogInScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color:  kMainColor,
+                            color: kMainColor,
                           ),
                           width: double.infinity,
                           height: 50,

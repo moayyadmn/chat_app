@@ -33,7 +33,7 @@ class SignUpScreen extends StatelessWidget {
           } else if (state is SignupSuccess) {
             BlocProvider.of<ChatCubit>(context).getMessages();
             Navigator.of(context)
-                .pushReplacementNamed('chatScreen', arguments: email);
+                .pushReplacementNamed(kUserChatRoute, arguments: email);
           } else if (state is SignupFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errMessage)));

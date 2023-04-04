@@ -6,7 +6,8 @@ import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/cubits/signup_cubit/signup_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
 import 'package:scholarchat_app/screens/signup_screen.dart';
-import 'package:scholarchat_app/screens/welcome_screen/welcome_screen.dart';
+import 'package:scholarchat_app/screens/user_chat_screen.dart';
+import 'package:scholarchat_app/screens/welcome_screen.dart';
 import 'firebase_options.dart';
 import 'screens/chat_screen.dart';
 import 'screens/login_screen.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'ScholarChat',
         theme: ThemeData(
+          appBarTheme: const AppBarTheme(color: kMainColor),
           primarySwatch: Colors.blue,
         ),
         home: const WelcomeScreen(),
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
           kLoginRoute: (context) => LogInScreen(),
           kSignUpRoute: (context) => SignUpScreen(),
           kChatRoute: (context) => ChatScreen(),
+          kUserChatRoute: ((context) => const UserChatScreen())
         },
       ),
     );

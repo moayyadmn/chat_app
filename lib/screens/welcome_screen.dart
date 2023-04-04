@@ -1,7 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import '/constants.dart';
-import '../../widgets/welcome_screen_custom_container.dart';
+import '../widgets/welcome_screen_custom_container.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
