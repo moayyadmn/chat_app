@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scholarchat_app/constants.dart';
-
 import '../cubits/chat_cubit/chat_cubit.dart';
 import '../cubits/signup_cubit/signup_cubit.dart';
 import '../cubits/signup_cubit/signup_state.dart';

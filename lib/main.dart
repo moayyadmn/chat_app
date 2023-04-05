@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,18 @@ import 'firebase_options.dart';
 import 'screens/chat_screen.dart';
 import 'screens/login_screen.dart';
 
+bool? isLogged;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user == null) {
+    isLogged = false;
+  } else {
+    isLogged = true;
+  }
   runApp(const MyApp());
 }
 
@@ -42,7 +50,8 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(color: kMainColor),
           primarySwatch: Colors.blue,
         ),
-        home: const WelcomeScreen(),
+        home:
+            isLogged == false ? const WelcomeScreen() : const UserChatScreen(),
         routes: {
           kLoginRoute: (context) => LogInScreen(),
           kSignUpRoute: (context) => SignUpScreen(),

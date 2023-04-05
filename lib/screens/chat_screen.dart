@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../constants.dart';
 import '../cubits/chat_cubit/chat_cubit.dart';
 import '../cubits/chat_cubit/chat_state.dart';
 import '../models/message.dart';
@@ -15,7 +17,7 @@ class ChatScreen extends StatelessWidget {
   final TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var email = ModalRoute.of(context)!.settings.arguments;
+    var email = FirebaseAuth.instance.currentUser!.email;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff645ce6),
@@ -30,6 +32,7 @@ class ChatScreen extends StatelessWidget {
           Expanded(
             child: BlocConsumer<ChatCubit, ChatState>(
               listener: (context, state) {
+                
                 if (state is ChatSuccess) {
                   messageList = state.messageList;
                 }

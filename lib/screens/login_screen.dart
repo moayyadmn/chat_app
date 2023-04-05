@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scholarchat_app/constants.dart';
 
@@ -34,8 +35,8 @@ class LogInScreen extends StatelessWidget {
                 });
           } else if (state is LoginSuccess) {
             BlocProvider.of<ChatCubit>(context).getMessages();
-            Navigator.of(context)
-                .pushReplacementNamed(kUserChatRoute, arguments: email);
+            
+            Navigator.of(context).pushReplacementNamed(kUserChatRoute);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errMessage)));
