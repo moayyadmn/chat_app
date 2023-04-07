@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scholarchat_app/constants.dart';
 
@@ -10,12 +9,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubits/chat_cubit/chat_cubit.dart';
 import '../cubits/login_cubit/login_cubit.dart';
 
-class LogInScreen extends StatelessWidget {
-  LogInScreen({super.key});
+class LogInScreen extends StatefulWidget {
+ const LogInScreen({super.key});
 
-  String? email;
+  @override
+  State<LogInScreen> createState() => _LogInScreenState();
+}
 
-  String? password;
+class _LogInScreenState extends State<LogInScreen> {
+  String? email, password;
 
   final GlobalKey<FormState> formKey = GlobalKey();
 
@@ -35,7 +37,7 @@ class LogInScreen extends StatelessWidget {
                 });
           } else if (state is LoginSuccess) {
             BlocProvider.of<ChatCubit>(context).getMessages();
-            
+
             Navigator.of(context).pushReplacementNamed(kUserChatRoute);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context)
@@ -83,6 +85,9 @@ class LogInScreen extends StatelessWidget {
                             height: 300,
                           ),
                         ],
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       TextFieldWidget(
                         onChanged: (data) {

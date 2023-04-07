@@ -6,9 +6,11 @@ import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/cubits/signup_cubit/signup_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
+import 'package:scholarchat_app/cubits/user_chat_screen_cubit/user_chat_screen_cubit.dart';
 import 'package:scholarchat_app/screens/signup_screen.dart';
 import 'package:scholarchat_app/screens/user_chat_screen.dart';
 import 'package:scholarchat_app/screens/welcome_screen.dart';
+import 'package:scholarchat_app/simple_bloc_obsorver.dart';
 import 'firebase_options.dart';
 import 'screens/chat_screen.dart';
 import 'screens/login_screen.dart';
@@ -19,6 +21,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Bloc.observer = SimpleBlocObserver();
   User? user = FirebaseAuth.instance.currentUser;
   if (user == null) {
     isLogged = false;
@@ -43,6 +46,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ChatCubit(),
         ),
+        BlocProvider(
+          create: (context) => UserChatScreenCubit(),
+        ),
       ],
       child: MaterialApp(
         title: 'ScholarChat',
@@ -53,9 +59,9 @@ class MyApp extends StatelessWidget {
         home:
             isLogged == false ? const WelcomeScreen() : const UserChatScreen(),
         routes: {
-          kLoginRoute: (context) => LogInScreen(),
-          kSignUpRoute: (context) => SignUpScreen(),
-          kChatRoute: (context) => ChatScreen(),
+          kLoginRoute: (context) => const LogInScreen(),
+          kSignUpRoute: (context) => const SignUpScreen(),
+          kChatRoute: (context) => const ChatScreen(),
           kUserChatRoute: ((context) => const UserChatScreen())
         },
       ),

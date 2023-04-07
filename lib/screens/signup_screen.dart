@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scholarchat_app/constants.dart';
-import '../cubits/chat_cubit/chat_cubit.dart';
 import '../cubits/signup_cubit/signup_cubit.dart';
 import '../cubits/signup_cubit/signup_state.dart';
 import '../widgets/text_filed_widget.dart';
 
-class SignUpScreen extends StatelessWidget {
-  SignUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
-  String? email;
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
 
-  String? password;
+class _SignUpScreenState extends State<SignUpScreen> {
+  String? email, password, userName;
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -30,9 +32,7 @@ class SignUpScreen extends StatelessWidget {
                   ));
                 });
           } else if (state is SignupSuccess) {
-            BlocProvider.of<ChatCubit>(context).getMessages();
-            Navigator.of(context)
-                .pushReplacementNamed(kUserChatRoute, arguments: email);
+            Navigator.of(context).pushReplacementNamed(kUserChatRoute);
           } else if (state is SignupFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errMessage)));
@@ -42,17 +42,14 @@ class SignUpScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              scrollDirection: Axis.vertical,
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Form(
-                  key: formKey,
+            body: ListView(children: [
+              Form(
+                key: formKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Spacer(flex: 1),
                       const Text(
                         textAlign: TextAlign.start,
                         'Sign Up',
@@ -66,7 +63,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 15,
                       ),
                       const Text(
-                        'Please Registration with email and sign up\n to continue using our app',
+                        'Please Sing Up with Email to continue\n using our app',
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
@@ -79,6 +76,25 @@ class SignUpScreen extends StatelessWidget {
                             height: 300,
                           ),
                         ],
+                      ),
+                      TextFieldWidget(
+                        onChanged: (data) {
+                          userName = data;
+                        },
+                        onValid: (text) {
+                          if (text!.isEmpty) {
+                            return 'wrong username';
+                          }
+                          return null;
+                        },
+                        hintText: 'UserName',
+                        icon: const Icon(
+                          Icons.person,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       TextFieldWidget(
                         onChanged: (data) {
@@ -117,13 +133,15 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 30,
                       ),
                       GestureDetector(
                         onTap: () async {
                           if (formKey.currentState!.validate()) {
-                            BlocProvider.of<SignupCubit>(context)
-                                .signUpUser(email: email!, password: password!);
+                            BlocProvider.of<SignupCubit>(context).signUpUser(
+                                email: email!,
+                                password: password!,
+                                userName: userName!);
                           } else {}
                         },
                         child: Container(
@@ -165,12 +183,11 @@ class SignUpScreen extends StatelessWidget {
                               )),
                         ],
                       ),
-                      const Spacer(flex: 2),
                     ],
                   ),
                 ),
               ),
-            ),
+            ]),
           );
         },
       ),

@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
+import 'package:scholarchat_app/models/user_card_model.dart';
+
+
 
 class UserCardWidget extends StatelessWidget {
   const UserCardWidget({
+    required this.user,
     Key? key,
   }) : super(key: key);
-
+  final UserCardModel user;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -15,17 +19,17 @@ class UserCardWidget extends StatelessWidget {
         BlocProvider.of<ChatCubit>(context).getMessages();
         Navigator.of(context).pushNamed(kChatRoute);
       },
-      child: const Card(
+      child: Card(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: ListTile(
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               radius: 25,
               backgroundColor: Colors.blue,
             ),
-            title: Text('Moayyad Nagib'),
-            subtitle: Text('How are you , how have you been'),
-            trailing: Text('23-2-2023'),
+            title: Text(user.userName),
+            subtitle: const Text('How are you , how have you been'),
+            trailing: const Text('23-2-2023'),
           ),
         ),
       ),

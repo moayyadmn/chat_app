@@ -2,19 +2,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../constants.dart';
 import '../cubits/chat_cubit/chat_cubit.dart';
 import '../cubits/chat_cubit/chat_state.dart';
 import '../models/message.dart';
 import '../widgets/chat_buble_widget.dart';
 
-class ChatScreen extends StatelessWidget {
-  ChatScreen({super.key});
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
   List<Message> messageList = [];
+
   final CollectionReference messages =
       FirebaseFirestore.instance.collection('messages');
+
   final _controller = ScrollController();
+
   final TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var email = FirebaseAuth.instance.currentUser!.email;

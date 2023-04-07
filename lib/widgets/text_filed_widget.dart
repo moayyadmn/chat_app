@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  TextFieldWidget(
+  const TextFieldWidget(
       {super.key,
       this.hintText,
       this.icon,
@@ -10,9 +10,9 @@ class TextFieldWidget extends StatelessWidget {
       this.obscureText = false});
   final String? hintText;
   final Icon? icon;
-  bool obscureText;
-  void Function(String)? onChanged;
-  String? Function(String?)? onValid;
+  final bool obscureText;
+  final void Function(String)? onChanged;
+  final String? Function(String?)? onValid;
   @override
   Widget build(BuildContext context) {
     return Container(
