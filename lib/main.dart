@@ -4,10 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/cubits/signup_cubit/signup_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
-import 'package:scholarchat_app/cubits/user_chat_screen_cubit/user_chat_screen_cubit.dart';
-import 'package:scholarchat_app/screens/signup_screen.dart';
 import 'package:scholarchat_app/screens/user_chat_screen.dart';
 import 'package:scholarchat_app/screens/welcome_screen.dart';
 import 'package:scholarchat_app/simple_bloc_obsorver.dart';
@@ -41,13 +38,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(
-          create: (context) => SignupCubit(),
-        ),
-        BlocProvider(
           create: (context) => ChatCubit(),
-        ),
-        BlocProvider(
-          create: (context) => UserChatScreenCubit(),
         ),
       ],
       child: MaterialApp(
@@ -60,7 +51,6 @@ class MyApp extends StatelessWidget {
             isLogged == false ? const WelcomeScreen() : const UserChatScreen(),
         routes: {
           kLoginRoute: (context) => const LogInScreen(),
-          kSignUpRoute: (context) => const SignUpScreen(),
           kChatRoute: (context) => const ChatScreen(),
           kUserChatRoute: ((context) => const UserChatScreen())
         },

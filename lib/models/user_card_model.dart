@@ -1,13 +1,12 @@
 class UserCardModel {
+  final String id;
   final String userName;
   // String? lastMessage;
-  // String? image;
+  final String image;
   // String? date;
-  UserCardModel(this.userName);
+  UserCardModel(this.id,this.userName, this.image);
 
   factory UserCardModel.formJason(jsonData) {
-    return UserCardModel(
-      jsonData['userName'],
-    );
+    return UserCardModel(jsonData['id'],jsonData['userName'], jsonData['profPhoto']);
   }
 }

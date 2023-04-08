@@ -1,27 +1,59 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
-  Future<void> loginUser(
-      {required String email, required String password}) async {
+
+  Future<User?> loginUser() async {
     emit(LoginLoading());
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      emit(LoginSuccess());
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        emit(LoginFailure(errMessage: 'user-not-found'));
-      } else if (e.code == 'wrong-password') {
-        emit(LoginFailure(errMessage: 'wrong-password'));
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+    // check the user
+
+    User? firebaseUser =
+        (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+    if (firebaseUser != null) {
+      // Check is already sign up
+      final QuerySnapshot result = await FirebaseFirestore.instance
+          .collection('user')
+          .where('id', isEqualTo: firebaseUser.uid)
+          .get();
+
+      final List<DocumentSnapshot> documents = result.docs;
+      if (documents.isEmpty) {
+        FirebaseFirestore.instance
+            .collection('user')
+            .doc(firebaseUser.uid)
+            .set({
+              'id': firebaseUser.uid,
+              'userName': firebaseUser.displayName,
+              'profPhoto' : firebaseUser.photoURL,
+            });
       }
-    } catch (e) {
-      emit(LoginFailure(errMessage: 'an error has occurred'));
     }
+    // Once signed in, return the UserCredential
+    return firebaseUser;
+  }
+
+  Future loginSuccess() async {
+    await loginUser();
+    emit(LoginSuccess());
   }
 }
+
+
+

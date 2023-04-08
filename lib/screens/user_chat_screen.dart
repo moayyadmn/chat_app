@@ -1,12 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scholarchat_app/constants.dart';
-import 'package:scholarchat_app/cubits/user_chat_screen_cubit/user_chat_screen_cubit.dart';
-import 'package:scholarchat_app/cubits/user_chat_screen_cubit/user_chat_screen_state.dart';
-import 'package:scholarchat_app/models/user_card_model.dart';
 import '../widgets/user_card_widget.dart';
 
 class UserChatScreen extends StatefulWidget {
@@ -17,13 +15,13 @@ class UserChatScreen extends StatefulWidget {
 }
 
 class _UserChatScreenState extends State<UserChatScreen> {
-  List<UserCardModel> usersList = [];
   @override
   void initState() {
-    BlocProvider.of<UserChatScreenCubit>(context).getUsers();
     super.initState();
   }
 
+  final currentUid = FirebaseAuth.instance.currentUser!.uid;
+  ScrollController controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,30 +31,34 @@ class _UserChatScreenState extends State<UserChatScreen> {
             IconButton(
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
+                  await GoogleSignIn().disconnect();
+                  await GoogleSignIn().signOut();
                   Navigator.of(context).pushReplacementNamed(kLoginRoute);
                 },
                 icon: const Icon(Icons.logout))
           ],
         ),
-        body: BlocBuilder<UserChatScreenCubit, UserChatScreenState>(
-          builder: (context, state) {
-            usersList = BlocProvider.of<UserChatScreenCubit>(context).usersList;
-            
-            if (usersList.isEmpty) {
+        body: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('user').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index) {
+                  var user = snapshot.data!.docs[index];
+                  if (user['id'] == currentUid) {
+                    return const SizedBox.shrink();
+                  } else {
+                    return UserCardWidget(user: snapshot.data!.docs[index]);
+                  }
+                },
+              );
+            } else {
               return const Center(
                 child: CircularProgressIndicator(
                   color: kMainColor,
                 ),
               );
-            } else if (state is UserChatScreenSuccess) {
-              return ListView.builder(
-                itemCount: usersList.length,
-                itemBuilder: (context, index) {
-                  return UserCardWidget(user: usersList[index]);
-                },
-              );
-            } else {
-              return const Text('fail data');
             }
           },
         ));
