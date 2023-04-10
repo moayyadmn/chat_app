@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
+import 'package:scholarchat_app/cubits/handle_chat/handle_chat_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
 import 'package:scholarchat_app/screens/user_chat_screen.dart';
 import 'package:scholarchat_app/screens/welcome_screen.dart';
@@ -40,8 +42,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ChatCubit(),
         ),
+        BlocProvider(
+          create: (context) => HandleChatCubit(),
+        ),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
         title: 'ScholarChat',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(color: kMainColor),

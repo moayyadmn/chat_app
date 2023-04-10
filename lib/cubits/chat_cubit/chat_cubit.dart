@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scholarchat_app/models/message.dart';
 
@@ -6,8 +7,11 @@ import 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
   ChatCubit() : super(ChatInitial());
-  final CollectionReference messages =
-      FirebaseFirestore.instance.collection('messages');
+  final CollectionReference messages = FirebaseFirestore.instance
+      .collection('messages')
+      .doc('fJRXrrSCWOSduVn6CKjp')
+      .collection('messagesList');
+  final String user = FirebaseAuth.instance.currentUser!.uid;
   void sendMessage({required String message, required var email}) {
     messages.add({
       'message': message,

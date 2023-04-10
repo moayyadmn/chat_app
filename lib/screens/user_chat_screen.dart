@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scholarchat_app/constants.dart';
+import 'package:scholarchat_app/models/user_data_model.dart';
 import '../widgets/user_card_widget.dart';
 
 class UserChatScreen extends StatefulWidget {
@@ -39,8 +40,9 @@ class _UserChatScreenState extends State<UserChatScreen> {
           ],
         ),
         body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('user').snapshots(),
+          stream: FirebaseFirestore.instance.collection('users').snapshots(),
           builder: (context, snapshot) {
+            List<UserDataModel> userDataList = [];
             if (snapshot.hasData) {
               return ListView.builder(
                 itemCount: snapshot.data!.docs.length,
@@ -49,7 +51,10 @@ class _UserChatScreenState extends State<UserChatScreen> {
                   if (user['id'] == currentUid) {
                     return const SizedBox.shrink();
                   } else {
-                    return UserCardWidget(user: snapshot.data!.docs[index]);
+                    for (var doc in snapshot.data!.docs) {
+                      userDataList.add(UserDataModel.fromDocument(doc));
+                    }
+                    return UserCardWidget(user: userDataList[index]);
                   }
                 },
               );

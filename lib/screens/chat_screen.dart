@@ -41,7 +41,6 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: BlocConsumer<ChatCubit, ChatState>(
               listener: (context, state) {
-                
                 if (state is ChatSuccess) {
                   messageList = state.messageList;
                 }
@@ -52,7 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     controller: _controller,
                     itemCount: messageList.length,
                     itemBuilder: (context, index) {
-                      return messageList[index].id == email
+                      return messageList[index].email == email
                           ? ChatBubleWidget(
                               message: messageList[index],
                             )

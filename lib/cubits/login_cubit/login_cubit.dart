@@ -23,25 +23,25 @@ class LoginCubit extends Cubit<LoginState> {
       idToken: googleAuth?.idToken,
     );
     // check the user
-
     User? firebaseUser =
         (await FirebaseAuth.instance.signInWithCredential(credential)).user;
     if (firebaseUser != null) {
       // Check is already sign up
       final QuerySnapshot result = await FirebaseFirestore.instance
-          .collection('user')
+          .collection('users')
           .where('id', isEqualTo: firebaseUser.uid)
           .get();
 
       final List<DocumentSnapshot> documents = result.docs;
       if (documents.isEmpty) {
         FirebaseFirestore.instance
-            .collection('user')
+            .collection('users')
             .doc(firebaseUser.uid)
             .set({
               'id': firebaseUser.uid,
               'userName': firebaseUser.displayName,
-              'profPhoto' : firebaseUser.photoURL,
+              'email': firebaseUser.email,
+              'photoUrl' : firebaseUser.photoURL,
             });
       }
     }

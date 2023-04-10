@@ -33,7 +33,6 @@ class _LogInScreenState extends State<LogInScreen> {
                 });
           } else if (state is LoginSuccess) {
             Navigator.of(context).pop();
-
             Navigator.of(context).pushReplacementNamed(kUserChatRoute);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context)
