@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import '../cubits/chat_cubit/chat_cubit.dart';
 import '../cubits/chat_cubit/chat_state.dart';
 import '../models/message.dart';
@@ -23,6 +24,18 @@ class _ChatScreenState extends State<ChatScreen> {
   final _controller = ScrollController();
 
   final TextEditingController controller = TextEditingController();
+  String? userName;
+  String? photo;
+  String? docUid;
+  @override
+  void initState() {
+    var data = Get.parameters;
+    docUid = data['docUid'];
+    userName = data['toName'];
+    photo = data['toAvatar'];
+    BlocProvider.of<ChatCubit>(context).getMessages(docUid!);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,19 +81,22 @@ class _ChatScreenState extends State<ChatScreen> {
               controller: controller,
               onSubmitted: (data) {
                 BlocProvider.of<ChatCubit>(context)
-                    .sendMessage(message: data, email: email);
+                    .sendMessage(message: data, email: email, docUid: docUid!);
                 controller.clear();
                 _controller.jumpTo(
                   0,
                 );
               },
+              showCursor: true,
               cursorColor: const Color(0xff645ce6),
               decoration: InputDecoration(
                 hintText: 'Enter message',
                 suffixIcon: IconButton(
                   onPressed: () {
-                    BlocProvider.of<ChatCubit>(context)
-                        .sendMessage(message: controller.text, email: email);
+                    BlocProvider.of<ChatCubit>(context).sendMessage(
+                        message: controller.text,
+                        email: email,
+                        docUid: docUid!);
                     controller.clear();
                     _controller.jumpTo(
                       0,

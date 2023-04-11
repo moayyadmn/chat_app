@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/models/user_data_model.dart';
@@ -16,11 +17,6 @@ class UserChatScreen extends StatefulWidget {
 }
 
 class _UserChatScreenState extends State<UserChatScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   final currentUid = FirebaseAuth.instance.currentUser!.uid;
   ScrollController controller = ScrollController();
   @override
@@ -34,7 +30,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
                   await FirebaseAuth.instance.signOut();
                   await GoogleSignIn().disconnect();
                   await GoogleSignIn().signOut();
-                  Navigator.of(context).pushReplacementNamed(kLoginRoute);
+                  Get.offAndToNamed(kLoginRoute);
                 },
                 icon: const Icon(Icons.logout))
           ],

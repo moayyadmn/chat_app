@@ -7,21 +7,26 @@ import 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
   ChatCubit() : super(ChatInitial());
-  final CollectionReference messages = FirebaseFirestore.instance
-      .collection('messages')
-      .doc('fJRXrrSCWOSduVn6CKjp')
-      .collection('messagesList');
+  final CollectionReference messages =
+      FirebaseFirestore.instance.collection('messages');
+
   final String user = FirebaseAuth.instance.currentUser!.uid;
-  void sendMessage({required String message, required var email}) {
-    messages.add({
+  void sendMessage(
+      {required String message, required var email, required String docUid}) {
+    messages.doc(docUid).collection('messagesList').add({
       'message': message,
       'sentAt': DateTime.now(),
       'id': email,
     });
   }
 
-  void getMessages() {
-    messages.orderBy('sentAt', descending: true).snapshots().listen((event) {
+  void getMessages(String docUid) {
+    messages
+        .doc(docUid)
+        .collection('messagesList')
+        .orderBy('sentAt', descending: true)
+        .snapshots()
+        .listen((event) {
       List<Message> messageList = [];
       for (var doc in event.docs) {
         messageList.add(Message.fromJason(doc));

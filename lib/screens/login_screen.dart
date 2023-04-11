@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubits/login_cubit/login_cubit.dart';
@@ -32,12 +33,12 @@ class _LogInScreenState extends State<LogInScreen> {
                   ));
                 });
           } else if (state is LoginSuccess) {
-            Navigator.of(context).pop();
-            Navigator.of(context).pushReplacementNamed(kUserChatRoute);
+            Get.back();
+            Get.offAndToNamed(kUserChatRoute);
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errMessage)));
-            Navigator.of(context).pop();
+            Get.back();
           }
         },
         builder: (context, state) {

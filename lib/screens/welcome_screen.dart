@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '/constants.dart';
 import '../widgets/welcome_screen_custom_container.dart';
 
@@ -53,7 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   bottom: 60,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushReplacementNamed(kLoginRoute);
+                      Get.toNamed(kLoginRoute);
                     },
                     child: Container(
                       alignment: Alignment.center,

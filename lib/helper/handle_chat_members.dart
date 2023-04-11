@@ -1,13 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/models/user_data_model.dart';
 import '../../constants.dart';
-import 'handle_chat_state.dart';
 
-class HandleChatCubit extends Cubit<HandleChatState> {
-  HandleChatCubit() : super(HandleChatInitial());
+class HandleChatMembers {
   FirebaseFirestore db = FirebaseFirestore.instance;
   var currentUser = FirebaseAuth.instance.currentUser!;
   goChat(UserDataModel toUserData) async {
@@ -18,9 +15,9 @@ class HandleChatCubit extends Cubit<HandleChatState> {
         .get();
 
     var toMessage = await db
-        .collection('message')
-        .where('toUid', isEqualTo: toUserData.id)
-        .where('fromUid', isEqualTo: currentUser.uid)
+        .collection('messages')
+        .where('fromUid', isEqualTo: toUserData.id)
+        .where('toUid', isEqualTo: currentUser.uid)
         .get();
 
     if (fromMessage.docs.isEmpty && toMessage.docs.isEmpty) {

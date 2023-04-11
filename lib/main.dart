@@ -2,17 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/cubits/handle_chat/handle_chat_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
+import 'package:scholarchat_app/screens/login_screen.dart';
 import 'package:scholarchat_app/screens/user_chat_screen.dart';
 import 'package:scholarchat_app/screens/welcome_screen.dart';
 import 'package:scholarchat_app/simple_bloc_obsorver.dart';
 import 'firebase_options.dart';
 import 'screens/chat_screen.dart';
-import 'screens/login_screen.dart';
 
 bool? isLogged;
 void main() async {
@@ -42,9 +41,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ChatCubit(),
         ),
-        BlocProvider(
-          create: (context) => HandleChatCubit(),
-        ),
       ],
       child: GetMaterialApp(
         title: 'ScholarChat',
@@ -54,11 +50,11 @@ class MyApp extends StatelessWidget {
         ),
         home:
             isLogged == false ? const WelcomeScreen() : const UserChatScreen(),
-        routes: {
-          kLoginRoute: (context) => const LogInScreen(),
-          kChatRoute: (context) => const ChatScreen(),
-          kUserChatRoute: ((context) => const UserChatScreen())
-        },
+        getPages: [
+          GetPage(name: kUserChatRoute, page: () => const UserChatScreen()),
+          GetPage(name: kChatRoute, page: () => const ChatScreen()),
+          GetPage(name: kLoginRoute, page: () => const LogInScreen())
+        ],
       ),
     );
   }

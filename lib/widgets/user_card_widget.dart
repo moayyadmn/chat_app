@@ -1,9 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/constants.dart';
-import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/cubits/handle_chat/handle_chat_cubit.dart';
 import 'package:scholarchat_app/models/user_data_model.dart';
+import '../helper/handle_chat_members.dart';
 
 class UserCardWidget extends StatelessWidget {
   const UserCardWidget({
@@ -15,9 +14,7 @@ class UserCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        BlocProvider.of<ChatCubit>(context).getMessages();
-        BlocProvider.of<HandleChatCubit>(context).goChat(user);
-        Navigator.of(context).pushNamed(kChatRoute);
+        HandleChatMembers().goChat(user);
       },
       child: Card(
         child: Padding(
