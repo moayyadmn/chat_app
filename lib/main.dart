@@ -7,7 +7,7 @@ import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
 import 'package:scholarchat_app/screens/login_screen.dart';
-import 'package:scholarchat_app/screens/user_chat_screen.dart';
+import 'package:scholarchat_app/screens/users_list_screen.dart';
 import 'package:scholarchat_app/screens/welcome_screen.dart';
 import 'package:scholarchat_app/simple_bloc_obsorver.dart';
 import 'firebase_options.dart';
@@ -43,15 +43,15 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: GetMaterialApp(
-        title: 'ScholarChat',
+        title: 'EChat',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(color: kMainColor),
           primarySwatch: Colors.blue,
         ),
         home:
-            isLogged == false ? const WelcomeScreen() : const UserChatScreen(),
+            isLogged == false ? const WelcomeScreen() : const UsersListScreen(),
         getPages: [
-          GetPage(name: kUserChatRoute, page: () => const UserChatScreen()),
+          GetPage(name: kUserChatRoute, page: () => const UsersListScreen()),
           GetPage(name: kChatRoute, page: () => const ChatScreen()),
           GetPage(name: kLoginRoute, page: () => const LogInScreen())
         ],

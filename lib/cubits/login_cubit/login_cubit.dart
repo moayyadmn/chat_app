@@ -7,7 +7,7 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
-
+  
   Future<User?> loginUser() async {
     emit(LoginLoading());
     // Trigger the authentication flow

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/models/message.dart';
 
 class ChatBubleWidget extends StatelessWidget {
@@ -9,20 +10,38 @@ class ChatBubleWidget extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        margin: const EdgeInsets.all(5),
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-            color: Colors.grey[600],
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            )),
-        child: Text(
-          message.message,
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
+          margin: const EdgeInsets.all(5),
+          padding:
+              const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+          decoration: const BoxDecoration(
+              color: Colors.blueGrey,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SelectableText(
+                message.message,
+                style: const TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "${message.sentAt.hour.toString()}:",
+                    style: const TextStyle(color: Colors.white60, fontSize: 10),
+                  ),
+                  Text(
+                    message.sentAt.minute.toString(),
+                    style: const TextStyle(color: Colors.white60, fontSize: 10),
+                  ),
+                ],
+              )
+            ],
+          )),
     );
   }
 }
@@ -36,20 +55,38 @@ class ChatBubleWidgetForFreind extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.all(5),
-        padding: const EdgeInsets.all(15),
-        decoration: const BoxDecoration(
-            color: Color(0xff645ce6),
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20),
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            )),
-        child: Text(
-          message.message,
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
+          margin: const EdgeInsets.all(5),
+          padding:
+              const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+          decoration: const BoxDecoration(
+              color: kMainColor,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SelectableText(
+                message.message,
+                style: const TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "${message.sentAt.hour.toString()}:",
+                    style: const TextStyle(color: Colors.white60, fontSize: 10),
+                  ),
+                  Text(
+                    message.sentAt.minute.toString(),
+                    style: const TextStyle(color: Colors.white60, fontSize: 10),
+                  ),
+                ],
+              )
+            ],
+          )),
     );
   }
 }

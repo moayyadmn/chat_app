@@ -9,14 +9,14 @@ import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/models/user_data_model.dart';
 import '../widgets/user_card_widget.dart';
 
-class UserChatScreen extends StatefulWidget {
-  const UserChatScreen({super.key});
+class UsersListScreen extends StatefulWidget {
+  const UsersListScreen({super.key});
 
   @override
-  State<UserChatScreen> createState() => _UserChatScreenState();
+  State<UsersListScreen> createState() => _UsersListScreenState();
 }
 
-class _UserChatScreenState extends State<UserChatScreen> {
+class _UsersListScreenState extends State<UsersListScreen> {
   final currentUid = FirebaseAuth.instance.currentUser!.uid;
   ScrollController controller = ScrollController();
   @override
@@ -41,6 +41,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
             List<UserDataModel> userDataList = [];
             if (snapshot.hasData) {
               return ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 itemCount: snapshot.data!.docs.length,
                 itemBuilder: (context, index) {
                   var user = snapshot.data!.docs[index];

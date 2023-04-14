@@ -54,7 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   bottom: 60,
                   child: GestureDetector(
                     onTap: () {
-                      Get.toNamed(kLoginRoute);
+                      Get.offAndToNamed(kLoginRoute);
                     },
                     child: Container(
                       alignment: Alignment.center,

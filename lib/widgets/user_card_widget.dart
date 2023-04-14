@@ -20,9 +20,11 @@ class UserCardWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
-            leading: CircleAvatar(
-              radius: 25,
-              backgroundImage: NetworkImage(user.photoUrl),
+            leading: InkWell(
+              child: CircleAvatar(
+                radius: 25,
+                backgroundImage: NetworkImage(user.photoUrl),
+              ),
             ),
             title: Text(user.userName),
             subtitle: const Text('How are you , how have you been'),

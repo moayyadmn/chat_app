@@ -15,7 +15,7 @@ class ChatCubit extends Cubit<ChatState> {
       {required String message, required var email, required String docUid}) {
     messages.doc(docUid).collection('messagesList').add({
       'message': message,
-      'sentAt': DateTime.now(),
+      'sentAt': DateTime.now().toString(),
       'id': email,
     });
   }

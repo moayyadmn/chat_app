@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:scholarchat_app/constants.dart';
 import '../cubits/chat_cubit/chat_cubit.dart';
 import '../cubits/chat_cubit/chat_state.dart';
 import '../models/message.dart';
@@ -43,11 +44,36 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff645ce6),
-        centerTitle: true,
-        title: const Text(
-          'Chat',
-          style: TextStyle(fontFamily: 'title', letterSpacing: 1, fontSize: 25),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: NetworkImage(photo!),
+            ),
+            const SizedBox(
+              width: 13,
+            ),
+            Text(
+              userName!,
+              style: const TextStyle(
+                  fontFamily: 'Defult',
+                  letterSpacing: 1,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.video_call),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.call),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -60,6 +86,7 @@ class _ChatScreenState extends State<ChatScreen> {
               },
               builder: (context, state) {
                 return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                     reverse: true,
                     controller: _controller,
                     itemCount: messageList.length,
@@ -87,8 +114,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   0,
                 );
               },
-              showCursor: true,
-              cursorColor: const Color(0xff645ce6),
+              cursorColor: kMainColor,
               decoration: InputDecoration(
                 hintText: 'Enter message',
                 suffixIcon: IconButton(
@@ -103,16 +129,15 @@ class _ChatScreenState extends State<ChatScreen> {
                     );
                   },
                   icon: const Icon(Icons.send),
-                  color: const Color(0xff645ce6),
+                  color: kMainColor,
                 ),
                 border: OutlineInputBorder(
-                  borderSide:
-                      const BorderSide(color: Color(0xff645ce6), width: 4),
+                  borderSide: const BorderSide(color: kMainColor, width: 4),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
-                    color: Color(0xff645ce6),
+                    color: kMainColor,
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(16),

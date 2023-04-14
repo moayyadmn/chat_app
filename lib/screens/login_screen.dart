@@ -6,17 +6,8 @@ import 'package:scholarchat_app/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cubits/login_cubit/login_cubit.dart';
 
-class LogInScreen extends StatefulWidget {
+class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
-
-  @override
-  State<LogInScreen> createState() => _LogInScreenState();
-}
-
-class _LogInScreenState extends State<LogInScreen> {
-  String? email, password;
-
-  final GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +39,8 @@ class _LogInScreenState extends State<LogInScreen> {
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Spacer(flex: 1),
                   const Text(
                     textAlign: TextAlign.start,
                     'Login Now',
@@ -66,6 +57,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     'Please login to continue using our app',
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -76,9 +68,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  const Spacer(),
                   GestureDetector(
                     onTap: () async {
                       BlocProvider.of<LoginCubit>(context).loginSuccess();
@@ -101,9 +91,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 40,
                   ),
-                  const Spacer(flex: 2),
                 ],
               ),
             ),
