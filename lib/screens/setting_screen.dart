@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,23 +31,7 @@ class SettingScreen extends StatelessWidget {
             icon: Icons.description_outlined),
         SettingItem(
             onTap: () async {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return const Center(
-                        child: CircularProgressIndicator(
-                      color: kMainColor,
-                    ));
-                  });
-              try {
-                await FirebaseAuth.instance.signOut();
-                await GoogleSignIn().disconnect();
-                await GoogleSignIn().signOut();
-              } catch (e) {
-                debugPrint('logout err : $e');
-              }
-              Get.back();
-              Get.offAndToNamed(kLoginRoute);
+              logoutDialog(context).show();
             },
             titel: 'Logout',
             subtitle: 'logout',
@@ -57,6 +42,37 @@ class SettingScreen extends StatelessWidget {
             subtitle: 'help center, contact us, privacy policy',
             icon: Icons.help_outline),
       ],
+    );
+  }
+
+  AwesomeDialog logoutDialog(BuildContext context) {
+    return AwesomeDialog(
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.rightSlide,
+      title: 'Logout',
+      desc: '--- are you sure ---',
+      btnCancelOnPress: () {},
+      btnOkOnPress: () async {
+        Get.back();
+        showDialog(
+            context: context,
+            builder: (context) {
+              return const Center(
+                  child: CircularProgressIndicator(
+                color: kMainColor,
+              ));
+            });
+        try {
+          await FirebaseAuth.instance.signOut();
+          await GoogleSignIn().disconnect();
+          await GoogleSignIn().signOut();
+        } catch (e) {
+          debugPrint('logout err : $e');
+        }
+        Get.back();
+        Get.offAndToNamed(kLoginRoute);
+      },
     );
   }
 }

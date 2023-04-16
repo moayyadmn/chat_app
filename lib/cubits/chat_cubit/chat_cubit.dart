@@ -18,6 +18,8 @@ class ChatCubit extends Cubit<ChatState> {
       'sentAt': DateTime.now().toString(),
       'id': email,
     });
+    messages.doc(docUid).update(
+        {'lastMessage': message, 'lastTime': DateTime.now().toString()});
   }
 
   void getMessages(String docUid) {
