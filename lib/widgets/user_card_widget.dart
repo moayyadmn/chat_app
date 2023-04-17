@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:scholarchat_app/models/user_data_model.dart';
+import '../constants.dart';
 import '../helper/handle_chat_members.dart';
 
 class UserCardWidget extends StatelessWidget {
@@ -21,9 +22,33 @@ class UserCardWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
             leading: InkWell(
-              child: CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage(user.photoUrl),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: Image.network(
+                  user.photoUrl,
+                  fit: BoxFit.cover,
+                  height: 50,
+                  width: 50,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(
+                      Icons.account_circle,
+                      size: 50,
+                      color: Colors.grey,
+                    );
+                  },
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: kMainColor,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             title: Text(user.userName),

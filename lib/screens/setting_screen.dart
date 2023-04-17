@@ -121,9 +121,34 @@ class NameAndPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
-          radius: 40,
-          backgroundImage: NetworkImage(userData!.photoURL!),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(45),
+          child: Image.network(
+            userData!.photoURL!,
+            height: 80,
+            width: 80,
+            fit: BoxFit.cover,
+            errorBuilder: (context, object, stackTrace) {
+              return const Icon(
+                Icons.account_circle,
+                size: 80,
+                color: Colors.grey,
+              );
+            },
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) return child;
+              return const SizedBox(
+                width: 80,
+                height: 80,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: kMainColor,
+                  ),
+                ),
+              );
+            },
+          ),
         ),
         const SizedBox(
           width: 20,
