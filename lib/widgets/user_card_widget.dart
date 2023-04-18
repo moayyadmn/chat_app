@@ -52,8 +52,6 @@ class UserCardWidget extends StatelessWidget {
               ),
             ),
             title: Text(user.userName),
-            subtitle: const Text('How are you , how have you been'),
-            trailing: const Text('23-2-2023'),
           ),
         ),
       ),

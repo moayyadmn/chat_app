@@ -4,4 +4,5 @@ const String kLoginRoute = '/loginScreen';
 const String kSignUpRoute = 'signUpScreen';
 const String kChatRoute = '/chatScreen';
 const String kUserChatRoute = '/userChatScreen';
+const String kChatListRoute = '/chatListScreen';
 const Color kMainColor = Color(0xff645ce6);
