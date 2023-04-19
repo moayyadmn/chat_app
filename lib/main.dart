@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
+import 'package:scholarchat_app/screens/chat_list_screen.dart';
 import 'package:scholarchat_app/screens/login_screen.dart';
 import 'package:scholarchat_app/screens/users_list_screen.dart';
 import 'package:scholarchat_app/screens/welcome_screen.dart';
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
         getPages: [
           GetPage(name: kUserChatRoute, page: () => const UsersListScreen()),
           GetPage(name: kChatRoute, page: () => const ChatScreen()),
-          GetPage(name: kLoginRoute, page: () => const LogInScreen())
+          GetPage(name: kLoginRoute, page: () => const LogInScreen()),
+          GetPage(name: kLoginRoute, page: () => const ChatListScreen())
         ],
       ),
     );
