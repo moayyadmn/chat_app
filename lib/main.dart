@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/cubits/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
-import 'package:scholarchat_app/screens/chat_list_screen.dart';
-import 'package:scholarchat_app/screens/login_screen.dart';
-import 'package:scholarchat_app/screens/users_list_screen.dart';
+import 'package:scholarchat_app/screens/root_screen.dart';
 import 'package:scholarchat_app/screens/welcome_screen.dart';
 import 'package:scholarchat_app/simple_bloc_observer.dart';
+import 'core/blocs/app_root_bloc/app_root_bloc.dart';
+import 'core/blocs/app_root_bloc/app_root_event.dart';
+import 'core/helper/app_screens.dart';
 import 'firebase_options.dart';
-import 'screens/chat_screen.dart';
 
 bool? isLogged;
 void main() async {
@@ -38,9 +38,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(
+          create: (context) => LoginCubit(),
+        ),
         BlocProvider(
           create: (context) => ChatCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AppRootBloc()..add(AppRootEvent()),
         ),
       ],
       child: GetMaterialApp(
@@ -49,14 +54,8 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(color: kMainColor),
           primarySwatch: Colors.blue,
         ),
-        home:
-            isLogged == false ? const WelcomeScreen() : const UsersListScreen(),
-        getPages: [
-          GetPage(name: kUserChatRoute, page: () => const UsersListScreen()),
-          GetPage(name: kChatRoute, page: () => const ChatScreen()),
-          GetPage(name: kLoginRoute, page: () => const LogInScreen()),
-          GetPage(name: kLoginRoute, page: () => const ChatListScreen())
-        ],
+        home: isLogged == false ? const WelcomeScreen() : const RootScreen(),
+        getPages: routeList,
       ),
     );
   }

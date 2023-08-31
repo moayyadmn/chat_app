@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:scholarchat_app/models/user_data_model.dart';
 import '../constants.dart';
-import '../helper/handle_chat_members.dart';
+import '../core/helper/handle_chat_members.dart';
 
 class UserCardWidget extends StatelessWidget {
   const UserCardWidget({

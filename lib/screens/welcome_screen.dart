@@ -85,10 +85,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               reversed: false,
               mainAxisAlignment: MainAxisAlignment.center,
               decorator: DotsDecorator(
-                  activeColor: kMainColor,
-                  activeSize: const Size(18, 9),
-                  activeShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5))),
+                activeColor: kMainColor,
+                activeSize: const Size(18, 9),
+                activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
             ),
           ),
         ],
