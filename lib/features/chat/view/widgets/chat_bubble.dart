@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scholarchat_app/constants.dart';
-import 'package:scholarchat_app/models/message.dart';
+
+import '../../../../core/models/message.dart';
+
 
 class ChatBubbleWidget extends StatelessWidget {
   const ChatBubbleWidget({Key? key, required this.message}) : super(key: key);

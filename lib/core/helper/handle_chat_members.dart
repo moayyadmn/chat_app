@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/models/user_data_model.dart';
 import '../../../constants.dart';
+import '../models/user_data_model.dart';
 
 class HandleChatMembers {
   FirebaseFirestore db = FirebaseFirestore.instance;

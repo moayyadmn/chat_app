@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/constants.dart';
-import '../cubits/chat_cubit/chat_cubit.dart';
-import '../cubits/chat_cubit/chat_state.dart';
-import '../models/message.dart';
-import '../widgets/chat_buble_widget.dart';
+import '../../../core/models/message.dart';
+import '../../../cubits/chat_cubit/chat_cubit.dart';
+import '../../../cubits/chat_cubit/chat_state.dart';
+import 'widgets/chat_bubble.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -57,7 +57,7 @@ class _ChatScreenState extends State<ChatScreen> {
             Text(
               userName!,
               style: const TextStyle(
-                  fontFamily: 'Defult',
+                  fontFamily: 'Default',
                   letterSpacing: 1,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),

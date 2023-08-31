@@ -30,7 +30,7 @@ class WelcomeScreenCustomContainer extends StatelessWidget {
           ),
           Text(
             text2,
-            style: const TextStyle(fontSize: 20, fontFamily: 'Defult'),
+            style: const TextStyle(fontSize: 20, fontFamily: 'Default'),
           ),
           const Spacer(
             flex: 3,

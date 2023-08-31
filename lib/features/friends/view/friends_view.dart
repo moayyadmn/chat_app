@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:scholarchat_app/models/chat_list_card_model.dart';
 import 'package:scholarchat_app/features/friends/view/widgets/chat_card_widget.dart';
+
+import '../../../core/models/chat_list_card_model.dart';
 
 class FriendsView extends StatefulWidget {
   const FriendsView({super.key});

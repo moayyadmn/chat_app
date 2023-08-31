@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../../../constants.dart';
-import '../../../models/user_data_model.dart';
+import '../../../core/models/user_data_model.dart';
 import 'widgets/user_card_widget.dart';
 
 class CommunityView extends StatelessWidget {

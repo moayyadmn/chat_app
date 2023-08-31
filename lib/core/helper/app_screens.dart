@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:scholarchat_app/features/community/view/community_view.dart';
 import '../../features/friends/view/friends_view.dart';
 import '../../constants.dart';
-import '../../screens/chat_screen.dart';
+import '../../features/chat/view/chat_screen.dart';
 import '../../screens/login_screen.dart';
 import '../../screens/root_screen.dart';
 import '../../screens/setting_screen.dart';
