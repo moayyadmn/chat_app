@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scholarchat_app/models/chat_list_card_model.dart';
-import 'package:scholarchat_app/widgets/chat_card_widget.dart';
+import 'package:scholarchat_app/features/friends/view/widgets/chat_card_widget.dart';
 
-class ChatListScreen extends StatefulWidget {
-  const ChatListScreen({super.key});
+class FriendsView extends StatefulWidget {
+  const FriendsView({super.key});
   @override
-  State<ChatListScreen> createState() => _ChatListScreenState();
+  State<FriendsView> createState() => _FriendsViewState();
 }
 
-class _ChatListScreenState extends State<ChatListScreen> {
+class _FriendsViewState extends State<FriendsView> {
   final List<QueryDocumentSnapshot<Map<String, dynamic>>> msgList = [];
   final currentUid = FirebaseAuth.instance.currentUser!.uid;
 

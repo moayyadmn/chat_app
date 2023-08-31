@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:scholarchat_app/constants.dart';
 import 'package:scholarchat_app/models/message.dart';
 
-class ChatBubleWidget extends StatelessWidget {
-  const ChatBubleWidget({Key? key, required this.message}) : super(key: key);
+class ChatBubbleWidget extends StatelessWidget {
+  const ChatBubbleWidget({Key? key, required this.message}) : super(key: key);
   final Message message;
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,8 @@ class ChatBubleWidget extends StatelessWidget {
   }
 }
 
-class ChatBubleWidgetForFreind extends StatelessWidget {
-  const ChatBubleWidgetForFreind({Key? key, required this.message})
+class ChatBubbleWidgetForFriend extends StatelessWidget {
+  const ChatBubbleWidgetForFriend({Key? key, required this.message})
       : super(key: key);
   final Message message;
   @override

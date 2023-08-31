@@ -92,10 +92,10 @@ class _ChatScreenState extends State<ChatScreen> {
                     itemCount: messageList.length,
                     itemBuilder: (context, index) {
                       return messageList[index].email == email
-                          ? ChatBubleWidget(
+                          ? ChatBubbleWidget(
                               message: messageList[index],
                             )
-                          : ChatBubleWidgetForFreind(
+                          : ChatBubbleWidgetForFriend(
                               message: messageList[index],
                             );
                     });

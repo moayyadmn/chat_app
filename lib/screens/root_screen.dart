@@ -24,7 +24,7 @@ class RootScreen extends StatelessWidget {
               state.index = value;
               context.read<AppRootBloc>().add(AppRootEvent());
             },
-            children: screens,
+            children: views,
           ),
           bottomNavigationBar: BottomNavigationBar(
             selectedItemColor: kMainColor,

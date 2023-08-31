@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:scholarchat_app/models/chat_list_card_model.dart';
-import '../constants.dart';
+import '../../../../constants.dart';
 
 class ChatCardWidget extends StatelessWidget {
   ChatCardWidget({
@@ -11,7 +11,7 @@ class ChatCardWidget extends StatelessWidget {
   }) : super(key: key);
   final ChatListCardModel chatListCardModel;
   final currentUsDe = FirebaseAuth.instance.currentUser;
-  getImage<String>() {
+  String getImage() {
     if (chatListCardModel.fromAvatar == currentUsDe!.photoURL) {
       return chatListCardModel.toAvatar;
     } else {
@@ -19,7 +19,7 @@ class ChatCardWidget extends StatelessWidget {
     }
   }
 
-  getName() {
+  String getName() {
     if (chatListCardModel.fromName == currentUsDe!.displayName) {
       return chatListCardModel.toName;
     } else {
