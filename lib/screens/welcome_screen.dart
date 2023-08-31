@@ -40,7 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               const WelcomeScreenCustomContainer(
                 image: 'assets/images/image_2.png',
                 text: 'Find Your New Friends',
-                text2: 'Chat _ VoiceCall _ VedioCall',
+                text2: 'Chat _ VoiceCall _ VideoCall',
                 height: 50,
               ),
               Stack(alignment: Alignment.bottomCenter, children: [

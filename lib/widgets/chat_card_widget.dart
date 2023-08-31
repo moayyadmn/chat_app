@@ -31,42 +31,43 @@ class ChatCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     DateTime date = DateTime.parse(chatListCardModel.lastTime);
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListTile(
-          onTap: () {},
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: Image.network(
-              getImage(),
-              fit: BoxFit.cover,
-              height: 50,
-              width: 50,
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(
-                  Icons.account_circle,
-                  size: 50,
-                  color: Colors.grey,
-                );
-              },
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: kMainColor,
-                    ),
+      child: ListTile(
+        onTap: () {},
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(25),
+          child: Image.network(
+            getImage(),
+            fit: BoxFit.cover,
+            height: 50,
+            width: 50,
+            errorBuilder: (context, error, stackTrace) {
+              return const Icon(
+                Icons.account_circle,
+                size: 50,
+                color: Colors.grey,
+              );
+            },
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return const SizedBox(
+                width: 50,
+                height: 50,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: kMainColor,
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
-          title: Text(getName()),
-          subtitle: Text(chatListCardModel.lastMessage),
-          trailing: Text(DateFormat('MMM d, h:mm a').format(date).toString()),
         ),
+        title: Text(getName()),
+        subtitle: Text(
+          chatListCardModel.lastMessage,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+        trailing: Text(DateFormat('MMM d, h:mm a').format(date).toString()),
       ),
     );
   }

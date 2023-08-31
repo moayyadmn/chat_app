@@ -10,7 +10,7 @@ import 'package:scholarchat_app/screens/chat_list_screen.dart';
 import 'package:scholarchat_app/screens/login_screen.dart';
 import 'package:scholarchat_app/screens/users_list_screen.dart';
 import 'package:scholarchat_app/screens/welcome_screen.dart';
-import 'package:scholarchat_app/simple_bloc_obsorver.dart';
+import 'package:scholarchat_app/simple_bloc_observer.dart';
 import 'firebase_options.dart';
 import 'screens/chat_screen.dart';
 
