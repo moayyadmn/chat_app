@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../constants.dart';
+import '../../../../core/utils/constants.dart';
 import '../../../../core/helper/handle_chat_members.dart';
 import '../../../../core/models/user_data_model.dart';
 

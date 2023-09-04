@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/constants.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cubits/login_cubit/login_cubit.dart';
-import '../cubits/login_cubit/login_state.dart';
+import '../../../cubits/login_cubit/login_cubit.dart';
+import '../../../cubits/login_cubit/login_state.dart';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});

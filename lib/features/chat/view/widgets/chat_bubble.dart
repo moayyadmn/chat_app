@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholarchat_app/constants.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 
 import '../../../../core/models/message.dart';
 

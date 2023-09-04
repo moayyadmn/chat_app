@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/constants.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 import '../core/blocs/app_root_bloc/app_root_bloc.dart';
 import '../core/blocs/app_root_bloc/app_root_event.dart';
 import '../core/blocs/app_root_bloc/app_root_state.dart';
@@ -16,7 +16,10 @@ class RootScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Chaty'),
+            title: const Text(
+              'Chaty',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           body: PageView(
             controller: pageController,

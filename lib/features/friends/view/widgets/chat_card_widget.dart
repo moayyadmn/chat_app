@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../../constants.dart';
+import '../../../../core/utils/constants.dart';
 import '../../../../core/models/chat_list_card_model.dart';
 
 class ChatCardWidget extends StatelessWidget {
