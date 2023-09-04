@@ -1,19 +1,21 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../cubits/login_cubit/login_cubit.dart';
 import '../../../cubits/login_cubit/login_state.dart';
+import 'widgets/login_body.dart';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(systemNavigationBarColor: Colors.black));
     return SafeArea(
-      child: BlocConsumer<LoginCubit, LoginState>(
+      child: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginLoading) {
             showDialog(
@@ -33,72 +35,10 @@ class LogInScreen extends StatelessWidget {
             Get.back();
           }
         },
-        builder: (context, state) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            body: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    textAlign: TextAlign.start,
-                    'Login Now',
-                    style: TextStyle(
-                      color: kMainColor,
-                      fontSize: 40,
-                      fontFamily: 'Title',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    'Please login to continue using our app',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  ),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/login.png',
-                        width: 300,
-                        height: 300,
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () async {
-                      BlocProvider.of<LoginCubit>(context).loginSuccess();
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: kMainColor,
-                      ),
-                      width: double.infinity,
-                      height: 50,
-                      child: const Text(
-                        'Login With Google',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+        child: const Scaffold(
+          backgroundColor: Colors.black,
+          body: LoginBody(),
+        ),
       ),
     );
   }
