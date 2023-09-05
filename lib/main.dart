@@ -3,11 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/theme/app_theme.dart';
 import 'package:scholarchat_app/features/chat/data/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
-import 'package:scholarchat_app/screens/root_screen.dart';
-import 'package:scholarchat_app/simple_bloc_observer.dart';
+import 'package:scholarchat_app/root_screen.dart';
+import 'package:scholarchat_app/core/simple_bloc_observer.dart';
 import 'core/blocs/app_root_bloc/app_root_bloc.dart';
 import 'core/blocs/app_root_bloc/app_root_event.dart';
 import 'core/helper/app_screens.dart';
@@ -48,14 +48,12 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         title: 'ChatBox',
-        theme: ThemeData(
-          useMaterial3: true,
-          appBarTheme: const AppBarTheme(color: kMainColor),
-          primarySwatch: Colors.blue,
-        ),
+        theme: AppTheme.themeData(false, context),
         home: isLogged == false ? const LogInScreen() : const RootScreen(),
         getPages: routeList,
       ),
     );
   }
 }
+
+

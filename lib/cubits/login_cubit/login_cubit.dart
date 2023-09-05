@@ -6,7 +6,7 @@ import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
-  
+
   Future<User?> loginUser() async {
     emit(LoginLoading());
     // Trigger the authentication flow
@@ -37,11 +37,11 @@ class LoginCubit extends Cubit<LoginState> {
             .collection('users')
             .doc(firebaseUser.uid)
             .set({
-              'id': firebaseUser.uid,
-              'userName': firebaseUser.displayName,
-              'email': firebaseUser.email,
-              'photoUrl' : firebaseUser.photoURL,
-            });
+          'id': firebaseUser.uid,
+          'userName': firebaseUser.displayName,
+          'email': firebaseUser.email,
+          'photoUrl': firebaseUser.photoURL,
+        });
       }
     }
     // Once signed in, return the UserCredential
@@ -53,6 +53,3 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginSuccess());
   }
 }
-
-
-
