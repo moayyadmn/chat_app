@@ -15,6 +15,7 @@ class RootScreen extends StatelessWidget {
         return Scaffold(
           body: views[state.index],
           bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             onTap: (value) {
               state.index = value;
               context.read<AppRootBloc>().add(AppRootEvent());

@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scholarchat_app/core/helper/sized_box.dart';
 import 'package:scholarchat_app/core/widgets/content_area.dart';
-import 'package:scholarchat_app/features/community/view/widgets/custom_app_bar.dart';
+import 'package:scholarchat_app/core/widgets/custom_app_bar.dart';
 import '../../../core/utils/constants.dart';
 import '../../../core/models/user_data_model.dart';
 import '../../../core/utils/theme/colors.dart';
@@ -20,7 +21,23 @@ class CommunityView extends StatelessWidget {
       body: Column(
         children: [
           17.spaceY,
-          const CustomAppBar2(),
+          CustomAppBar(
+            text: 'Community',
+            icon: Stack(
+              alignment: Alignment.center,
+              children: [
+                SvgPicture.asset(
+                  //cspell:disable-next-line
+                  "assets/svg/circle_icon.svg",
+                ),
+                SvgPicture.asset(
+                  //cspell:disable-next-line
+                  "assets/svg/user-add.svg",
+                  alignment: Alignment.center,
+                ),
+              ],
+            ),
+          ),
           15.spaceY,
           Expanded(
             child: ContentArea(

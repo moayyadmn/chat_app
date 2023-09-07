@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CustomAppBar2 extends StatelessWidget {
-  const CustomAppBar2({super.key});
+class CustomAppBar extends StatelessWidget {
+  final String text;
+  final Widget icon;
+  const CustomAppBar({super.key, required this.text, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -16,23 +18,10 @@ class CustomAppBar2 extends StatelessWidget {
             "assets/svg/search_icon.svg",
           ),
           Text(
-            'Community',
+            text,
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              SvgPicture.asset(
-                //cspell:disable-next-line
-                "assets/svg/add_person.svg",
-              ),
-              SvgPicture.asset(
-                //cspell:disable-next-line
-                "assets/svg/user-add.svg",
-                alignment: Alignment.center,
-              ),
-            ],
-          )
+          icon,
         ],
       ),
     );

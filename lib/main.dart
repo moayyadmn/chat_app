@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/core/utils/theme/app_theme.dart';
 import 'package:scholarchat_app/features/chat/data/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/cubits/login_cubit/login_cubit.dart';
+import 'package:scholarchat_app/features/login/data/login_cubit/login_cubit.dart';
 import 'package:scholarchat_app/root_screen.dart';
 import 'package:scholarchat_app/core/simple_bloc_observer.dart';
 import 'core/blocs/app_root_bloc/app_root_bloc.dart';
@@ -55,5 +55,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

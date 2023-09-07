@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:scholarchat_app/core/helper/sized_box.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/friends/view/widgets/chat_card_widget.dart';
-import 'package:scholarchat_app/features/friends/view/widgets/custom_app_bar.dart';
+import 'package:scholarchat_app/features/friends/view/widgets/custom_home_app_bar.dart';
 import '../../../core/models/chat_list_card_model.dart';
 import '../../../core/widgets/content_area.dart';
 import 'widgets/status_avatar.dart';
@@ -29,7 +29,7 @@ class FriendsView extends StatelessWidget {
         child: Column(
           children: [
             10.spaceY,
-            const CustomAppBar(),
+            const CustomHomeAppBar(),
             15.spaceY,
             const StatusAvatar(),
             30.spaceY,

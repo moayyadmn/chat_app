@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../cubits/login_cubit/login_cubit.dart';
-import '../../../cubits/login_cubit/login_state.dart';
+import '../data/login_cubit/login_cubit.dart';
+import '../data/login_cubit/login_state.dart';
 import 'widgets/login_body.dart';
 
 class LogInScreen extends StatelessWidget {

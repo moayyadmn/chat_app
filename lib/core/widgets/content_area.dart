@@ -8,12 +8,14 @@ class ContentArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
-        clipBehavior: Clip.hardEdge,
-        type: MaterialType.transparency,
-        child: Ink(
-            decoration: BoxDecoration(
-                color: isDarkMode ? const Color(0xff121414) : Colors.white),
-            child: child));
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(40)),
+      clipBehavior: Clip.hardEdge,
+      type: MaterialType.transparency,
+      child: Ink(
+        decoration: BoxDecoration(
+            color: isDarkMode ? const Color(0xff121414) : Colors.white),
+        child: child,
+      ),
+    );
   }
 }
