@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:scholarchat_app/core/helper/sized_box.dart';
 import '../../../../core/utils/constants.dart';
 
-class CallCardWidget extends StatelessWidget {
-  const CallCardWidget({
+class SettingProfileCard extends StatelessWidget {
+  const SettingProfileCard({
     Key? key,
   }) : super(key: key);
 
@@ -40,35 +39,13 @@ class CallCardWidget extends StatelessWidget {
             },
           ),
         ),
-        title:
-            Text("Ahmad Gom3a", style: Theme.of(context).textTheme.bodyLarge),
-        subtitle: Row(mainAxisSize: MainAxisSize.min, children: [
-          SvgPicture.asset(
-            "assets/svg/call_green.svg",
-          ),
-          6.spaceX,
-          const Text(
-            "Today, 09:30 AM",
-            style: TextStyle(color: Color(0xff797C7B)),
-          ),
-        ]),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                "assets/svg/default_call.svg",
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                "assets/svg/video_call.svg",
-              ),
-            ),
-          ],
+        title: Text("Moayyad Nagib",
+            style: Theme.of(context).textTheme.titleMedium),
+        subtitle: const Text(
+          "Never give up 💪",
+          style: TextStyle(color: Color(0xff797C7B)),
         ),
+        trailing: SvgPicture.asset("assets/svg/qr_code.svg"),
       ),
     );
   }

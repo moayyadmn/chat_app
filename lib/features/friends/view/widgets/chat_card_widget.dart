@@ -61,7 +61,7 @@ class ChatCardWidget extends StatelessWidget {
             },
           ),
         ),
-        title: Text(getName(), style: Theme.of(context).textTheme.titleMedium),
+        title: Text(getName(), style: Theme.of(context).textTheme.bodyLarge),
         subtitle: Text(
           chatListCardModel.lastMessage,
           style: const TextStyle(color: Color(0xff797C7B)),

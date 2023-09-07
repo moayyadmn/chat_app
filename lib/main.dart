@@ -27,6 +27,7 @@ void main() async {
   } else {
     isLogged = true;
   }
+
   runApp(const MyApp());
 }
 

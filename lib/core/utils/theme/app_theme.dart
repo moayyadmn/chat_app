@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 class AppTheme {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return isDarkTheme ? ThemeColor.darkTheme : ThemeColor.lightTheme;
@@ -17,12 +19,17 @@ class ThemeColor {
     textTheme: const TextTheme(
       titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
       titleMedium: TextStyle(
-          color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
+          color: Colors.black, fontWeight: FontWeight.w600, fontSize: 20),
+      titleSmall: TextStyle(
+          color: Colors.black, fontWeight: FontWeight.w500, fontSize: 16),
+      bodyLarge: TextStyle(
+          color: Colors.black, fontWeight: FontWeight.w500, fontSize: 18),
     ),
     cardTheme: const CardTheme(
         color: Colors.white, elevation: 0.0, surfaceTintColor: Colors.white),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
+      selectedItemColor: kGreenColor,
     ),
   );
 
@@ -32,14 +39,16 @@ class ThemeColor {
     scaffoldBackgroundColor: Colors.black,
     fontFamily: 'Caros',
     textTheme: const TextTheme(
-      titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
-      titleMedium: TextStyle(
-          color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20),
-    ),
+        titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        titleMedium: TextStyle(
+            color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20),
+        titleSmall: TextStyle(
+            color: Colors.white, fontWeight: FontWeight.w500, fontSize: 16)),
     cardTheme: const CardTheme(
-        color: Colors.black, elevation: 0.0, surfaceTintColor: Colors.black),
+        color: kBlackColor, elevation: 0.0, surfaceTintColor: kBlackColor),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Colors.black,
+      backgroundColor: kBlackColor,
+      selectedItemColor: kGreenColor,
     ),
   );
 }

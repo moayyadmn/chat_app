@@ -49,7 +49,10 @@ class UserCardWidget extends StatelessWidget {
                 ),
               ),
             ),
-            title: Text(user.userName),
+            title: Text(
+              user.userName,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ),
         ),
       ),
