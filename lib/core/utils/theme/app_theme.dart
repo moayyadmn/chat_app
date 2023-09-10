@@ -15,6 +15,7 @@ class ThemeColor {
     useMaterial3: true,
     brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
+    appBarTheme: const AppBarTheme(elevation: 0, backgroundColor: kWhiteColor),
     fontFamily: 'Caros',
     textTheme: const TextTheme(
       titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
@@ -37,6 +38,7 @@ class ThemeColor {
     useMaterial3: true,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: Colors.black,
+    appBarTheme: const AppBarTheme(elevation: 0, backgroundColor: kBlackColor),
     fontFamily: 'Caros',
     textTheme: const TextTheme(
         titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),

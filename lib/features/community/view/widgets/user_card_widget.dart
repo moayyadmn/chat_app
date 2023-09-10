@@ -15,45 +15,41 @@ class UserCardWidget extends StatelessWidget {
       onTap: () {
         HandleChatMembers().goChat(user);
       },
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListTile(
-            leading: InkWell(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Image.network(
-                  user.photoUrl,
-                  fit: BoxFit.cover,
-                  height: 50,
+      child: ListTile(
+        minVerticalPadding: 24,
+        leading: InkWell(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Image.network(
+              user.photoUrl,
+              fit: BoxFit.cover,
+              height: 50,
+              width: 50,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.account_circle,
+                  size: 50,
+                  color: Colors.grey,
+                );
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const SizedBox(
                   width: 50,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(
-                      Icons.account_circle,
-                      size: 50,
-                      color: Colors.grey,
-                    );
-                  },
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return const SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: kMainColor,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-            title: Text(
-              user.userName,
-              style: Theme.of(context).textTheme.bodyLarge,
+                  height: 50,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: kMainColor,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
+        ),
+        title: Text(
+          user.userName,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ),
     );

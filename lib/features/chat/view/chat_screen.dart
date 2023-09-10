@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
 import '../../../core/models/message.dart';
 import '../data/chat_cubit/chat_cubit.dart';
 import '../data/chat_cubit/chat_state.dart';
@@ -17,6 +19,11 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  //
+
+  bool isSend = false;
+
+  //
   List<Message> messageList = [];
 
   final CollectionReference messages =
@@ -42,39 +49,8 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     String? email = FirebaseAuth.instance.currentUser!.email;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xff645ce6),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage(photo!),
-            ),
-            const SizedBox(
-              width: 13,
-            ),
-            Text(
-              userName!,
-              style: const TextStyle(
-                  fontFamily: 'Default',
-                  letterSpacing: 1,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.video_call),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.call),
-          ),
-        ],
-      ),
+      backgroundColor: isDarkMode ? kBlackColor : kWhiteColor,
+      appBar: appBar(context, photo!, userName!),
       body: Column(
         children: [
           Expanded(
@@ -86,7 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
               },
               builder: (context, state) {
                 return ListView.builder(
-                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
                     reverse: true,
                     controller: _controller,
                     itemCount: messageList.length,
@@ -102,49 +78,82 @@ class _ChatScreenState extends State<ChatScreen> {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: controller,
-              onSubmitted: (data) {
-                BlocProvider.of<ChatCubit>(context)
-                    .sendMessage(message: data, email: email, docUid: docUid!);
-                controller.clear();
-                _controller.jumpTo(
-                  0,
-                );
-              },
-              cursorColor: kMainColor,
-              decoration: InputDecoration(
-                hintText: 'Enter message',
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    BlocProvider.of<ChatCubit>(context).sendMessage(
-                        message: controller.text,
-                        email: email,
-                        docUid: docUid!);
-                    controller.clear();
-                    _controller.jumpTo(
-                      0,
-                    );
-                  },
-                  icon: const Icon(Icons.send),
-                  color: kMainColor,
+          SizedBox(
+            height: 90,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset('assets/svg/clip_chat.svg'),
                 ),
-                border: OutlineInputBorder(
-                  borderSide: const BorderSide(color: kMainColor, width: 4),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: kMainColor,
-                    width: 2,
+                Expanded(
+                  child: TextField(
+                    style: const TextStyle(color: kBlackColor, fontSize: 16),
+                    onChanged: (value) {
+                      value != ""
+                          ? setState(() {
+                              isSend = true;
+                            })
+                          : setState(() {
+                              isSend = false;
+                            });
+                    },
+                    controller: controller,
+                    onSubmitted: (data) {
+                      BlocProvider.of<ChatCubit>(context).sendMessage(
+                          message: data, email: email, docUid: docUid!);
+                      controller.clear();
+                      _controller.jumpTo(
+                        0,
+                      );
+                    },
+                    decoration: InputDecoration(
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 12),
+                      fillColor: const Color(0xFFF3F6F6),
+                      filled: true,
+                      border: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFF3F6F6)),
+                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFF3F6F6)),
+                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFF3F6F6)),
+                          borderRadius: BorderRadius.all(Radius.circular(12))),
+                      hintText: 'Write your message',
+                      hintStyle:
+                          const TextStyle(color: kGreyColor, fontSize: 12),
+                      suffixIcon: IconButton(
+                        onPressed: () {},
+                        icon: SvgPicture.asset('assets/svg/sticker.svg'),
+                      ),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(16),
                 ),
-              ),
+                isSend
+                    ? IconButton(
+                        onPressed: () {},
+                        icon: SvgPicture.asset('assets/svg/send_icon.svg'),
+                      )
+                    : Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: SvgPicture.asset(
+                              'assets/svg/camera.svg',
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: SvgPicture.asset('assets/svg/microphone.svg'),
+                          ),
+                        ],
+                      ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );
