@@ -39,7 +39,7 @@ PreferredSizeWidget? appBar(
         onPressed: () {},
         icon: SvgPicture.asset(
           "assets/svg/default_call.svg",
-          color: Colors.black,
+         color : Colors.black,
           width: 20,
           height: 20,
         ),

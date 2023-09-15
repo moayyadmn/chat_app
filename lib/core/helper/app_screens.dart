@@ -13,7 +13,7 @@ List<Widget> views = <Widget>[
   const FriendsView(),
   const CallsScreen(),
   const CommunityView(),
-  SettingScreen(),
+  const SettingScreen(),
 ];
 
 List<BottomNavigationBarItem> itemsList = [
@@ -47,3 +47,11 @@ List<GetPage<dynamic>> routeList = [
   GetPage(name: kLoginRoute, page: () => const LogInScreen()),
   GetPage(name: kLoginRoute, page: () => const FriendsView()),
 ];
+
+Widget isLogged() {
+  if (currentUser == null) {
+    return const LogInScreen();
+  } else {
+    return const RootScreen();
+  }
+}
