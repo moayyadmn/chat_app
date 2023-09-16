@@ -1,11 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:scholarchat_app/core/helper/sized_box.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scholarchat_app/core/helper/extensions.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:scholarchat_app/features/friends/data/fetch_friends_cubit/fetch_friends_cubit.dart';
+import 'package:scholarchat_app/features/friends/data/fetch_friends_cubit/fetch_friends_state.dart';
 import 'package:scholarchat_app/features/friends/view/widgets/chat_card_widget.dart';
 import 'package:scholarchat_app/features/friends/view/widgets/custom_home_app_bar.dart';
-import '../../../core/models/chat_list_card_model.dart';
 import '../../../core/utils/widgets/content_area.dart';
 import 'widgets/status_avatar.dart';
 
@@ -14,17 +14,8 @@ class FriendsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentUid = FirebaseAuth.instance.currentUser!.uid;
-    final db =
-        FirebaseFirestore.instance.collection('messages').where(Filter.or(
-            Filter(
-              'fromUid',
-              isEqualTo: currentUid,
-            ),
-            Filter('toUid', isEqualTo: currentUid)));
-
     return Scaffold(
-      backgroundColor: customScaffoldColor(),
+      backgroundColor: customScaffoldColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -35,27 +26,28 @@ class FriendsView extends StatelessWidget {
             30.spaceY,
             ContentArea(
               child: Expanded(
-                child: StreamBuilder(
-                  stream: db.snapshots(),
-                  builder: (context, snapshot) {
-                    List<ChatListCardModel> msgList = [];
-                    if (snapshot.hasData) {
-                      for (var doc in snapshot.data!.docs) {
-                        msgList.add(
-                          ChatListCardModel.fromDocument(doc),
-                        );
-                      }
+                child: BlocBuilder<FetchFriendsCubit, FetchFriendsSate>(
+                  builder: (context, state) {
+                    if (state is FetchFriendsLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: kGreenColor,
+                        ),
+                      );
+                    } else if (state is FetchFriendsSuccess) {
                       return ListView.builder(
-                        itemCount: msgList.length,
+                        itemCount: state.userDataList.length,
                         itemBuilder: (context, index) {
                           return ChatCardWidget(
-                            chatListCardModel: msgList[index],
+                            chatListCardModel: state.userDataList[index],
                           );
                         },
                       );
                     } else {
                       return const Center(
-                        child: Text('no Data'),
+                        child: CircularProgressIndicator(
+                          color: Colors.red,
+                        ),
                       );
                     }
                   },

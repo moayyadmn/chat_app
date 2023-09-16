@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import '../../../../core/helper/handle_chat_members.dart';
 import '../../../../core/models/user_data_model.dart';
 
@@ -12,8 +12,8 @@ class UserCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        HandleChatMembers().goChat(user);
+      onTap: () async {
+        await HandleChatMembers().goChat(user);
       },
       child: ListTile(
         minVerticalPadding: 24,
@@ -39,7 +39,7 @@ class UserCardWidget extends StatelessWidget {
                   height: 50,
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: kMainColor,
+                      color: kGreenColor,
                     ),
                   ),
                 );

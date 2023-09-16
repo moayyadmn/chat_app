@@ -11,4 +11,4 @@ const Color kChatBubbleColor2 = Color(0xffF2F7FB);
 
 //
 bool isDarkMode = Get.isDarkMode;
-Color customScaffoldColor() => isDarkMode ? kGreenColor : kBlackColor;
+Color get customScaffoldColor => isDarkMode ? kGreenColor : kBlackColor;

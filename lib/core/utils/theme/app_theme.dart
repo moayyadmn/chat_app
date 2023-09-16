@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class AppTheme {
-  static ThemeData themeData(bool isDarkTheme, BuildContext context) {
+  static ThemeData themeData({required bool isDarkTheme}) {
     return isDarkTheme ? ThemeColor.darkTheme : ThemeColor.lightTheme;
   }
 }

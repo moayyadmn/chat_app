@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholarchat_app/core/helper/sized_box.dart';
+import 'package:scholarchat_app/core/helper/extensions.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 
 class ContentArea extends StatelessWidget {

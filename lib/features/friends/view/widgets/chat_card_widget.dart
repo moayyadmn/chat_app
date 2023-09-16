@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../../core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import '../../../../core/models/chat_list_card_model.dart';
 
 class ChatCardWidget extends StatelessWidget {
@@ -54,7 +54,7 @@ class ChatCardWidget extends StatelessWidget {
                 height: 50,
                 child: Center(
                   child: CircularProgressIndicator(
-                    color: kMainColor,
+                    color: kGreenColor,
                   ),
                 ),
               );

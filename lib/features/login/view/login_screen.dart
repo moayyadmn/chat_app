@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import '../data/login_cubit/login_cubit.dart';
 import '../data/login_cubit/login_state.dart';
 import 'widgets/login_body.dart';
@@ -23,7 +24,7 @@ class LogInScreen extends StatelessWidget {
                 builder: (context) {
                   return const Center(
                       child: CircularProgressIndicator(
-                    color: kMainColor,
+                    color: kGreenColor,
                   ));
                 });
           } else if (state is LoginSuccess) {

@@ -1,32 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import '../utils/constants.dart';
 import '../models/user_data_model.dart';
 
 class HandleChatMembers {
   FirebaseFirestore db = FirebaseFirestore.instance;
-  var currentUser = FirebaseAuth.instance.currentUser!;
+
   goChat(UserDataModel toUserData) async {
     var fromMessage = await db
         .collection('messages')
-        .where('fromUid', isEqualTo: currentUser.uid)
+        .where('fromUid', isEqualTo: currentUser!.uid)
         .where('toUid', isEqualTo: toUserData.id)
         .get();
 
     var toMessage = await db
         .collection('messages')
         .where('fromUid', isEqualTo: toUserData.id)
-        .where('toUid', isEqualTo: currentUser.uid)
+        .where('toUid', isEqualTo: currentUser!.uid)
         .get();
 
     if (fromMessage.docs.isEmpty && toMessage.docs.isEmpty) {
       Map<String, dynamic> msgData = {
-        'fromUid': currentUser.uid,
+        'fromUid': currentUser!.uid,
         'toUid': toUserData.id,
-        'fromName': currentUser.displayName!,
+        'fromName': currentUser!.displayName!,
         'toName': toUserData.userName,
-        'fromAvatar': currentUser.photoURL!,
+        'fromAvatar': currentUser!.photoURL!,
         'toAvatar': toUserData.photoUrl,
         'lastMessage': '',
         'lastTime': DateTime.now().toString()

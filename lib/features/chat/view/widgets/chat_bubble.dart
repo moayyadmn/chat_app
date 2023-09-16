@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
-
-import '../../../../core/models/message.dart';
 
 class ChatBubbleWidget extends StatelessWidget {
   const ChatBubbleWidget({Key? key, required this.message}) : super(key: key);
-  final Message message;
+  final MessageModel message;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -55,7 +54,7 @@ class ChatBubbleWidget extends StatelessWidget {
 class ChatBubbleWidgetForFriend extends StatelessWidget {
   const ChatBubbleWidgetForFriend({Key? key, required this.message})
       : super(key: key);
-  final Message message;
+  final MessageModel message;
   @override
   Widget build(BuildContext context) {
     return Align(

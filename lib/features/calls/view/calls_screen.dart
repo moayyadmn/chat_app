@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:scholarchat_app/core/helper/sized_box.dart';
+import 'package:scholarchat_app/core/helper/extensions.dart';
 import 'package:scholarchat_app/core/utils/widgets/custom_app_bar.dart';
 import '../../../core/utils/theme/colors.dart';
 import 'widgets/call_card_widget.dart';
@@ -12,7 +12,7 @@ class CallsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: customScaffoldColor(),
+      backgroundColor: customScaffoldColor,
       body: Column(
         children: [
           17.spaceY,

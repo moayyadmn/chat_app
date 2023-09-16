@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:scholarchat_app/core/helper/sized_box.dart';
+import 'package:scholarchat_app/core/helper/extensions.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:scholarchat_app/features/community/data/fetch_user_cubit/fetch_user_cubit.dart';
@@ -16,7 +16,7 @@ class CommunityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: customScaffoldColor(),
+      backgroundColor: customScaffoldColor,
       body: Column(
         children: [
           17.spaceY,
@@ -49,7 +49,6 @@ class CommunityView extends StatelessWidget {
                   );
                 } else if (state is FetchUserSuccess) {
                   return ListView.builder(
-                    physics: const BouncingScrollPhysics(),
                     itemCount: state.userDataList.length,
                     itemBuilder: (context, index) {
                       var user = state.userDataList[index];

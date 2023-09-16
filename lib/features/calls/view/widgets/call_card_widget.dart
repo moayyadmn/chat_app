@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:scholarchat_app/core/helper/sized_box.dart';
-import '../../../../core/utils/constants.dart';
+import 'package:scholarchat_app/core/helper/extensions.dart';
+import 'package:scholarchat_app/core/utils/theme/colors.dart';
 
 class CallCardWidget extends StatelessWidget {
   const CallCardWidget({
@@ -33,7 +33,7 @@ class CallCardWidget extends StatelessWidget {
                 height: 50,
                 child: Center(
                   child: CircularProgressIndicator(
-                    color: kMainColor,
+                    color: kGreenColor,
                   ),
                 ),
               );

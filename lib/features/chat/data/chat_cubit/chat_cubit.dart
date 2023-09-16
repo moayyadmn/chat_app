@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/models/message.dart';
+import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
 import 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
@@ -25,9 +25,9 @@ class ChatCubit extends Cubit<ChatState> {
         .orderBy('sentAt', descending: true)
         .snapshots()
         .listen((event) {
-      List<Message> messageList = [];
+      List<MessageModel> messageList = [];
       for (var doc in event.docs) {
-        messageList.add(Message.fromJason(doc));
+        messageList.add(MessageModel.fromJason(doc));
       }
       emit(ChatSuccess(messageList: messageList));
     });

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholarchat_app/core/helper/sized_box.dart';
+import 'package:scholarchat_app/core/helper/extensions.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_app_bar.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_items.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_profile_card.dart';
@@ -12,7 +12,7 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: customScaffoldColor(),
+      backgroundColor: customScaffoldColor,
       body: Column(
         children: [
           17.spaceY,
