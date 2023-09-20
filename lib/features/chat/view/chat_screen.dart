@@ -1,14 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_bloc.dart';
 import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_event.dart';
-import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_state.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
+import 'package:scholarchat_app/features/chat/view/widgets/custom_box_message.dart';
 import '../data/chat_cubit/chat_cubit.dart';
 import '../data/chat_cubit/chat_state.dart';
 import 'widgets/chat_bubble.dart';
@@ -21,11 +19,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  List<MessageModel> messageList = [];
-
-  final _controller = ScrollController();
-
-  final TextEditingController controller = TextEditingController();
+  final ScrollController _controller = ScrollController();
   String? userName;
   String? photo;
   String? docUid;
@@ -42,126 +36,38 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String? email = FirebaseAuth.instance.currentUser!.email;
+    String? email = currentUser!.email;
     return Scaffold(
       backgroundColor: isDarkMode ? kBlackColor : kWhiteColor,
       appBar: appBar(context, photo!, userName!),
       body: Column(
         children: [
           Expanded(
-            child: BlocConsumer<ChatCubit, ChatState>(
-              listener: (context, state) {
+            child: BlocBuilder<ChatCubit, ChatState>(
+              builder: (context, state) {
                 if (state is ChatSuccess) {
-                  messageList = state.messageList;
+                  return ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
+                      reverse: true,
+                      controller: _controller,
+                      itemCount: state.messageList.length,
+                      itemBuilder: (context, index) {
+                        return state.messageList[index].email == email
+                            ? ChatBubbleWidget(
+                                message: state.messageList[index],
+                              )
+                            : ChatBubbleWidgetForFriend(
+                                message: state.messageList[index],
+                              );
+                      });
+                } else {
+                  return const Text("you don`t have messages");
                 }
               },
-              builder: (context, state) {
-                return ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 18),
-                    reverse: true,
-                    controller: _controller,
-                    itemCount: messageList.length,
-                    itemBuilder: (context, index) {
-                      return messageList[index].email == email
-                          ? ChatBubbleWidget(
-                              message: messageList[index],
-                            )
-                          : ChatBubbleWidgetForFriend(
-                              message: messageList[index],
-                            );
-                    });
-              },
             ),
           ),
-          SizedBox(
-            height: 90,
-            child: BlocBuilder<SendButtonBloc, SendButtonState>(
-              builder: (context, state) {
-                return Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: SvgPicture.asset('assets/svg/clip_chat.svg'),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        style:
-                            const TextStyle(color: kBlackColor, fontSize: 16),
-                        onChanged: (value) {
-                          if (value.length == 1) {
-                            state.isSend = true;
-                            context
-                                .read<SendButtonBloc>()
-                                .add(SendButtonEvent());
-                          } else if (value.isEmpty) {
-                            state.isSend = false;
-                            context
-                                .read<SendButtonBloc>()
-                                .add(SendButtonEvent());
-                          }
-                        },
-                        controller: controller,
-                        onSubmitted: (data) {
-                          BlocProvider.of<ChatCubit>(context).sendMessage(
-                              message: data, email: email, docUid: docUid!);
-                          controller.clear();
-                          _controller.jumpTo(
-                            0,
-                          );
-                        },
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 12),
-                          fillColor: const Color(0xFFF3F6F6),
-                          filled: true,
-                          border: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFFF3F6F6)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFFF3F6F6)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xFFF3F6F6)),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
-                          hintText: 'Write your message',
-                          hintStyle:
-                              const TextStyle(color: kGreyColor, fontSize: 12),
-                          suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset('assets/svg/sticker.svg'),
-                          ),
-                        ),
-                      ),
-                    ),
-                    state.isSend
-                        ? IconButton(
-                            onPressed: () {},
-                            icon: SvgPicture.asset('assets/svg/send_icon.svg'),
-                          )
-                        : Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                  'assets/svg/camera.svg',
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                    'assets/svg/microphone.svg'),
-                              ),
-                            ],
-                          ),
-                  ],
-                );
-              },
-            ),
-          ),
+          CustomBoxMessage(
+              email: email, docUid: docUid, controller2: _controller),
         ],
       ),
     );
