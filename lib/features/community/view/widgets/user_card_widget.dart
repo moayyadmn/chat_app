@@ -13,7 +13,7 @@ class UserCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        await HandleChatMembers().goChat(user);
+        await HandleCommunityMembers().goChat(user);
       },
       child: ListTile(
         minVerticalPadding: 24,

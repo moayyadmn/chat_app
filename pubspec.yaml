@@ -29,7 +29,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter_native_splash: ^2.3.2
   awesome_dialog: ^3.0.2
   cloud_firestore: ^4.4.4
   cupertino_icons: ^1.0.2
@@ -39,8 +38,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
+  flutter_native_splash: ^2.3.2
   flutter_svg: ^2.0.7
   get: ^4.6.5
+  get_it: ^7.6.4
   google_sign_in: ^6.1.0
   intl: ^0.17.0
   pull_to_refresh: ^2.0.0
@@ -91,7 +92,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
   #!Splash Screen
 flutter_native_splash:
   color: "#F5F5F5"

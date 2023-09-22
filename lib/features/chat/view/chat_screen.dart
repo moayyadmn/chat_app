@@ -1,45 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_event.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/custom_box_message.dart';
 import '../data/chat_cubit/chat_cubit.dart';
 import '../data/chat_cubit/chat_state.dart';
 import 'widgets/chat_bubble.dart';
 
-class ChatScreen extends StatefulWidget {
+class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
-
-  @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
-  final ScrollController _controller = ScrollController();
-  String? userName;
-  String? photo;
-  String? docUid;
-  @override
-  void initState() {
-    Map<String, String?> data = Get.parameters;
-    docUid = data['docUid'];
-    userName = data['toName'];
-    photo = data['toAvatar'];
-    BlocProvider.of<ChatCubit>(context).getMessages(docUid!);
-    BlocProvider.of<SendButtonBloc>(context).add(SendButtonEvent());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     String? email = currentUser!.email;
+    var data = context.read<ChatCubit>();
+
     return Scaffold(
       backgroundColor: isDarkMode ? kBlackColor : kWhiteColor,
-      appBar: appBar(context, photo!, userName!),
+      appBar: appBar(context, data.photo!, data.userName!),
       body: Column(
         children: [
           Expanded(
@@ -49,7 +28,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   return ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 18),
                       reverse: true,
-                      controller: _controller,
+                      controller: data.controller,
                       itemCount: state.messageList.length,
                       itemBuilder: (context, index) {
                         return state.messageList[index].email == email
@@ -67,7 +46,10 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           CustomBoxMessage(
-              email: email, docUid: docUid, controller2: _controller),
+            email: email,
+            docUid: data.docUid,
+            controller2: data.controller,
+          ),
         ],
       ),
     );

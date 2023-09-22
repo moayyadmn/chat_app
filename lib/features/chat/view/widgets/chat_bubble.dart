@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 
@@ -35,12 +36,9 @@ class ChatBubbleWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "${message.sentAt.hour.toString()}:",
-                  style: const TextStyle(color: kGreyColor, fontSize: 10),
-                ),
-                Text(
-                  message.sentAt.minute.toString(),
-                  style: const TextStyle(color: kGreyColor, fontSize: 10),
+                  DateFormat('h:mm a').format(message.sentAt).toString(),
+                  style: const TextStyle(
+                      color: kGreyColor, fontSize: 10, fontFamily: "Default"),
                 ),
               ],
             ),
@@ -86,12 +84,9 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "${message.sentAt.hour.toString()}:",
-                  style: const TextStyle(color: kGreyColor, fontSize: 10),
-                ),
-                Text(
-                  message.sentAt.minute.toString(),
-                  style: const TextStyle(color: kGreyColor, fontSize: 10),
+                  DateFormat('h:mm a').format(message.sentAt).toString(),
+                  style: const TextStyle(
+                      color: kGreyColor, fontSize: 10, fontFamily: "Default"),
                 ),
               ],
             ),

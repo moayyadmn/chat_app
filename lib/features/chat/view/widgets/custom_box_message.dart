@@ -7,7 +7,6 @@ import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_
 import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_event.dart';
 import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_state.dart';
 
-
 class CustomBoxMessage extends StatelessWidget {
   const CustomBoxMessage({
     super.key,

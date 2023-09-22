@@ -5,7 +5,10 @@ class MessageModel {
   MessageModel(this.message, this.email, this.sentAt);
 
   factory MessageModel.fromJason(jasonData) {
-    return MessageModel(jasonData['message'], jasonData['id'],
-        DateTime.parse(jasonData['sentAt']));
+    return MessageModel(
+      jasonData['message'],
+      jasonData['id'],
+      DateTime.parse(jasonData['sentAt']),
+    );
   }
 }

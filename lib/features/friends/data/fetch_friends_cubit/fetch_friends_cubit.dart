@@ -12,10 +12,9 @@ class FetchFriendsCubit extends Cubit<FetchFriendsSate> {
         isEqualTo: currentUser!.uid,
       ),
       Filter('toUid', isEqualTo: currentUser!.uid)));
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
   void fetchUsers() {
     emit(FetchFriendsLoading());
-    db.snapshots().listen((event) {
+    db.orderBy("lastTime", descending: true).snapshots().listen((event) {
       List<ChatListCardModel> dataList = [];
       for (var user in event.docs) {
         dataList.add(ChatListCardModel.fromDocument(user));

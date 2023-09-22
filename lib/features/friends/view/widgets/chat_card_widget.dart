@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:scholarchat_app/core/helper/handle_chat_members.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import '../../../../core/models/chat_list_card_model.dart';
 
@@ -10,7 +11,7 @@ class ChatCardWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
   final ChatListCardModel chatListCardModel;
-  final currentUsDe = FirebaseAuth.instance.currentUser;
+  final currentUsDe = currentUser;
   String getImage() {
     if (chatListCardModel.fromAvatar == currentUsDe!.photoURL) {
       return chatListCardModel.toAvatar;
@@ -32,7 +33,9 @@ class ChatCardWidget extends StatelessWidget {
     DateTime date = DateTime.parse(chatListCardModel.lastTime);
     return Card(
       child: ListTile(
-        onTap: () {},
+        onTap: () async {
+          await HandleFriendsMembers().goChat(chatListCardModel);
+        },
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(25),
           child: Image.network(
