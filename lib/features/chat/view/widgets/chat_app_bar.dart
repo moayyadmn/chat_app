@@ -1,6 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
+
 
 PreferredSizeWidget? appBar(
     BuildContext context, String photo, String userName) {
@@ -39,7 +42,7 @@ PreferredSizeWidget? appBar(
         onPressed: () {},
         icon: SvgPicture.asset(
           "assets/svg/default_call.svg",
-         color : Colors.black,
+          color: Colors.black,
           width: 20,
           height: 20,
         ),

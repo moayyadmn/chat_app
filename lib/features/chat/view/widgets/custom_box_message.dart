@@ -2,21 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import 'package:scholarchat_app/features/chat/data/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_event.dart';
-import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_state.dart';
+import 'package:scholarchat_app/features/chat/view/manager/chat_cubit/chat_cubit.dart';
+import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_bloc.dart';
+import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_event.dart';
+import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_state.dart';
 
 class CustomBoxMessage extends StatelessWidget {
   const CustomBoxMessage({
     super.key,
-    required this.email,
-    required this.docUid,
+    required this.otherUid,
     required ScrollController controller2,
   }) : _controller = controller2;
-
-  final String? email;
-  final String? docUid;
+  final String otherUid;
   final ScrollController _controller;
 
   @override
@@ -48,7 +45,9 @@ class CustomBoxMessage extends StatelessWidget {
                   controller: controller,
                   onSubmitted: (data) {
                     BlocProvider.of<ChatCubit>(context).sendMessage(
-                        message: data, email: email, docUid: docUid!);
+                      otherUid,
+                      data,
+                    );
                     controller.clear();
                     _controller.jumpTo(
                       0,
@@ -80,9 +79,9 @@ class CustomBoxMessage extends StatelessWidget {
                   ? IconButton(
                       onPressed: () {
                         BlocProvider.of<ChatCubit>(context).sendMessage(
-                            message: controller.text,
-                            email: email,
-                            docUid: docUid!);
+                          otherUid,
+                          controller.text,
+                        );
                         controller.clear();
                         _controller.jumpTo(
                           0,

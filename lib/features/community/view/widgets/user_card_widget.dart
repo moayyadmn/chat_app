@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import '../../../../core/helper/handle_chat_members.dart';
-import '../../../../core/models/user_data_model.dart';
+import 'package:scholarchat_app/features/community/data/models/user_data_model.dart';
 
 class UserCardWidget extends StatelessWidget {
   const UserCardWidget({
@@ -13,7 +14,11 @@ class UserCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        await HandleCommunityMembers().goChat(user);
+        Get.toNamed(kChatRoute, parameters: {
+          'otherUserId': user.id,
+          'toName': user.userName,
+          'toAvatar': user.photoUrl,
+        });
       },
       child: ListTile(
         minVerticalPadding: 24,

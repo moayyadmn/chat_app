@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:scholarchat_app/core/helper/extensions.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:scholarchat_app/core/utils/widgets/content_area.dart';
 import 'package:scholarchat_app/core/utils/widgets/custom_app_bar.dart';
-import 'package:scholarchat_app/features/community/data/fetch_user_cubit/fetch_user_cubit.dart';
-import 'package:scholarchat_app/features/community/data/fetch_user_cubit/fetch_user_state.dart';
-import '../../../core/utils/theme/colors.dart';
-import '../../../core/utils/widgets/content_area.dart';
-import 'widgets/user_card_widget.dart';
+import 'package:scholarchat_app/features/community/view/manager/fetch_user_cubit/fetch_user_cubit.dart';
+import 'package:scholarchat_app/features/community/view/manager/fetch_user_cubit/fetch_user_state.dart';
+import 'package:scholarchat_app/features/community/view/widgets/user_card_widget.dart';
 
 class CommunityView extends StatelessWidget {
   const CommunityView({super.key});

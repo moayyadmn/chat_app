@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -43,6 +44,7 @@ class LoginCubit extends Cubit<LoginState> {
           'photoUrl': firebaseUser.photoURL,
         });
       }
+      currentUser = firebaseUser;
     }
     // Once signed in, return the UserCredential
     return firebaseUser;

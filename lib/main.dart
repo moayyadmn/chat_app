@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/core/utils/bloc_providers.dart';
+import 'package:scholarchat_app/core/utils/service_locator.dart';
 import 'package:scholarchat_app/core/utils/theme/app_theme.dart';
 import 'package:scholarchat_app/core/simple_bloc_observer.dart';
 import 'core/helper/app_screens.dart';
@@ -13,6 +14,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setup();
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }

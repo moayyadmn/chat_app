@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/features/calls/view/calls_screen.dart';
-import 'package:scholarchat_app/features/chat/data/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/send_button_bloc/send_button_event.dart';
+import 'package:scholarchat_app/features/chat/view/manager/chat_cubit/chat_cubit.dart';
+import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_bloc.dart';
+import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_event.dart';
 import 'package:scholarchat_app/features/community/view/community_view.dart';
 import '../../features/friends/view/friends_view.dart';
 import '../utils/constants.dart';
@@ -54,9 +54,7 @@ List<GetPage<dynamic>> routeList = [
     page: () => MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ChatCubit()
-            ..setInformation(Get.parameters)
-            ..getMessages(),
+          create: (context) => ChatCubit()..setInformation(Get.parameters)..getMessages(),
         ),
         BlocProvider(
             create: (context) => SendButtonBloc()..add(SendButtonEvent())),

@@ -6,7 +6,7 @@ class StatusAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 82,
+      height: 90,
       child: ListView.builder(
           itemCount: 5,
           scrollDirection: Axis.horizontal,

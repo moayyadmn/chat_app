@@ -4,8 +4,8 @@ import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/custom_box_message.dart';
-import '../data/chat_cubit/chat_cubit.dart';
-import '../data/chat_cubit/chat_state.dart';
+import 'manager/chat_cubit/chat_cubit.dart';
+import 'manager/chat_cubit/chat_state.dart';
 import 'widgets/chat_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -46,8 +46,7 @@ class ChatScreen extends StatelessWidget {
             ),
           ),
           CustomBoxMessage(
-            email: email,
-            docUid: data.docUid,
+            otherUid: data.otherUserId!,
             controller2: data.controller,
           ),
         ],
