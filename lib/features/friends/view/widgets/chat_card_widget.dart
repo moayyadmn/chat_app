@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:scholarchat_app/core/helper/handle_chat_members.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import '../../../../core/models/chat_list_card_model.dart';
+import 'package:get/get.dart';
 
 class ChatCardWidget extends StatelessWidget {
   ChatCardWidget({
@@ -28,13 +28,25 @@ class ChatCardWidget extends StatelessWidget {
     }
   }
 
+  String getId() {
+    if (chatListCardModel.fromUid == currentUsDe!.uid) {
+      return chatListCardModel.toUid;
+    } else {
+      return chatListCardModel.fromUid;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     DateTime date = DateTime.parse(chatListCardModel.lastTime);
     return Card(
       child: ListTile(
-        onTap: () async {
-          await HandleFriendsMembers().goChat(chatListCardModel);
+        onTap: () {
+          Get.toNamed(kChatRoute, parameters: {
+            'otherUserId': getId(),
+            'toName': getName(),
+            'toAvatar': getImage(),
+          });
         },
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(25),

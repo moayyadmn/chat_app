@@ -48,7 +48,6 @@ List<BottomNavigationBarItem> itemsList = [
 List<GetPage<dynamic>> routeList = [
   GetPage(name: kUserChatRoute, page: () => const RootScreen()),
   GetPage(name: kLoginRoute, page: () => const LogInScreen()),
-  GetPage(name: kLoginRoute, page: () => const FriendsView()),
   GetPage(
     name: kChatRoute,
     page: () => MultiBlocProvider(

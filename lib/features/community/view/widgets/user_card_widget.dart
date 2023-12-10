@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scholarchat_app/core/helper/go_chat.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/community/data/models/user_data_model.dart';
@@ -13,12 +14,13 @@ class UserCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async {
+      onTap: () {
         Get.toNamed(kChatRoute, parameters: {
           'otherUserId': user.id,
           'toName': user.userName,
           'toAvatar': user.photoUrl,
         });
+        GoChat().goChat(user);
       },
       child: ListTile(
         minVerticalPadding: 24,

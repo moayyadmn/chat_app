@@ -14,43 +14,37 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? email = currentUser!.email;
-    var data = context.read<ChatCubit>();
-
+    var data = BlocProvider.of<ChatCubit>(context);
     return Scaffold(
       backgroundColor: isDarkMode ? kBlackColor : kWhiteColor,
       appBar: appBar(context, data.photo!, data.userName!),
-      body: Column(
-        children: [
-          Expanded(
-            child: BlocBuilder<ChatCubit, ChatState>(
-              builder: (context, state) {
-                if (state is ChatSuccess) {
-                  return ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      reverse: true,
-                      controller: data.controller,
-                      itemCount: state.messageList.length,
-                      itemBuilder: (context, index) {
-                        return state.messageList[index].email == email
-                            ? ChatBubbleWidget(
-                                message: state.messageList[index],
-                              )
-                            : ChatBubbleWidgetForFriend(
-                                message: state.messageList[index],
-                              );
-                      });
-                } else {
-                  return const Text("you don`t have messages");
-                }
-              },
+      body: BlocBuilder<ChatCubit, ChatState>(builder: (context, state) {
+        return Column(
+          children: [
+            Expanded(
+                child: state is ChatSuccess
+                    ? ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        reverse: true,
+                        controller: data.controller,
+                        itemCount: state.messageList.length,
+                        itemBuilder: (context, index) {
+                          return state.messageList[index].email == email
+                              ? ChatBubbleWidget(
+                                  message: state.messageList[index],
+                                )
+                              : ChatBubbleWidgetForFriend(
+                                  message: state.messageList[index],
+                                );
+                        })
+                    : const Center(child: Text("you don`t have messages"))),
+            CustomBoxMessage(
+              otherUid: data.otherUserId!,
+              controller2: data.controller,
             ),
-          ),
-          CustomBoxMessage(
-            otherUid: data.otherUserId!,
-            controller2: data.controller,
-          ),
-        ],
-      ),
+          ],
+        );
+      }),
     );
   }
 }

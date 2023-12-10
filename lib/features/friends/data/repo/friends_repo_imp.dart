@@ -5,7 +5,7 @@ import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/features/friends/data/repo/friends_repo.dart';
 
 class FriendsRepoImpl extends FriendsRepo {
-  final db = FirebaseFirestore.instance.collection('messages').where(Filter.or(
+  final db = FirebaseFirestore.instance.collection('chat_rooms').where(Filter.or(
       Filter(
         'fromUid',
         isEqualTo: currentUser!.uid,

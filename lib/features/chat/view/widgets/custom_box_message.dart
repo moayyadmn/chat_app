@@ -34,7 +34,7 @@ class CustomBoxMessage extends StatelessWidget {
                 child: TextField(
                   style: const TextStyle(color: kBlackColor, fontSize: 16),
                   onChanged: (value) {
-                    if (value.length == 1) {
+                    if (value.length > 1) {
                       state.isSend = true;
                       context.read<SendButtonBloc>().add(SendButtonEvent());
                     } else if (value.isEmpty) {
