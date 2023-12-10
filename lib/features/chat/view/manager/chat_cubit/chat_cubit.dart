@@ -32,6 +32,10 @@ class ChatCubit extends Cubit<ChatState> {
       'sentAt': DateTime.now().toString(),
       'id': currentUEmail!,
     });
+    await chatRooms.doc(chatRoomId).update({
+      'lastMessage': message,
+      'lastTime': DateTime.now().toString(),
+    });
   }
 
   void getMessages() {

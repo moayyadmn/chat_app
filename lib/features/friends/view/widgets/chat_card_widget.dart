@@ -48,38 +48,44 @@ class ChatCardWidget extends StatelessWidget {
             'toAvatar': getImage(),
           });
         },
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(25),
-          child: Image.network(
-            getImage(),
-            fit: BoxFit.cover,
-            height: 50,
-            width: 50,
-            errorBuilder: (context, error, stackTrace) {
-              return const Icon(
-                Icons.account_circle,
-                size: 50,
-                color: Colors.grey,
-              );
-            },
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return const SizedBox(
-                width: 50,
-                height: 50,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: kGreenColor,
+        leading: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: kGreyColor,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Image.network(
+              getImage(),
+              fit: BoxFit.cover,
+              height: 50,
+              width: 50,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.account_circle,
+                  size: 50,
+                  color: Colors.grey,
+                );
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: kGreenColor,
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
         title: Text(getName(), style: Theme.of(context).textTheme.bodyLarge),
         subtitle: Text(
           chatListCardModel.lastMessage,
-          style: const TextStyle(color: Color(0xff797C7B)),
+          style: const TextStyle(color: kGreyColor),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),

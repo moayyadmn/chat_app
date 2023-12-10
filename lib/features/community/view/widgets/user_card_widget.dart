@@ -25,32 +25,38 @@ class UserCardWidget extends StatelessWidget {
       child: ListTile(
         minVerticalPadding: 24,
         leading: InkWell(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: Image.network(
-              user.photoUrl,
-              fit: BoxFit.cover,
-              height: 50,
-              width: 50,
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(
-                  Icons.account_circle,
-                  size: 50,
-                  color: Colors.grey,
-                );
-              },
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: kGreenColor,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: kGreyColor,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image.network(
+                user.photoUrl,
+                fit: BoxFit.cover,
+                height: 50,
+                width: 50,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(
+                    Icons.account_circle,
+                    size: 50,
+                    color: Colors.grey,
+                  );
+                },
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: kGreenColor,
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ),
