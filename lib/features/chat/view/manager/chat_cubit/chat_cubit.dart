@@ -10,6 +10,7 @@ class ChatCubit extends Cubit<ChatState> {
   late ScrollController controller;
   final CollectionReference chatRooms =
       FirebaseFirestore.instance.collection('chat_rooms');
+
   String? userName;
   String? photo;
   String? otherUserId;
@@ -54,5 +55,11 @@ class ChatCubit extends Cubit<ChatState> {
       }
       emit(ChatSuccess(messageList: messagesList));
     });
+  }
+
+  @override
+  Future<void> close() {
+    controller.dispose();
+    return super.close();
   }
 }

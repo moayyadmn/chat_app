@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scholarchat_app/core/services/app_services.dart';
 import 'package:scholarchat_app/core/utils/bloc_providers.dart';
-import 'package:scholarchat_app/core/utils/service_locator.dart';
 import 'package:scholarchat_app/core/utils/theme/app_theme.dart';
 import 'package:scholarchat_app/core/simple_bloc_observer.dart';
 import 'core/helper/app_screens.dart';
@@ -14,7 +14,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  setup();
+  await initialServices();
   Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         title: 'ChatBox',
         theme: AppTheme.themeData(isDarkTheme: false),
-        home: isLogged(),
         getPages: routeList,
       ),
     );

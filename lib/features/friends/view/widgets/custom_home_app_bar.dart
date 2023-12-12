@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
   const CustomHomeAppBar({super.key});
@@ -22,11 +23,10 @@ class CustomHomeAppBar extends StatelessWidget {
           Container(
             height: 44,
             width: 44,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                  image: NetworkImage(
-                      "https://media.istockphoto.com/id/1465940329/photo/portrait-of-a-blind-man-at-a-subway-station.webp?b=1&s=170667a&w=0&k=20&c=CRj1NXFSBxxXJqWSkQEjejQrGDw4qba7qsxe1h40ggw="),
+                  image: NetworkImage(currentUser!.photoURL!),
                   fit: BoxFit.cover),
             ),
           )

@@ -42,7 +42,7 @@ class ChatCardWidget extends StatelessWidget {
     return Card(
       child: ListTile(
         onTap: () {
-          Get.toNamed(kChatRoute, parameters: {
+          Get.toNamed(kChatRoute, arguments: {
             'otherUserId': getId(),
             'toName': getName(),
             'toAvatar': getImage(),
@@ -74,7 +74,7 @@ class ChatCardWidget extends StatelessWidget {
                   height: 50,
                   child: Center(
                     child: CircularProgressIndicator(
-                      color: kGreenColor,
+                      color: kWhiteColor,
                     ),
                   ),
                 );

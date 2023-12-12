@@ -15,7 +15,7 @@ class UserCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(kChatRoute, parameters: {
+        Get.toNamed(kChatRoute, arguments: {
           'otherUserId': user.id,
           'toName': user.userName,
           'toAvatar': user.photoUrl,

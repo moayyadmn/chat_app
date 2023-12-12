@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:scholarchat_app/core/middleware/login_middleware.dart';
 import 'package:scholarchat_app/features/calls/view/calls_screen.dart';
-import 'package:scholarchat_app/features/chat/view/manager/chat_cubit/chat_cubit.dart';
+
 import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_bloc.dart';
 import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_event.dart';
 import 'package:scholarchat_app/features/community/view/community_view.dart';
@@ -46,27 +47,15 @@ List<BottomNavigationBarItem> itemsList = [
 ];
 
 List<GetPage<dynamic>> routeList = [
+  GetPage(name: '/', page: () => const LogInScreen(), middlewares: [
+    LoginMiddleware(),
+  ]),
   GetPage(name: kUserChatRoute, page: () => const RootScreen()),
-  GetPage(name: kLoginRoute, page: () => const LogInScreen()),
   GetPage(
     name: kChatRoute,
-    page: () => MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ChatCubit()..setInformation(Get.parameters)..getMessages(),
-        ),
-        BlocProvider(
-            create: (context) => SendButtonBloc()..add(SendButtonEvent())),
-      ],
+    page: () => BlocProvider(
+      create: (context) => SendButtonBloc()..add(SendButtonEvent()),
       child: const ChatScreen(),
     ),
   ),
 ];
-
-Widget isLogged() {
-  if (currentUser == null) {
-    return const LogInScreen();
-  } else {
-    return const RootScreen();
-  }
-}
