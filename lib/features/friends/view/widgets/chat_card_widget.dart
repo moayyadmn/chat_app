@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
 import '../../../../core/models/chat_list_card_model.dart';
 import 'package:get/get.dart';
 
@@ -42,11 +44,15 @@ class ChatCardWidget extends StatelessWidget {
     return Card(
       child: ListTile(
         onTap: () {
-          Get.toNamed(kChatRoute, arguments: {
+          var data = {
             'otherUserId': getId(),
             'toName': getName(),
             'toAvatar': getImage(),
-          });
+          };
+          BlocProvider.of<ChatCubit>(context)
+            ..setInformation(data)
+            ..getMessages();
+          Get.toNamed(kChatRoute);
         },
         leading: Container(
           decoration: BoxDecoration(

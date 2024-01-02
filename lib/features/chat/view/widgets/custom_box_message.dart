@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import 'package:scholarchat_app/features/chat/view/manager/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_bloc.dart';
-import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_event.dart';
-import 'package:scholarchat_app/features/chat/view/manager/send_button_bloc/send_button_state.dart';
+import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
+import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_bloc.dart';
+import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_event.dart';
+import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_state.dart';
 
 class CustomBoxMessage extends StatelessWidget {
   const CustomBoxMessage({
     super.key,
     required this.otherUid,
-    required ScrollController controller2,
-  }) : _controller = controller2;
+    required this.scrollController,
+  });
   final String otherUid;
-  final ScrollController _controller;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +49,7 @@ class CustomBoxMessage extends StatelessWidget {
                       data,
                     );
                     controller.clear();
-                    _controller.jumpTo(
-                      0,
-                    );
+                    scrollController.jumpTo(0);
                   },
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 12),
@@ -83,9 +81,7 @@ class CustomBoxMessage extends StatelessWidget {
                           controller.text,
                         );
                         controller.clear();
-                        _controller.jumpTo(
-                          0,
-                        );
+                        scrollController.jumpTo(0);
                       },
                       icon: SvgPicture.asset('assets/svg/send_icon.svg'),
                     )

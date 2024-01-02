@@ -7,7 +7,7 @@ import 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
   ChatCubit() : super(ChatInitial());
-  late ScrollController controller;
+  late ScrollController scrollController;
   final CollectionReference chatRooms =
       FirebaseFirestore.instance.collection('chat_rooms');
 
@@ -16,7 +16,7 @@ class ChatCubit extends Cubit<ChatState> {
   String? otherUserId;
 
   void setInformation(Map<String, String?> data) {
-    controller = ScrollController();
+    scrollController = ScrollController();
     otherUserId = data['otherUserId'];
     userName = data['toName'];
     photo = data['toAvatar'];
@@ -55,11 +55,5 @@ class ChatCubit extends Cubit<ChatState> {
       }
       emit(ChatSuccess(messageList: messagesList));
     });
-  }
-
-  @override
-  Future<void> close() {
-    controller.dispose();
-    return super.close();
   }
 }

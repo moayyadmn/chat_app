@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scholarchat_app/core/helper/extensions.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/friends/data/manager/fetch_friends_cubit/fetch_friends_cubit.dart';
-import 'package:scholarchat_app/features/friends/view/manager/fetch_friends_cubit/fetch_friends_state.dart';
+import 'package:scholarchat_app/features/friends/data/manager/fetch_friends_cubit/fetch_friends_state.dart';
 import 'package:scholarchat_app/features/friends/view/widgets/chat_card_widget.dart';
 import 'package:scholarchat_app/features/friends/view/widgets/custom_home_app_bar.dart';
 import '../../../core/utils/widgets/content_area.dart';

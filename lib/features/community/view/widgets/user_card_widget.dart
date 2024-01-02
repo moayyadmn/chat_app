@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/core/helper/go_chat.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/features/community/data/models/user_data_model.dart';
 
 class UserCardWidget extends StatelessWidget {
@@ -15,11 +17,15 @@ class UserCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(kChatRoute, arguments: {
+        var data = {
           'otherUserId': user.id,
           'toName': user.userName,
           'toAvatar': user.photoUrl,
-        });
+        };
+        BlocProvider.of<ChatCubit>(context)
+          ..setInformation(data)
+          ..getMessages();
+        Get.toNamed(kChatRoute);
         GoChat().goChat(user);
       },
       child: ListTile(
