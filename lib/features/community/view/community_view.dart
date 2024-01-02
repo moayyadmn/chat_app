@@ -6,8 +6,8 @@ import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/core/utils/widgets/content_area.dart';
 import 'package:scholarchat_app/core/utils/widgets/custom_app_bar.dart';
-import 'package:scholarchat_app/features/community/view/manager/fetch_user_cubit/fetch_user_cubit.dart';
-import 'package:scholarchat_app/features/community/view/manager/fetch_user_cubit/fetch_user_state.dart';
+import 'package:scholarchat_app/features/community/data/manager/fetch_user_cubit/fetch_user_cubit.dart';
+import 'package:scholarchat_app/features/community/data/manager/fetch_user_cubit/fetch_user_state.dart';
 import 'package:scholarchat_app/features/community/view/widgets/user_card_widget.dart';
 
 class CommunityView extends StatelessWidget {
