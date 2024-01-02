@@ -4,50 +4,29 @@ import 'package:intl/intl.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
+import 'package:scholarchat_app/features/friends/functions/handle_other_user.dart';
 import '../../../../core/models/chat_list_card_model.dart';
 import 'package:get/get.dart';
 
 class ChatCardWidget extends StatelessWidget {
-  ChatCardWidget({
+  const ChatCardWidget({
     required this.chatListCardModel,
     Key? key,
   }) : super(key: key);
+
   final ChatListCardModel chatListCardModel;
-  final currentUsDe = currentUser;
-  String getImage() {
-    if (chatListCardModel.fromAvatar == currentUsDe!.photoURL) {
-      return chatListCardModel.toAvatar;
-    } else {
-      return chatListCardModel.fromAvatar;
-    }
-  }
-
-  String getName() {
-    if (chatListCardModel.fromName == currentUsDe!.displayName) {
-      return chatListCardModel.toName;
-    } else {
-      return chatListCardModel.fromName;
-    }
-  }
-
-  String getId() {
-    if (chatListCardModel.fromUid == currentUsDe!.uid) {
-      return chatListCardModel.toUid;
-    } else {
-      return chatListCardModel.fromUid;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     DateTime date = DateTime.parse(chatListCardModel.lastTime);
+    HandleOtherUser handleOtherUser =
+        HandleOtherUser(cardModel: chatListCardModel);
     return Card(
       child: ListTile(
         onTap: () {
           var data = {
-            'otherUserId': getId(),
-            'toName': getName(),
-            'toAvatar': getImage(),
+            'otherUserId': handleOtherUser.getId(),
+            'toName': handleOtherUser.getName(),
+            'toAvatar': handleOtherUser.getImage(),
           };
           BlocProvider.of<ChatCubit>(context)
             ..setInformation(data)
@@ -62,7 +41,7 @@ class ChatCardWidget extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: Image.network(
-              getImage(),
+              handleOtherUser.getImage(),
               fit: BoxFit.cover,
               height: 50,
               width: 50,
@@ -88,7 +67,8 @@ class ChatCardWidget extends StatelessWidget {
             ),
           ),
         ),
-        title: Text(getName(), style: Theme.of(context).textTheme.bodyLarge),
+        title: Text(handleOtherUser.getName(),
+            style: Theme.of(context).textTheme.bodyLarge),
         subtitle: Text(
           chatListCardModel.lastMessage,
           style: const TextStyle(color: kGreyColor),
