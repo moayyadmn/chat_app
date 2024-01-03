@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
@@ -48,6 +50,7 @@ class CustomBoxMessage extends StatelessWidget {
                     BlocProvider.of<ChatCubit>(context).sendMessage(
                       otherUid,
                       data,
+                      'text',
                     );
                     controller.clear();
                     scrollController.jumpTo(0);
@@ -80,6 +83,7 @@ class CustomBoxMessage extends StatelessWidget {
                         BlocProvider.of<ChatCubit>(context).sendMessage(
                           otherUid,
                           controller.text,
+                          'text',
                         );
                         controller.clear();
                         scrollController.jumpTo(0);
@@ -88,8 +92,17 @@ class CustomBoxMessage extends StatelessWidget {
                     )
                   : Row(
                       children: [
-                        IconButton(
-                          onPressed: () {},
+                        IconButton( // send an image
+                          onPressed: () async {
+                            final ImagePicker picker = ImagePicker();
+                            final XFile? image = await picker.pickImage(
+                                source: ImageSource.gallery);
+                            if (image != null) {
+                              File file = File(image.path);
+                              await ChatCubit()
+                                  .uploadImageToFirebase(file, otherUid);
+                            }
+                          },
                           icon: SvgPicture.asset(kCameraIcon),
                         ),
                         IconButton(

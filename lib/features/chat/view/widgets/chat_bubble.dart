@@ -13,22 +13,34 @@ class ChatBubbleWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Container(
-            margin: const EdgeInsets.all(5),
-            padding:
-                const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-            decoration: const BoxDecoration(
-                color: kChatBubbleColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                )),
-            child: SelectableText(
-              message.message,
-              style: const TextStyle(color: Colors.white, fontSize: 16),
-            ),
-          ),
+          message.type == 'text'
+              ? Container(
+                  margin: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 5, bottom: 5),
+                  decoration: const BoxDecoration(
+                      color: kChatBubbleColor,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12),
+                      )),
+                  child: SelectableText(
+                    message.message,
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                )
+              : Container(
+                  height: 200,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    color: kGreyColor,
+                    borderRadius: BorderRadius.circular(12),
+                    image: DecorationImage(
+                      image: NetworkImage(message.message),
+                    ),
+                  ),
+                ),
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Row(
@@ -60,23 +72,36 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Container(
-            margin: const EdgeInsets.all(5),
-            padding:
-                const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-            decoration: const BoxDecoration(
-              color: kChatBubbleColor2,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(12),
-                bottomLeft: Radius.circular(12),
-                bottomRight: Radius.circular(12),
-              ),
-            ),
-            child: SelectableText(
-              message.message,
-              style: const TextStyle(color: Color(0xff000E08), fontSize: 16),
-            ),
-          ),
+          message.type == 'text'
+              ? Container(
+                  margin: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 5, bottom: 5),
+                  decoration: const BoxDecoration(
+                    color: kChatBubbleColor2,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(12),
+                      bottomLeft: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
+                    ),
+                  ),
+                  child: SelectableText(
+                    message.message,
+                    style:
+                        const TextStyle(color: Color(0xff000E08), fontSize: 16),
+                  ),
+                )
+              : Container(
+                  height: 200,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    color: kGreyColor,
+                    borderRadius: BorderRadius.circular(12),
+                    image: DecorationImage(
+                      image: NetworkImage(message.message),
+                    ),
+                  ),
+                ),
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Row(
