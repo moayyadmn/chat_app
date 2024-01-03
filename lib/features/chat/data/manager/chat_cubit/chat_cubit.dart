@@ -67,16 +67,21 @@ class ChatCubit extends Cubit<ChatState> {
 
   Future<String> uploadImageToFirebase(
       File imageFile, String otherUserId) async {
-    Random random = Random();
-    String randomNumber = '${random.nextInt(1000)}';
-    String fileName = '$randomNumber${path.basename(imageFile.path)}';
-    Reference storageReference = storageRef.child('chat_images/$fileName');
-    UploadTask uploadTask = storageReference.putFile(imageFile);
-    TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
-    String imageUrl = await taskSnapshot.ref.getDownloadURL().then((message) {
-      sendMessage(otherUserId, message, 'photo');
-      return message;
-    });
-    return imageUrl;
+    try {
+      Random random = Random();
+      String randomNumber = '${random.nextInt(1000)}';
+      String fileName = '$randomNumber${path.basename(imageFile.path)}';
+      Reference storageReference = storageRef.child('chat_images/$fileName');
+      UploadTask uploadTask = storageReference.putFile(imageFile);
+      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
+      String imageUrl = await taskSnapshot.ref.getDownloadURL().then((message) {
+        sendMessage(otherUserId, message, 'photo');
+        return message;
+      });
+      return imageUrl;
+    } catch (error) {
+      // Handle the error here, e.g. log it or display an error message
+      return 'Error uploading image: $error';
+    }
   }
 }
