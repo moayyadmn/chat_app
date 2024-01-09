@@ -67,7 +67,7 @@ class ChatBubbleWidget extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -138,7 +138,7 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

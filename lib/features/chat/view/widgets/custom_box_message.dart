@@ -147,7 +147,10 @@ class ImagePreview extends StatelessWidget {
                 Get.back();
                 await ChatCubit().uploadImageToFirebase(imageFile, otherUserId);
               },
-              icon: SvgPicture.asset(kSendIcon),
+              icon: SvgPicture.asset(
+                kSendIcon,
+                height: 50,
+              ),
             ),
           )
         ],

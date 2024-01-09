@@ -15,7 +15,6 @@ class ChatCubit extends Cubit<ChatState> {
   late ScrollController scrollController;
   final CollectionReference chatRooms =
       FirebaseFirestore.instance.collection('chat_rooms');
-
   String? userName;
   String? photo;
   String? otherUserId;
