@@ -15,6 +15,7 @@ class ChatCubit extends Cubit<ChatState> {
   late ScrollController scrollController;
   final CollectionReference chatRooms =
       FirebaseFirestore.instance.collection('chat_rooms');
+  final String? currentUEmail = currentUser!.email;
   String? userName;
   String? photo;
   String? otherUserId;
@@ -26,30 +27,72 @@ class ChatCubit extends Cubit<ChatState> {
     photo = data['toAvatar'];
   }
 
-  Future<void> sendMessage(
-      String receiverId, String message, String type) async {
+  // Get the id of the chat room
+  String getChatRoomId(String otherUserId) {
     final String currentUid = currentUser!.uid;
-    final String? currentUEmail = currentUser!.email;
-    List<String> ids = [currentUid, receiverId];
+    List<String> ids = [currentUid, otherUserId];
     ids.sort();
     String chatRoomId = ids.join("_");
+    return chatRoomId;
+  }
+
+  //Sent text message
+  Future<void> sendMessage(String otherUserId, String message) async {
+    String chatRoomId = getChatRoomId(otherUserId);
     await chatRooms.doc(chatRoomId).collection('messages').add({
       'message': message,
-      'type': type,
+      'type': 'text',
       'sentAt': DateTime.now().toString(),
       'id': currentUEmail!,
     });
     await chatRooms.doc(chatRoomId).update({
-      //todo: refactor this
-      'lastMessage': type == 'text' ? message : 'photo',
+      'lastMessage': message,
       'lastTime': DateTime.now().toString(),
     });
   }
 
+  //Send an Image
+  Future<void> sendImage(String otherUserId, String docName) async {
+    String chatRoomId = getChatRoomId(otherUserId);
+    await chatRooms.doc(chatRoomId).collection('messages').doc(docName).set({
+      'message': '',
+      'type': 'photo',
+      'sentAt': DateTime.now().toString(),
+      'id': currentUEmail!,
+    });
+    await chatRooms.doc(chatRoomId).update({
+      'lastMessage': 'photo',
+      'lastTime': DateTime.now().toString(),
+    });
+  }
+
+  Future<String> uploadImageToFirebase(
+      File imageFile, String otherUserId) async {
+    String chatRoomId = getChatRoomId(otherUserId);
+    try {
+      Random random = Random();
+      String randomNumber = '${random.nextInt(1000)}';
+      String fileName = '$randomNumber${path.basename(imageFile.path)}';
+      Reference storageReference = storageRef.child('chat_images/$fileName');
+      UploadTask uploadTask = storageReference.putFile(imageFile);
+      await sendImage(otherUserId, fileName);
+      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
+      String imageUrl = await taskSnapshot.ref.getDownloadURL().then((message) {
+        chatRooms.doc(chatRoomId).collection('messages').doc(fileName).update({
+          'message': message,
+        });
+        return message;
+      });
+      return imageUrl;
+    } catch (error) {
+      // Handle the error here, e.g. log it or display an error message
+      return 'Error uploading image: $error';
+    }
+  }
+
+  //Get messages
   void getMessages() {
-    List<String> ids = [currentUser!.uid, otherUserId!];
-    ids.sort();
-    String chatRoomId = ids.join("_");
+    String chatRoomId = getChatRoomId(otherUserId!);
     chatRooms
         .doc(chatRoomId)
         .collection('messages')
@@ -62,25 +105,5 @@ class ChatCubit extends Cubit<ChatState> {
       }
       emit(ChatSuccess(messageList: messagesList));
     });
-  }
-
-  Future<String> uploadImageToFirebase(
-      File imageFile, String otherUserId) async {
-    try {
-      Random random = Random();
-      String randomNumber = '${random.nextInt(1000)}';
-      String fileName = '$randomNumber${path.basename(imageFile.path)}';
-      Reference storageReference = storageRef.child('chat_images/$fileName');
-      UploadTask uploadTask = storageReference.putFile(imageFile);
-      TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
-      String imageUrl = await taskSnapshot.ref.getDownloadURL().then((message) {
-        sendMessage(otherUserId, message, 'photo');
-        return message;
-      });
-      return imageUrl;
-    } catch (error) {
-      // Handle the error here, e.g. log it or display an error message
-      return 'Error uploading image: $error';
-    }
   }
 }

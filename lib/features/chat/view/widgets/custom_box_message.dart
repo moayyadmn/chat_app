@@ -52,7 +52,6 @@ class CustomBoxMessage extends StatelessWidget {
                     BlocProvider.of<ChatCubit>(context).sendMessage(
                       otherUid,
                       data,
-                      'text',
                     );
                     controller.clear();
                     scrollController.jumpTo(0);
@@ -85,7 +84,6 @@ class CustomBoxMessage extends StatelessWidget {
                         BlocProvider.of<ChatCubit>(context).sendMessage(
                           otherUid,
                           controller.text,
-                          'text',
                         );
                         controller.clear();
                         scrollController.jumpTo(0);
@@ -103,7 +101,7 @@ class CustomBoxMessage extends StatelessWidget {
                             if (image != null) {
                               File file = File(image.path);
                               Get.to(
-                                ImagePreview(
+                                () => ImagePreview(
                                   imageFile: file,
                                   otherUserId: otherUid,
                                 ),

@@ -33,27 +33,41 @@ class ChatBubbleWidget extends StatelessWidget {
                         color: Color.fromRGBO(255, 255, 255, 1), fontSize: 16),
                   ),
                 )
-              : InkWell(
-                  onTap: () {
-                    Get.to(
-                      ImagePreview(
-                        imageUrl: message.message,
+              : message.message.isEmpty
+                  ? Container(
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: kGreyColor,
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      transition: Transition.downToUp,
-                    );
-                  },
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: kGreyColor,
-                      borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                          image: NetworkImage(message.message),
-                          fit: BoxFit.cover),
+                      child: const Center(
+                        child: CircularProgressIndicator(
+                          color: kGreenColor,
+                        ),
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        Get.to(
+                          () => ImagePreview(
+                            imageUrl: message.message,
+                          ),
+                          transition: Transition.downToUp,
+                        );
+                      },
+                      child: Container(
+                        height: 200,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: kGreyColor,
+                          borderRadius: BorderRadius.circular(12),
+                          image: DecorationImage(
+                              image: NetworkImage(message.message),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Row(
@@ -104,27 +118,41 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
                         const TextStyle(color: Color(0xff000E08), fontSize: 16),
                   ),
                 )
-              : InkWell(
-                  onTap: () {
-                    Get.to(
-                      ImagePreview(
-                        imageUrl: message.message,
+              : message.message.isEmpty
+                  ? Container(
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        color: kGreyColor,
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      transition: Transition.downToUp,
-                    );
-                  },
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: kGreyColor,
-                      borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                        image: NetworkImage(message.message),
+                      child: const Center(
+                        child: CircularProgressIndicator(
+                          color: kGreenColor,
+                        ),
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        Get.to(
+                          () => ImagePreview(
+                            imageUrl: message.message,
+                          ),
+                          transition: Transition.downToUp,
+                        );
+                      },
+                      child: Container(
+                        height: 200,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: kGreyColor,
+                          borderRadius: BorderRadius.circular(12),
+                          image: DecorationImage(
+                              image: NetworkImage(message.message),
+                              fit: BoxFit.cover),
+                        ),
                       ),
                     ),
-                  ),
-                ),
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Row(
