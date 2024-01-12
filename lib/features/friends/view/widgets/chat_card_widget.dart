@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
@@ -34,36 +35,16 @@ class ChatCardWidget extends StatelessWidget {
           Get.toNamed(kChatRoute);
         },
         leading: Container(
+          height: 55,
+          width: 55,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
+            shape: BoxShape.circle,
             color: kGreyColor,
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: Image.network(
-              handleOtherUser.getImage(),
+            image: DecorationImage(
+              image: CachedNetworkImageProvider(
+                handleOtherUser.getImage(),
+              ),
               fit: BoxFit.cover,
-              height: 50,
-              width: 50,
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(
-                  Icons.account_circle,
-                  size: 50,
-                  color: Colors.grey,
-                );
-              },
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: kWhiteColor,
-                    ),
-                  ),
-                );
-              },
             ),
           ),
         ),

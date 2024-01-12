@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -63,7 +64,8 @@ class ChatBubbleWidget extends StatelessWidget {
                           color: kGreyColor,
                           borderRadius: BorderRadius.circular(12),
                           image: DecorationImage(
-                              image: NetworkImage(message.message),
+                              image:
+                                  CachedNetworkImageProvider(message.message),
                               fit: BoxFit.cover),
                         ),
                       ),
@@ -148,7 +150,8 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
                           color: kGreyColor,
                           borderRadius: BorderRadius.circular(12),
                           image: DecorationImage(
-                              image: NetworkImage(message.message),
+                              image:
+                                  CachedNetworkImageProvider(message.message),
                               fit: BoxFit.cover),
                         ),
                       ),

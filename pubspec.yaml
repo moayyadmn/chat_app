@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   awesome_dialog: ^3.0.2
+  cached_network_image: ^3.3.1
   cloud_firestore: ^4.4.4
   cupertino_icons: ^1.0.2
   dots_indicator: ^2.1.0
@@ -47,7 +48,6 @@ dependencies:
   image_picker: ^1.0.5
   intl: ^0.17.0
   photo_view: ^0.14.0
-  pull_to_refresh: ^2.0.0
   shared_preferences: ^2.2.2
 
 dev_dependencies:
