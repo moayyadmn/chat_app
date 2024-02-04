@@ -36,7 +36,7 @@ class ChatCubit extends Cubit<ChatState> {
     return chatRoomId;
   }
 
-  //Sent text message
+  //Send text message
   Future<void> sendMessage(String otherUserId, String message) async {
     String chatRoomId = getChatRoomId(otherUserId);
     await chatRooms.doc(chatRoomId).collection('messages').add({

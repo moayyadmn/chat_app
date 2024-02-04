@@ -37,6 +37,7 @@ class CustomBoxMessage extends StatelessWidget {
               ),
               Expanded(
                 child: TextField(
+                  controller: controller,
                   style: const TextStyle(color: kBlackColor, fontSize: 16),
                   onChanged: (value) {
                     if (value.length > 1) {
@@ -47,7 +48,6 @@ class CustomBoxMessage extends StatelessWidget {
                       context.read<SendButtonBloc>().add(SendButtonEvent());
                     }
                   },
-                  controller: controller,
                   onSubmitted: (data) {
                     BlocProvider.of<ChatCubit>(context).sendMessage(
                       otherUid,

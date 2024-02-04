@@ -184,7 +184,7 @@ class ImagePreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PhotoView(
-        imageProvider: NetworkImage(imageUrl),
+        imageProvider: CachedNetworkImageProvider(imageUrl),
       ),
     );
   }

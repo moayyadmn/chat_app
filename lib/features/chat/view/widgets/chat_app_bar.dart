@@ -1,9 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
-
 
 PreferredSizeWidget? appBar(
     BuildContext context, String photo, String userName) {
@@ -14,7 +14,7 @@ PreferredSizeWidget? appBar(
       children: [
         CircleAvatar(
           radius: 18,
-          backgroundImage: NetworkImage(photo),
+          backgroundImage: CachedNetworkImageProvider(photo),
         ),
         const SizedBox(
           width: 13,
