@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:scholarchat_app/core/models/other_user_model.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
@@ -18,15 +19,11 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   ScrollController scrollController = ScrollController();
-  late String userName;
-  late String photo;
-  late String otherUserId;
+  late OtherUserModel otherUserModel;
   late String email;
   @override
   void initState() {
-    otherUserId = Get.arguments['otherUserId'];
-    userName = Get.arguments['toName'];
-    photo = Get.arguments['toAvatar'];
+    otherUserModel = Get.arguments;
     email = currentUser!.email!;
     super.initState();
   }
@@ -35,7 +32,8 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: isDarkMode ? kBlackColor : kWhiteColor,
-      appBar: appBar(context, photo, userName),
+      appBar: appBar(context, otherUserModel.otherUserAvatar,
+          otherUserModel.otherUserName),
       body: BlocBuilder<ChatCubit, ChatState>(builder: (context, state) {
         Widget chatWidget() {
           if (state is ChatSuccess) {
@@ -72,7 +70,7 @@ class _ChatScreenState extends State<ChatScreen> {
               child: chatWidget(),
             ),
             CustomBoxMessage(
-              otherUid: otherUserId,
+              otherUid: otherUserModel.otherUserId,
               scrollController: scrollController,
             ),
           ],

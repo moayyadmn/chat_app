@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:scholarchat_app/core/models/other_user_model.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/format_date.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
+import 'package:scholarchat_app/features/friends/data/models/chat_list_card_model.dart';
 import 'package:scholarchat_app/features/friends/functions/handle_other_user.dart';
-import '../../../../core/models/chat_list_card_model.dart';
 import 'package:get/get.dart';
 
 class ChatCardWidget extends StatelessWidget {
@@ -18,18 +19,15 @@ class ChatCardWidget extends StatelessWidget {
   final ChatListCardModel chatListCardModel;
   @override
   Widget build(BuildContext context) {
-    HandleOtherUser handleOtherUser =
-        HandleOtherUser(cardModel: chatListCardModel);
+    HandleOtherUser otherUser = HandleOtherUser(chatListCardModel);
+    OtherUserModel data = OtherUserModel(
+        otherUserId: otherUser.getId(),
+        otherUserName: otherUser.getName(),
+        otherUserAvatar: otherUser.getImage());
     return Card(
       child: ListTile(
         onTap: () {
-          var data = {
-            'otherUserId': handleOtherUser.getId(),
-            'toName': handleOtherUser.getName(),
-            'toAvatar': handleOtherUser.getImage(),
-          };
-          BlocProvider.of<ChatCubit>(context)
-              .getMessages(handleOtherUser.getId());
+          BlocProvider.of<ChatCubit>(context).getMessages(otherUser.getId());
           Get.toNamed(kChatRoute, arguments: data);
         },
         leading: Container(
@@ -40,14 +38,16 @@ class ChatCardWidget extends StatelessWidget {
             color: kGreyColor,
             image: DecorationImage(
               image: CachedNetworkImageProvider(
-                handleOtherUser.getImage(),
+                otherUser.getImage(),
               ),
               fit: BoxFit.cover,
             ),
           ),
         ),
-        title: Text(handleOtherUser.getName(),
-            style: Theme.of(context).textTheme.bodyLarge),
+        title: Text(
+          otherUser.getName(),
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         subtitle: Text(
           chatListCardModel.lastMessage,
           style: const TextStyle(color: kGreyColor),

@@ -1,10 +1,10 @@
-import 'package:scholarchat_app/core/models/chat_list_card_model.dart';
+import 'package:scholarchat_app/features/friends/data/models/chat_list_card_model.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 
 class HandleOtherUser {
   final ChatListCardModel cardModel;
 
-  const HandleOtherUser({required this.cardModel});
+  const HandleOtherUser(this.cardModel);
 
   String getImage() {
     return cardModel.fromAvatar == currentUser?.photoURL
