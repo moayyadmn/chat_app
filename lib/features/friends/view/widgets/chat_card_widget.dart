@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/format_date.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
 import 'package:scholarchat_app/features/friends/functions/handle_other_user.dart';
@@ -18,7 +18,6 @@ class ChatCardWidget extends StatelessWidget {
   final ChatListCardModel chatListCardModel;
   @override
   Widget build(BuildContext context) {
-    DateTime date = DateTime.parse(chatListCardModel.lastTime);
     HandleOtherUser handleOtherUser =
         HandleOtherUser(cardModel: chatListCardModel);
     return Card(
@@ -30,9 +29,8 @@ class ChatCardWidget extends StatelessWidget {
             'toAvatar': handleOtherUser.getImage(),
           };
           BlocProvider.of<ChatCubit>(context)
-            ..setInformation(data)
-            ..getMessages();
-          Get.toNamed(kChatRoute);
+              .getMessages(handleOtherUser.getId());
+          Get.toNamed(kChatRoute, arguments: data);
         },
         leading: Container(
           height: 55,
@@ -56,7 +54,7 @@ class ChatCardWidget extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),
-        trailing: Text(DateFormat('MMM d, h:mm a').format(date).toString()),
+        trailing: Text(FormatDate.formattedDate(chatListCardModel.lastTime)),
       ),
     );
   }

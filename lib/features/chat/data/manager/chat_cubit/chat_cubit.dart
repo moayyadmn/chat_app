@@ -16,16 +16,6 @@ class ChatCubit extends Cubit<ChatState> {
   final CollectionReference chatRooms =
       FirebaseFirestore.instance.collection('chat_rooms');
   final String? currentUEmail = currentUser!.email;
-  String? userName;
-  String? photo;
-  String? otherUserId;
-
-  void setInformation(Map<String, String?> data) {
-    scrollController = ScrollController();
-    otherUserId = data['otherUserId'];
-    userName = data['toName'];
-    photo = data['toAvatar'];
-  }
 
   // Get the id of the chat room
   String getChatRoomId(String otherUserId) {
@@ -91,8 +81,8 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   //Get messages
-  void getMessages() {
-    String chatRoomId = getChatRoomId(otherUserId!);
+  void getMessages(String otherUserId) {
+    String chatRoomId = getChatRoomId(otherUserId);
     chatRooms
         .doc(chatRoomId)
         .collection('messages')

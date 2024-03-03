@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
@@ -8,16 +9,33 @@ import '../data/manager/chat_cubit/chat_cubit.dart';
 import '../data/manager/chat_cubit/chat_state.dart';
 import 'widgets/chat_bubble.dart';
 
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
   @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  ScrollController scrollController = ScrollController();
+  late String userName;
+  late String photo;
+  late String otherUserId;
+  late String email;
+  @override
+  void initState() {
+    otherUserId = Get.arguments['otherUserId'];
+    userName = Get.arguments['toName'];
+    photo = Get.arguments['toAvatar'];
+    email = currentUser!.email!;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String? email = currentUser!.email;
-    ChatCubit myBloc = BlocProvider.of<ChatCubit>(context);
     return Scaffold(
       backgroundColor: isDarkMode ? kBlackColor : kWhiteColor,
-      appBar: appBar(context, myBloc.photo!, myBloc.userName!),
+      appBar: appBar(context, photo, userName),
       body: BlocBuilder<ChatCubit, ChatState>(builder: (context, state) {
         Widget chatWidget() {
           if (state is ChatSuccess) {
@@ -25,7 +43,7 @@ class ChatScreen extends StatelessWidget {
               return ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 18),
                   reverse: true,
-                  controller: myBloc.scrollController,
+                  controller: scrollController,
                   itemCount: state.messageList.length,
                   itemBuilder: (context, index) {
                     return state.messageList[index].email == email
@@ -47,14 +65,15 @@ class ChatScreen extends StatelessWidget {
             );
           }
         }
+
         return Column(
           children: [
             Expanded(
               child: chatWidget(),
             ),
             CustomBoxMessage(
-              otherUid: myBloc.otherUserId!,
-              scrollController: myBloc.scrollController,
+              otherUid: otherUserId,
+              scrollController: scrollController,
             ),
           ],
         );

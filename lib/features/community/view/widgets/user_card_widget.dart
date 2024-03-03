@@ -23,10 +23,8 @@ class UserCardWidget extends StatelessWidget {
           'toName': user.userName,
           'toAvatar': user.photoUrl,
         };
-        BlocProvider.of<ChatCubit>(context)
-          ..setInformation(data)
-          ..getMessages();
-        Get.toNamed(kChatRoute);
+        BlocProvider.of<ChatCubit>(context).getMessages(user.id);
+        Get.toNamed(kChatRoute, arguments: data);
         GoChat().goChat(user);
       },
       child: ListTile(
