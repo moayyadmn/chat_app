@@ -17,59 +17,11 @@ class ChatBubbleWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           message.type == 'text'
-              ? Container(
-                  margin: const EdgeInsets.all(5),
-                  padding: const EdgeInsets.only(
-                      left: 10, right: 10, top: 5, bottom: 5),
-                  decoration: const BoxDecoration(
-                      color: kChatBubbleColor,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        bottomLeft: Radius.circular(12),
-                        bottomRight: Radius.circular(12),
-                      )),
-                  child: SelectableText(
-                    message.message,
-                    style: const TextStyle(
-                        color: Color.fromRGBO(255, 255, 255, 1), fontSize: 16),
-                  ),
+              ? TextBubble(
+                  message: message,
+                  color: kChatBubbleColor,
                 )
-              : message.message.isEmpty
-                  ? Container(
-                      height: 200,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: kGreyColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Center(
-                        child: CircularProgressIndicator(
-                          color: kGreenColor,
-                        ),
-                      ),
-                    )
-                  : InkWell(
-                      onTap: () {
-                        Get.to(
-                          () => ImagePreview(
-                            imageUrl: message.message,
-                          ),
-                          transition: Transition.downToUp,
-                        );
-                      },
-                      child: Container(
-                        height: 200,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          color: kGreyColor,
-                          borderRadius: BorderRadius.circular(12),
-                          image: DecorationImage(
-                              image:
-                                  CachedNetworkImageProvider(message.message),
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                    ),
+              : ImageBubble(message: message),
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Row(
@@ -102,60 +54,9 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           message.type == 'text'
-              ? Container(
-                  margin: const EdgeInsets.all(5),
-                  padding: const EdgeInsets.only(
-                      left: 10, right: 10, top: 5, bottom: 5),
-                  decoration: const BoxDecoration(
-                    color: kChatBubbleColor2,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(12),
-                      bottomLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
-                    ),
-                  ),
-                  child: SelectableText(
-                    message.message,
-                    style:
-                        const TextStyle(color: Color(0xff000E08), fontSize: 16),
-                  ),
-                )
-              : message.message.isEmpty
-                  ? Container(
-                      height: 200,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: kGreyColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Center(
-                        child: CircularProgressIndicator(
-                          color: kGreenColor,
-                        ),
-                      ),
-                    )
-                  : InkWell(
-                      onTap: () {
-                        Get.to(
-                          () => ImagePreview(
-                            imageUrl: message.message,
-                          ),
-                          transition: Transition.downToUp,
-                        );
-                      },
-                      child: Container(
-                        height: 200,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          color: kGreyColor,
-                          borderRadius: BorderRadius.circular(12),
-                          image: DecorationImage(
-                              image:
-                                  CachedNetworkImageProvider(message.message),
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                    ),
+              ? TextBubble(
+                  message: message, color: kChatBubbleColor2, isBlackText: true)
+              : ImageBubble(message: message),
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: Row(
@@ -171,6 +72,83 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ImageBubble extends StatelessWidget {
+  const ImageBubble({
+    super.key,
+    required this.message,
+  });
+
+  final MessageModel message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      width: 200,
+      decoration: BoxDecoration(
+        color: kBorderSideColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: message.message.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(
+                color: kGreenColor,
+              ),
+            )
+          : ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(12),
+                onTap: () {
+                  Get.to(
+                    () => ImagePreview(
+                      imageUrl: message.message,
+                    ),
+                    transition: Transition.downToUp,
+                  );
+                },
+                child: CachedNetworkImage(
+                  imageUrl: message.message,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+    );
+  }
+}
+
+class TextBubble extends StatelessWidget {
+  const TextBubble(
+      {super.key,
+      required this.message,
+      required this.color,
+      this.isBlackText = false});
+
+  final MessageModel message;
+  final bool isBlackText;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(5),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(12),
+            bottomLeft: Radius.circular(12),
+            bottomRight: Radius.circular(12),
+          )),
+      child: SelectableText(
+        message.message,
+        style: TextStyle(
+            color: isBlackText ? Colors.black : Colors.white, fontSize: 16),
       ),
     );
   }
