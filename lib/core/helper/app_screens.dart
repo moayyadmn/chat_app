@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:scholarchat_app/core/middleware/login_middleware.dart';
 import 'package:scholarchat_app/features/calls/view/calls_screen.dart';
 import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_event.dart';
-
 import 'package:scholarchat_app/features/community/view/community_view.dart';
 import '../../features/friends/view/friends_view.dart';
 import '../utils/constants.dart';
@@ -54,7 +52,7 @@ List<GetPage<dynamic>> routeList = [
   GetPage(
     name: kChatRoute,
     page: () => BlocProvider(
-      create: (context) => SendButtonBloc()..add(SendButtonEvent()),
+      create: (context) => SendButtonBloc(),
       child: const ChatScreen(),
     ),
   ),

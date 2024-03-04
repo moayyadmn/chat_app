@@ -1,1 +1,4 @@
-class SendButtonEvent {}
+class SendButtonEvent {
+  bool isSend;
+  SendButtonEvent(this.isSend);
+}

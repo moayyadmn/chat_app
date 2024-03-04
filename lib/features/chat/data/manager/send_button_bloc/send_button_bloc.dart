@@ -5,7 +5,7 @@ import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send
 class SendButtonBloc extends Bloc<SendButtonEvent, SendButtonState> {
   SendButtonBloc() : super(SendButtonState(false)) {
     on<SendButtonEvent>((event, emit) {
-      emit(SendButtonState(state.isSend));
+      emit(SendButtonState(event.isSend));
     });
   }
 }

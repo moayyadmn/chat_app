@@ -76,6 +76,7 @@ class ChatCubit extends Cubit<ChatState> {
       return imageUrl;
     } catch (error) {
       // Handle the error here, e.g. log it or display an error message
+      debugPrint('Error uploading image: $error');
       return 'Error uploading image: $error';
     }
   }
