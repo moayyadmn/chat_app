@@ -46,7 +46,10 @@ class ChatCardWidget extends StatelessWidget {
         ),
         title: Text(
           otherUser.getName(),
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(fontFamily: MyFontFamily.caros),
         ),
         subtitle: Text(
           chatListCardModel.lastMessage,

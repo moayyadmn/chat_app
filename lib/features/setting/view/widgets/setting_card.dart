@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 
 class SettingCard extends StatelessWidget {
   final Widget? leading;
@@ -17,7 +18,11 @@ class SettingCard extends StatelessWidget {
     return Card(
       child: ListTile(
         leading: leading,
-        title: Text(title, style: Theme.of(context).textTheme.titleSmall),
+        title: Text(title,
+            style: Theme.of(context)
+                .textTheme
+                .titleSmall!
+                .copyWith(fontFamily: MyFontFamily.caros)),
         subtitle: Text(
           subTitle,
           style: const TextStyle(color: Color(0xff797C7B)),

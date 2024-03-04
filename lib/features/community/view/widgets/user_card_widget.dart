@@ -45,7 +45,10 @@ class UserCardWidget extends StatelessWidget {
         ),
         title: Text(
           user.userName,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(fontFamily: MyFontFamily.caros),
         ),
       ),
     );

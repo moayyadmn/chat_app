@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scholarchat_app/core/utils/constants.dart';
 
 import 'colors.dart';
 
@@ -12,11 +13,13 @@ class ThemeColor {
   const ThemeColor._();
 
   static final lightTheme = ThemeData(
-    useMaterial3: true,
     brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
-    appBarTheme: const AppBarTheme(elevation: 0, backgroundColor: kWhiteColor),
-    fontFamily: 'Caros',
+    appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: kWhiteColor,
+        surfaceTintColor: Colors.white),
+    fontFamily: MyFontFamily.defaultText,
     textTheme: const TextTheme(
       titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
       titleMedium: TextStyle(
@@ -35,11 +38,13 @@ class ThemeColor {
   );
 
   static final darkTheme = ThemeData(
-    useMaterial3: true,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: Colors.black,
-    appBarTheme: const AppBarTheme(elevation: 0, backgroundColor: kBlackColor),
-    fontFamily: 'Caros',
+    appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: kBlackColor,
+        surfaceTintColor: kBlackColor),
+    fontFamily: MyFontFamily.defaultText,
     textTheme: const TextTheme(
         titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
         titleMedium: TextStyle(

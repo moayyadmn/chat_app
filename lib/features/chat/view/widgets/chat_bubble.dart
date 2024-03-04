@@ -30,8 +30,7 @@ class ChatBubbleWidget extends StatelessWidget {
               children: [
                 Text(
                   DateFormat('h:mm a').format(message.sentAt).toString(),
-                  style: const TextStyle(
-                      color: kGreyColor, fontSize: 10, fontFamily: "Default"),
+                  style: const TextStyle(color: kGreyColor, fontSize: 10),
                 ),
               ],
             ),
@@ -65,8 +64,7 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
               children: [
                 Text(
                   DateFormat('h:mm a').format(message.sentAt).toString(),
-                  style: const TextStyle(
-                      color: kGreyColor, fontSize: 10, fontFamily: "Default"),
+                  style: const TextStyle(color: kGreyColor, fontSize: 10),
                 ),
               ],
             ),
