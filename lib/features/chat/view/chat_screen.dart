@@ -59,7 +59,7 @@ class _ChatScreenState extends State<ChatScreen> {
             }
           } else {
             return const Center(
-              child: Text("you don`t have messages"),
+              child: Text("sorry, please try again at a different time"),
             );
           }
         }
