@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/firebase_ref.dart';
 import 'package:scholarchat_app/features/community/data/models/user_data_model.dart';
 
 class GoChat {

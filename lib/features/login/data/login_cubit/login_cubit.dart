@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scholarchat_app/core/services/app_services.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/firebase_ref.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -40,10 +40,7 @@ class LoginCubit extends Cubit<LoginState> {
 
         final List<DocumentSnapshot> documents = result.docs;
         if (documents.isEmpty) {
-          await FirebaseFirestore.instance
-              .collection('users')
-              .doc(firebaseUser.uid)
-              .set({
+          await userRf.doc(firebaseUser.uid).set({
             'id': firebaseUser.uid,
             'userName': firebaseUser.displayName,
             'email': firebaseUser.email,

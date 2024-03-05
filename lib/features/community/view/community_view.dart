@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:scholarchat_app/core/helper/extensions.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
+import 'package:scholarchat_app/core/utils/firebase_ref.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/core/utils/widgets/content_area.dart';
 import 'package:scholarchat_app/core/utils/widgets/custom_app_bar.dart';

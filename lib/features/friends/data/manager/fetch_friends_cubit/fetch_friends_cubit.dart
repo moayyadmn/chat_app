@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scholarchat_app/core/utils/firebase_ref.dart';
 import 'package:scholarchat_app/features/friends/data/models/chat_list_card_model.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
 import 'package:scholarchat_app/features/friends/data/manager/fetch_friends_cubit/fetch_friends_state.dart';
 
 class FetchFriendsCubit extends Cubit<FetchFriendsSate> {
