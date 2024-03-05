@@ -1,13 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:scholarchat_app/features/chat/data/manager/uploader_cubit/uploader_cubit.dart';
-import 'package:scholarchat_app/features/chat/data/manager/uploader_cubit/uploader_state.dart';
 import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:scholarchat_app/features/chat/view/widgets/custom_image_builder.dart';
 
 class ChatBubbleWidget extends StatelessWidget {
   const ChatBubbleWidget({Key? key, required this.message}) : super(key: key);
@@ -88,65 +86,24 @@ class ImageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UploaderCubit, UploaderState>(
-      builder: (context, state) {
-        Widget buildLoading() {
-          if (state is UploaderTrigger) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.red,
+    return Container(
+        height: 200,
+        width: 200,
+        decoration: BoxDecoration(
+          color: kBorderSideColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: CustomImageBuilder(
+          image: message.message,
+          onClick: () {
+            Get.to(
+              () => ImagePreview(
+                imageUrl: message.message,
               ),
+              transition: Transition.downToUp,
             );
-          } else if (state is UploaderProgress) {
-            return Center(
-                child: CircularProgressIndicator(
-              color: kGreenColor,
-              value: state.progress + .1,
-            ));
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.amber,
-              ),
-            );
-          }
-        }
-
-        return Container(
-          height: 200,
-          width: 200,
-          decoration: BoxDecoration(
-            color: kBorderSideColor,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: message.message.isEmpty
-              ? buildLoading()
-              : ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(12),
-                    onTap: () {
-                      Get.to(
-                        () => ImagePreview(
-                          imageUrl: message.message,
-                        ),
-                        // transition: Transition.downToUp,
-                      );
-                    },
-                    child: CachedNetworkImage(
-                      imageUrl: message.message,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) => const Center(
-                        child: CircularProgressIndicator(
-                          color: kGreenColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-        );
-      },
-    );
+          },
+        ));
   }
 }
 
