@@ -90,6 +90,28 @@ class ImageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UploaderCubit, UploaderState>(
       builder: (context, state) {
+        Widget buildLoading() {
+          if (state is UploaderTrigger) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.red,
+              ),
+            );
+          } else if (state is UploaderProgress) {
+            return Center(
+                child: CircularProgressIndicator(
+              color: kGreenColor,
+              value: state.progress + .1,
+            ));
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Colors.amber,
+              ),
+            );
+          }
+        }
+
         return Container(
           height: 200,
           width: 200,
@@ -98,14 +120,7 @@ class ImageBubble extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: message.message.isEmpty
-              ? Center(
-                  child: state is UploaderProgress
-                      ? CircularProgressIndicator(
-                          color: kGreenColor,
-                          value: state.progress,
-                        )
-                      : null,
-                )
+              ? buildLoading()
               : ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: InkWell(
