@@ -1,12 +1,14 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:scholarchat_app/core/helper/chat_room.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:scholarchat_app/features/calls/view/video_call_screen.dart';
 
 PreferredSizeWidget? appBar(
-    BuildContext context, String photo, String userName) {
+    BuildContext context, String photo, String userName, String otherId) {
   return AppBar(
     title: Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -48,7 +50,10 @@ PreferredSizeWidget? appBar(
         ),
       ),
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(VideoCallScreen(
+              roomId: ChatRoom.getChatRoomId(otherId), name: userName));
+        },
         icon: SvgPicture.asset(
           "assets/svg/video_call.svg",
           color: Colors.black,

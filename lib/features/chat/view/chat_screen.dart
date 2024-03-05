@@ -33,7 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: isDarkMode ? kBlackColor : kWhiteColor,
       appBar: appBar(context, otherUserModel.otherUserAvatar,
-          otherUserModel.otherUserName),
+          otherUserModel.otherUserName, otherUserModel.otherUserId),
       body: BlocBuilder<ChatCubit, ChatState>(builder: (context, state) {
         Widget chatWidget() {
           if (state is ChatSuccess) {
