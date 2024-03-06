@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scholarchat_app/core/services/app_services.dart';
 import 'package:scholarchat_app/core/utils/firebase_ref.dart';
+import 'package:scholarchat_app/features/calls/functions/call_function.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -48,6 +49,8 @@ class LoginCubit extends Cubit<LoginState> {
           });
         }
         currentUser = firebaseUser;
+        //zego login
+        onUserLogin();
       }
       // Once signed in, return the UserCredential
       emit(LoginSuccess());

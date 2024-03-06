@@ -2,10 +2,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:scholarchat_app/core/helper/chat_room.dart';
 import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import 'package:scholarchat_app/features/calls/view/video_call_screen.dart';
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 
 PreferredSizeWidget? appBar(
     BuildContext context, String photo, String userName, String otherId) {
@@ -49,15 +47,18 @@ PreferredSizeWidget? appBar(
           height: 20,
         ),
       ),
-      IconButton(
-        onPressed: () {
-          Get.to(VideoCallScreen(
-              roomId: ChatRoom.getChatRoomId(otherId), name: userName));
-        },
-        icon: SvgPicture.asset(
-          "assets/svg/video_call.svg",
-          color: Colors.black,
-        ),
+      ZegoSendCallInvitationButton(
+        iconSize: const Size(30, 30),
+        buttonSize: const Size(30, 30),
+        isVideoCall: true,
+        resourceID:
+            "chat_app", //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
+        invitees: [
+          ZegoUIKitUser(
+            id: otherId,
+            name: userName,
+          ),
+        ],
       ),
     ],
   );
