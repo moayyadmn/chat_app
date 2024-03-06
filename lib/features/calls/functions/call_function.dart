@@ -8,13 +8,14 @@ void onUserLogin() {
   /// 1.2.1. initialized ZegoUIKitPrebuiltCallInvitationService
   /// when app's user is logged in or re-logged in
   /// We recommend calling this method as soon as the user logs in to your app.
-  ZegoUIKitPrebuiltCallInvitationService().init(
-    appID: appId /*input your AppID*/,
-    appSign: appSign /*input your AppSign*/,
-    userID: currentUser!.uid,
-    userName: currentUser!.displayName!,
-    plugins: [ZegoUIKitSignalingPlugin()],
-  );
+  currentUser ??
+      ZegoUIKitPrebuiltCallInvitationService().init(
+        appID: appId /*input your AppID*/,
+        appSign: appSign /*input your AppSign*/,
+        userID: currentUser!.uid,
+        userName: currentUser!.displayName!,
+        plugins: [ZegoUIKitSignalingPlugin()],
+      );
 }
 
 /// on App's user logout

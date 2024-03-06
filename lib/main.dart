@@ -20,14 +20,14 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   ZegoUIKitPrebuiltCallInvitationService().setNavigatorKey(navigatorKey);
-  await ZegoUIKit().initLog().then((value) {
+  await ZegoUIKit().initLog().then((value) async {
     ZegoUIKitPrebuiltCallInvitationService().useSystemCallingUI(
       [ZegoUIKitSignalingPlugin()],
     );
-
+    await initialServices();
     runApp(const MyApp());
   });
-  await initialServices();
+
   Bloc.observer = SimpleBlocObserver();
 }
 

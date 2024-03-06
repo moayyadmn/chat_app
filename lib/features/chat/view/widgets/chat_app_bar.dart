@@ -38,18 +38,36 @@ PreferredSizeWidget? appBar(
     ),
     leadingWidth: 25,
     actions: [
-      IconButton(
-        onPressed: () {},
-        icon: SvgPicture.asset(
-          "assets/svg/default_call.svg",
-          color: Colors.black,
-          width: 20,
-          height: 20,
+      ZegoSendCallInvitationButton(
+        iconSize: const Size(22, 30),
+        buttonSize: const Size(30, 30),
+
+        icon: ButtonIcon(
+          icon: SvgPicture.asset(
+            "assets/svg/default_call.svg",
+            color: Colors.black,
+          ),
         ),
+        isVideoCall: false,
+        resourceID:
+            "chat_app", //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
+        invitees: [
+          ZegoUIKitUser(
+            id: otherId,
+            name: userName,
+          ),
+        ],
       ),
       ZegoSendCallInvitationButton(
-        iconSize: const Size(30, 30),
+        iconSize: const Size(28, 28),
         buttonSize: const Size(30, 30),
+        margin: const EdgeInsets.only(left: 10, right: 10),
+        icon: ButtonIcon(
+          icon: SvgPicture.asset(
+            "assets/svg/video_call.svg",
+            color: Colors.black,
+          ),
+        ),
         isVideoCall: true,
         resourceID:
             "chat_app", //You need to use the resourceID that you created in the subsequent steps. Please continue reading this document.
