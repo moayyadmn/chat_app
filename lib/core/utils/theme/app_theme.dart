@@ -14,14 +14,15 @@ class ThemeColor {
 
   static final lightTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: kWhiteColor,
+    primaryColor: kBlackColor,
     appBarTheme: const AppBarTheme(
         elevation: 0,
         backgroundColor: kWhiteColor,
-        surfaceTintColor: Colors.white),
+        surfaceTintColor: kWhiteColor),
     fontFamily: MyFontFamily.defaultText,
     textTheme: const TextTheme(
-      titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+      titleLarge: TextStyle(color: kWhiteColor, fontWeight: FontWeight.w700),
       titleMedium: TextStyle(
           color: Colors.black, fontWeight: FontWeight.w600, fontSize: 20),
       titleSmall: TextStyle(
@@ -30,27 +31,28 @@ class ThemeColor {
           color: Colors.black, fontWeight: FontWeight.w500, fontSize: 18),
     ),
     cardTheme: const CardTheme(
-        color: Colors.white, elevation: 0.0, surfaceTintColor: Colors.white),
+        color: kWhiteColor, elevation: 0.0, surfaceTintColor: kWhiteColor),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: Colors.white,
+      backgroundColor: kWhiteColor,
       selectedItemColor: kGreenColor,
     ),
   );
 
   static final darkTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: kBlackColor,
+    primaryColor: kGreenColor,
     appBarTheme: const AppBarTheme(
         elevation: 0,
         backgroundColor: kBlackColor,
         surfaceTintColor: kBlackColor),
     fontFamily: MyFontFamily.defaultText,
     textTheme: const TextTheme(
-        titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+        titleLarge: TextStyle(color: kWhiteColor, fontWeight: FontWeight.w700),
         titleMedium: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20),
+            color: kWhiteColor, fontWeight: FontWeight.w500, fontSize: 20),
         titleSmall: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.w500, fontSize: 16)),
+            color: kWhiteColor, fontWeight: FontWeight.w500, fontSize: 16)),
     cardTheme: const CardTheme(
         color: kBlackColor, elevation: 0.0, surfaceTintColor: kBlackColor),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(

@@ -16,7 +16,7 @@ class CommunityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: customScaffoldColor,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Column(
         children: [
           17.spaceY,
@@ -39,35 +39,37 @@ class CommunityView extends StatelessWidget {
           ),
           15.spaceY,
           ContentArea(
-            child: Expanded(child: BlocBuilder<FetchUserCubit, FetchUserState>(
-              builder: (context, state) {
-                if (state is FetchUserLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: kGreenColor,
-                    ),
-                  );
-                } else if (state is FetchUserSuccess) {
-                  return ListView.builder(
-                    itemCount: state.userDataList.length,
-                    itemBuilder: (context, index) {
-                      var user = state.userDataList[index];
-                      if (user.id == currentUser!.uid) {
-                        return const SizedBox.shrink();
-                      } else {
-                        return UserCardWidget(user: state.userDataList[index]);
-                      }
-                    },
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.red,
-                    ),
-                  );
-                }
-              },
-            )),
+            child: Expanded(
+              child: BlocBuilder<FetchUserCubit, FetchUserState>(
+                builder: (context, state) {
+                  if (state is FetchUserLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: kGreenColor,
+                      ),
+                    );
+                  } else if (state is FetchUserSuccess) {
+                    return ListView.builder(
+                      itemCount: state.userDataList.length,
+                      itemBuilder: (context, index) {
+                        var user = state.userDataList[index];
+                        if (user.id == currentUser!.uid) {
+                          return const SizedBox.shrink();
+                        } else {
+                          return UserCardWidget(user: user);
+                        }
+                      },
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.red,
+                      ),
+                    );
+                  }
+                },
+              ),
+            ),
           ),
         ],
       ),

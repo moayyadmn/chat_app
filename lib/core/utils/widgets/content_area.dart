@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scholarchat_app/core/helper/extensions.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
 
 class ContentArea extends StatelessWidget {
   final Widget child;
@@ -15,7 +14,8 @@ class ContentArea extends StatelessWidget {
         type: MaterialType.transparency,
         child: Ink(
           decoration: BoxDecoration(
-              color: isDarkMode ? const Color(0xff121414) : Colors.white),
+            color: Theme.of(context).scaffoldBackgroundColor,
+          ),
           child: Column(
             children: [
               10.spaceY,

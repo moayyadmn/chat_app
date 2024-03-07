@@ -12,7 +12,7 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: customScaffoldColor,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Column(
         children: [
           17.spaceY,

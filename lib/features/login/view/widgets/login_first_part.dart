@@ -1,6 +1,3 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -32,7 +29,7 @@ class LoginFirstPart extends StatelessWidget {
               "Connect friends easily and quickly",
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 68,
+                  fontSize: 48,
                   fontFamily: "Caros",
                   fontWeight: FontWeight.w600),
             ),

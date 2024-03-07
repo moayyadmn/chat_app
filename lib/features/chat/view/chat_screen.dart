@@ -31,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: isDarkMode ? kBlackColor : kWhiteColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: appBar(context, otherUserModel.otherUserAvatar,
           otherUserModel.otherUserName, otherUserModel.otherUserId),
       body: BlocBuilder<ChatCubit, ChatState>(builder: (context, state) {
