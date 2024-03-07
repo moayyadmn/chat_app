@@ -41,7 +41,6 @@ PreferredSizeWidget? appBar(
       ZegoSendCallInvitationButton(
         iconSize: const Size(22, 30),
         buttonSize: const Size(30, 30),
-
         icon: ButtonIcon(
           icon: SvgPicture.asset(
             "assets/svg/default_call.svg",
@@ -60,7 +59,7 @@ PreferredSizeWidget? appBar(
       ),
       ZegoSendCallInvitationButton(
         iconSize: const Size(28, 28),
-        buttonSize: const Size(30, 30),
+        buttonSize: const Size(35, 35),
         margin: const EdgeInsets.only(left: 10, right: 10),
         icon: ButtonIcon(
           icon: SvgPicture.asset(

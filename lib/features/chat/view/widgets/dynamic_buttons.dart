@@ -33,9 +33,11 @@ class DynamicButtons extends StatelessWidget {
                     otherUid,
                     textEditingController.text,
                   );
-
                   textEditingController.clear();
-                  scrollController.jumpTo(0);
+
+                  scrollController.onAttach != null
+                      ? scrollController.jumpTo(0)
+                      : null;
                   context.read<SendButtonBloc>().add(SendButtonEvent(false));
                 },
                 icon: SvgPicture.asset(kSendIcon),

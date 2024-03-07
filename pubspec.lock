@@ -1289,10 +1289,10 @@ packages:
     dependency: "direct main"
     description:
       name: zego_uikit_prebuilt_call
-      sha256: "1688fb72c60399df158991d2c0f237cc3399a06afd72bf9632132ab2c4c039ef"
+      sha256: "6db06bdfa793f92d3fadd1f9c2428560c3697cbfd7e4158500d5ad5666b90b98"
       url: "https://pub.dev"
     source: hosted
-    version: "4.4.1"
+    version: "4.4.2"
   zego_uikit_signaling_plugin:
     dependency: "direct main"
     description:
