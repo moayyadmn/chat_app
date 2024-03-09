@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/core/models/other_user_model.dart';
 import 'package:scholarchat_app/core/utils/firebase_ref.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/custom_box_message.dart';
 import '../data/manager/chat_cubit/chat_cubit.dart';

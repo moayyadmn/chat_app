@@ -6,8 +6,6 @@ import 'package:scholarchat_app/core/services/app_services.dart';
 import 'package:scholarchat_app/core/utils/bloc_providers.dart';
 import 'package:scholarchat_app/core/utils/theme/app_theme.dart';
 import 'package:scholarchat_app/core/simple_bloc_observer.dart';
-import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
-import 'package:zego_uikit_signaling_plugin/zego_uikit_signaling_plugin.dart';
 import 'core/helper/app_screens.dart';
 import 'firebase_options.dart';
 
@@ -19,15 +17,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  ZegoUIKitPrebuiltCallInvitationService().setNavigatorKey(navigatorKey);
-  await ZegoUIKit().initLog().then((value) async {
-    ZegoUIKitPrebuiltCallInvitationService().useSystemCallingUI(
-      [ZegoUIKitSignalingPlugin()],
-    );
-    await initialServices();
+ await initialServices();
     runApp(const MyApp());
-  });
-
   Bloc.observer = SimpleBlocObserver();
 }
 

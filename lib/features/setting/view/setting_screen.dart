@@ -3,7 +3,6 @@ import 'package:scholarchat_app/core/helper/extensions.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_app_bar.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_items.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_profile_card.dart';
-import '../../../core/utils/theme/colors.dart';
 import '../../../core/utils/widgets/content_area.dart';
 
 class SettingScreen extends StatelessWidget {

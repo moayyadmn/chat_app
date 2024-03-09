@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 //colors
 const Color kGreenColor = Color(0xff24786d);
