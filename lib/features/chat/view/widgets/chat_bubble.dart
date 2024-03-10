@@ -8,8 +8,11 @@ import 'package:photo_view/photo_view.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/custom_image_builder.dart';
 
 class ChatBubbleWidget extends StatelessWidget {
-  const ChatBubbleWidget({Key? key, required this.message}) : super(key: key);
+  const ChatBubbleWidget(
+      {Key? key, required this.message, required this.isSelected})
+      : super(key: key);
   final MessageModel message;
+  final bool isSelected;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -43,9 +46,11 @@ class ChatBubbleWidget extends StatelessWidget {
 }
 
 class ChatBubbleWidgetForFriend extends StatelessWidget {
-  const ChatBubbleWidgetForFriend({Key? key, required this.message})
+  const ChatBubbleWidgetForFriend(
+      {Key? key, required this.message, required this.isSelected})
       : super(key: key);
   final MessageModel message;
+  final bool isSelected;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -130,7 +135,7 @@ class TextBubble extends StatelessWidget {
             bottomLeft: Radius.circular(12),
             bottomRight: Radius.circular(12),
           )),
-      child: SelectableText(
+      child: Text(
         message.message,
         style: TextStyle(
             color: isBlackText ? Colors.black : Colors.white, fontSize: 16),

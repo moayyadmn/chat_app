@@ -10,6 +10,8 @@ class ChatCubit extends Cubit<ChatState> {
   late ScrollController scrollController;
   final String? currentUEmail = currentUser!.email;
 
+  static ChatCubit get(context) => BlocProvider.of(context);
+
   //Send text message
   Future<void> sendMessage(String otherUserId, String message) async {
     String chatRoomId = ChatRoom.getChatRoomId(otherUserId);
@@ -37,6 +39,26 @@ class ChatCubit extends Cubit<ChatState> {
         messagesList.add(MessageModel.fromJason(doc));
       }
       emit(ChatSuccess(messageList: messagesList));
+    });
+  }
+
+  void deleteDocuments(List<MessageModel> messageList, String otherUserId) {
+    String chatRoomId = ChatRoom.getChatRoomId(otherUserId);
+
+    firestore.runTransaction((transaction) async {
+      for (MessageModel message in messageList) {
+        var querySnapshot = await messagesRf(chatRoomId)
+            .where('message', isEqualTo: message.message)
+            .get();
+
+        querySnapshot.docs.forEach((doc) {
+          transaction.delete(doc.reference);
+        });
+      }
+    }).then((value) {
+      print('Documents deleted successfully');
+    }).catchError((error) {
+      print('Error deleting documents: $error');
     });
   }
 }
