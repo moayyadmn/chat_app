@@ -15,11 +15,13 @@ class ChatCubit extends Cubit<ChatState> {
   //Send text message
   Future<void> sendMessage(String otherUserId, String message) async {
     String chatRoomId = ChatRoom.getChatRoomId(otherUserId);
-    await messagesRf(chatRoomId).add({
+    String randomId = ChatRoom.generateId();
+    await messagesRf(chatRoomId).doc(randomId).set({
+      'id': randomId,
       'message': message,
       'type': 'text',
+      'email': currentUEmail!,
       'sentAt': DateTime.now().toString(),
-      'id': currentUEmail!,
     });
     await chatRoomsRF.doc(chatRoomId).update({
       'lastMessage': message,
@@ -39,26 +41,6 @@ class ChatCubit extends Cubit<ChatState> {
         messagesList.add(MessageModel.fromJason(doc));
       }
       emit(ChatSuccess(messageList: messagesList));
-    });
-  }
-
-  void deleteDocuments(List<MessageModel> messageList, String otherUserId) {
-    String chatRoomId = ChatRoom.getChatRoomId(otherUserId);
-
-    firestore.runTransaction((transaction) async {
-      for (MessageModel message in messageList) {
-        var querySnapshot = await messagesRf(chatRoomId)
-            .where('message', isEqualTo: message.message)
-            .get();
-
-        querySnapshot.docs.forEach((doc) {
-          transaction.delete(doc.reference);
-        });
-      }
-    }).then((value) {
-      print('Documents deleted successfully');
-    }).catchError((error) {
-      print('Error deleting documents: $error');
     });
   }
 }

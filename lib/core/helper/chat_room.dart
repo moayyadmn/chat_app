@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:scholarchat_app/core/utils/firebase_ref.dart';
 
 class ChatRoom {
@@ -8,5 +10,10 @@ class ChatRoom {
     ids.sort();
     String chatRoomId = ids.join("_");
     return chatRoomId;
+  }
+
+  static String generateId() {
+    String randId = Random().nextInt(999999999).toString();
+    return randId;
   }
 }

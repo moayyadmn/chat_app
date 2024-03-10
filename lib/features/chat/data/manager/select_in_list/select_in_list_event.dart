@@ -8,3 +8,7 @@ class StartSelectMode extends SelectInListEvent {
 }
 
 class EndSelectMode extends SelectInListEvent {}
+
+class StartDeletingMode extends SelectInListEvent {}
+
+class EndDeletingMode extends SelectInListEvent {}

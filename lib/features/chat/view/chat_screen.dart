@@ -3,13 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:scholarchat_app/core/models/other_user_model.dart';
 import 'package:scholarchat_app/core/utils/firebase_ref.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_event.dart';
 import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_state.dart';
-import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
 import 'package:scholarchat_app/features/chat/view/widgets/custom_box_message.dart';
+import 'package:scholarchat_app/features/chat/view/widgets/selectable_message.dart';
 import '../data/manager/chat_cubit/chat_cubit.dart';
 import '../data/manager/chat_cubit/chat_state.dart';
 import 'widgets/chat_bubble.dart';
@@ -36,8 +34,6 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: appBar(context, otherUserModel.otherUserAvatar,
-          otherUserModel.otherUserName, otherUserModel.otherUserId),
       body: BlocBuilder<ChatCubit, ChatState>(builder: (context, state) {
         Widget chatWidget() {
           if (state is ChatSuccess) {
@@ -83,9 +79,12 @@ class _ChatScreenState extends State<ChatScreen> {
             );
           }
         }
-
         return Column(
           children: [
+            CustomAppBar(
+                photo: otherUserModel.otherUserAvatar,
+                userName: otherUserModel.otherUserName,
+                otherId: otherUserModel.otherUserId),
             Expanded(
               child: chatWidget(),
             ),
@@ -96,52 +95,6 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         );
       }),
-    );
-  }
-}
-
-class SelectableMessage extends StatelessWidget {
-  const SelectableMessage(
-      {super.key, required this.message, required this.bubble});
-  final MessageModel message;
-  final Widget bubble;
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SelectInListBloc, SelectInListState>(
-      builder: (context, state) {
-        SelectInListBloc ctx = context.read<SelectInListBloc>();
-        return InkWell(
-          borderRadius: BorderRadius.circular(12),
-          onTap: () {
-            if (state is StartSelectState &&
-                ctx.selectedMessageList.isNotEmpty) {
-              ctx.add(StartSelectMode(messageModel: message));
-            } else if (state is StartSelectState &&
-                ctx.selectedMessageList.isEmpty) {
-              ctx.selectedMessageList.clear();
-              ctx.add(EndSelectMode());
-            }
-          },
-          onLongPress: () {
-            ctx.add(StartSelectMode(messageModel: message));
-          },
-          child: Stack(
-            children: [
-              bubble,
-              Positioned.fill(
-                  bottom: 13,
-                  child: Ink(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: ctx.selectedMessageList.contains(message)
-                          ? kGreenColor.withOpacity(.2)
-                          : Colors.transparent,
-                    ),
-                  ))
-            ],
-          ),
-        );
-      },
     );
   }
 }

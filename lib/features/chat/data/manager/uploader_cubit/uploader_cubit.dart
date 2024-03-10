@@ -21,10 +21,11 @@ class UploaderCubit extends Cubit<UploaderState> {
     try {
       emit(UploaderTrigger());
       await messagesRf(chatRoomId).doc(docName).set({
+        'id': docName,
         'message': '',
         'type': 'photo',
         'sentAt': DateTime.now().toString(),
-        'id': currentUEmail!,
+        'email': currentUEmail!,
       });
       await chatRoomsRF.doc(chatRoomId).update({
         'lastMessage': 'photo',
