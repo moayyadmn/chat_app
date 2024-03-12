@@ -33,7 +33,9 @@ class ChatBubbleWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  DateFormat('h:mm a').format(message.sentAt).toString(),
+                  DateFormat('h:mm a')
+                      .format(DateTime.parse(message.sentAt))
+                      .toString(),
                   style: const TextStyle(color: kGreyColor, fontSize: 10),
                 ),
               ],
@@ -69,7 +71,9 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  DateFormat('h:mm a').format(message.sentAt).toString(),
+                  DateFormat('h:mm a')
+                      .format(DateTime.parse(message.sentAt))
+                      .toString(),
                   style: const TextStyle(color: kGreyColor, fontSize: 10),
                 ),
               ],

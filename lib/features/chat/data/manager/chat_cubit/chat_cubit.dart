@@ -16,13 +16,14 @@ class ChatCubit extends Cubit<ChatState> {
   Future<void> sendMessage(String otherUserId, String message) async {
     String chatRoomId = ChatRoom.getChatRoomId(otherUserId);
     String randomId = ChatRoom.generateId();
-    await messagesRf(chatRoomId).doc(randomId).set({
-      'id': randomId,
-      'message': message,
-      'type': 'text',
-      'email': currentUEmail!,
-      'sentAt': DateTime.now().toString(),
-    });
+    MessageModel messageModel = MessageModel(
+      randomId,
+      message,
+      'text',
+      currentUEmail!,
+      DateTime.now().toString(),
+    );
+    await messagesRf(chatRoomId).doc(randomId).set(messageModel.toJson());
     await chatRoomsRF.doc(chatRoomId).update({
       'lastMessage': message,
       'lastTime': DateTime.now().toString(),

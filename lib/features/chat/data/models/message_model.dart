@@ -3,7 +3,7 @@ class MessageModel {
   final String message;
   final String type;
   final String email;
-  final DateTime sentAt;
+  final String sentAt;
   MessageModel(this.id, this.message, this.type, this.email, this.sentAt);
 
   factory MessageModel.fromJason(jasonData) {
@@ -12,7 +12,15 @@ class MessageModel {
       jasonData['message'],
       jasonData['type'],
       jasonData['email'],
-      DateTime.parse(jasonData['sentAt']),
+      jasonData['sentAt'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': this.id,
+        'message': this.message,
+        'type': this.type,
+        'email': this.email,
+        'sentAt': this.sentAt,
+      };
 }
