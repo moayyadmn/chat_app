@@ -14,7 +14,7 @@ class UploaderCubit extends Cubit<UploaderState> {
   UploaderCubit() : super(UploaderInitial());
 
   final String? currentUEmail = currentUser!.email;
-
+  late File image;
   //Send an Image
   Future<void> sendImage(String otherUserId, String docName) async {
     String chatRoomId = ChatRoom.getChatRoomId(otherUserId);
@@ -46,6 +46,7 @@ class UploaderCubit extends Cubit<UploaderState> {
   Future<String> uploadImageToFirebase(
       File imageFile, String otherUserId) async {
     String chatRoomId = ChatRoom.getChatRoomId(otherUserId);
+    image = imageFile;
     try {
       String fileName = getFileName(imageFile);
       Reference storageReference = storageRef.child('chat_images/$fileName');

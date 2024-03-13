@@ -15,8 +15,9 @@ class CustomBoxMessage extends StatelessWidget {
   final TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 90,
+    return Container(
+        color: Colors.white,
+        height: 80,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

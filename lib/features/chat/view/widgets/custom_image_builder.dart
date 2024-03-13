@@ -20,23 +20,11 @@ class CustomImageBuilder extends StatelessWidget {
       builder: (context, state) {
         if (image.isEmpty) {
           if (state is UploaderTrigger) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.red,
-              ),
-            );
+            return UploadPlaceHolder();
           } else if (state is UploaderProgress) {
-            return Center(
-                child: CircularProgressIndicator(
-              color: kGreenColor,
-              value: state.progress + .1,
-            ));
+            return UploadPlaceHolder();
           } else {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.amber,
-              ),
-            );
+            return UploadPlaceHolder();
           }
         } else {
           return ClipRRect(
@@ -57,6 +45,29 @@ class CustomImageBuilder extends StatelessWidget {
           );
         }
       },
+    );
+  }
+}
+
+class UploadPlaceHolder extends StatelessWidget {
+  const UploadPlaceHolder({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+        image: FileImage(BlocProvider.of<UploaderCubit>(context).image),
+        fit: BoxFit.cover,
+      )),
+      child: Center(
+        child: CircularProgressIndicator(
+          color: kGreenColor,
+          backgroundColor: Colors.grey,
+        ),
+      ),
     );
   }
 }
