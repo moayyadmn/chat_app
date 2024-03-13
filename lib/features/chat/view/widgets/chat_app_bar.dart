@@ -89,16 +89,18 @@ class CustomAppBar extends StatelessWidget {
                     onPressed: () {},
                     icon: SvgPicture.asset(
                       "assets/svg/default_call.svg",
-                      colorFilter:
-                          ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.secondary,
+                          BlendMode.srcIn),
                     ),
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: SvgPicture.asset(
                       "assets/svg/video_call.svg",
-                      colorFilter:
-                          ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.secondary,
+                          BlendMode.srcIn),
                     ),
                   ),
                 ],

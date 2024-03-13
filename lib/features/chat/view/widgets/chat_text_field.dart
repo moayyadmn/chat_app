@@ -19,7 +19,8 @@ class ChatTextField extends StatelessWidget {
     return Expanded(
       child: TextField(
         controller: textEditingController,
-        style: const TextStyle(color: kBlackColor, fontSize: 16),
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary, fontSize: 16),
         onChanged: (value) {
           if (value.isNotEmpty) {
             context.read<SendButtonBloc>().add(SendButtonEvent(true));
@@ -29,16 +30,19 @@ class ChatTextField extends StatelessWidget {
         },
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-          fillColor: kBorderSideColor,
+          fillColor: Theme.of(context).colorScheme.onPrimary,
           filled: true,
-          border: const OutlineInputBorder(
-              borderSide: BorderSide(color: kBorderSideColor),
+          border: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.onPrimary),
               borderRadius: BorderRadius.all(Radius.circular(12))),
-          enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: kBorderSideColor),
+          enabledBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.onPrimary),
               borderRadius: BorderRadius.all(Radius.circular(12))),
-          focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: kBorderSideColor),
+          focusedBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.onPrimary),
               borderRadius: BorderRadius.all(Radius.circular(12))),
           hintText: 'Write your message',
           hintStyle: const TextStyle(color: kGreyColor, fontSize: 12),

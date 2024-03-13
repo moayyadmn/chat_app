@@ -8,5 +8,3 @@ const Color kGreyColor = Color(0xff797C7B);
 const Color kChatBubbleColor = Color(0xff20A090);
 const Color kChatBubbleColor2 = Color(0xffF2F7FB);
 const Color kBorderSideColor = Color(0xFFF3F6F6);
-
-

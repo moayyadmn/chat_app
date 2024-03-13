@@ -16,14 +16,20 @@ class CustomBoxMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.white,
+        color: Theme.of(context).scaffoldBackgroundColor,
         height: 80,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             IconButton(
               onPressed: () {},
-              icon: SvgPicture.asset(kClipChatIcon),
+              icon: SvgPicture.asset(
+                kClipChatIcon,
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.secondary,
+                  BlendMode.srcIn,
+                ),
+              ),
             ),
             ChatTextField(
               textEditingController,

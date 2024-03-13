@@ -57,11 +57,21 @@ class DynamicButtons extends StatelessWidget {
                         );
                       }
                     },
-                    icon: SvgPicture.asset(kCameraIcon),
+                    icon: SvgPicture.asset(
+                      kCameraIcon,
+                      colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.secondary,
+                          BlendMode.srcIn),
+                    ),
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: SvgPicture.asset(kMicrophoneIcon),
+                    icon: SvgPicture.asset(
+                      kMicrophoneIcon,
+                      colorFilter: ColorFilter.mode(
+                          Theme.of(context).colorScheme.secondary,
+                          BlendMode.srcIn),
+                    ),
                   ),
                 ],
               );

@@ -14,7 +14,7 @@ class ContentArea extends StatelessWidget {
         type: MaterialType.transparency,
         child: Ink(
           decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: Theme.of(context).primaryColorDark,
           ),
           child: Column(
             children: [

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:scholarchat_app/core/helper/extensions.dart';
+import 'package:scholarchat_app/core/utils/theme/colors.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_app_bar.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_items.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_profile_card.dart';
@@ -10,6 +13,10 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        systemNavigationBarColor: Get.theme.brightness == Brightness.dark
+            ? Colors.black
+            : Colors.white));
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: Column(
@@ -17,13 +24,15 @@ class SettingScreen extends StatelessWidget {
           17.spaceY,
           const SettingAppBar(),
           15.spaceY,
-          const ContentArea(
+          ContentArea(
             child: Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SettingProfileCard(),
-                  Divider(),
+                  Divider(
+                    color: kGreyColor,
+                  ),
                   SettingItems(),
                 ],
               ),

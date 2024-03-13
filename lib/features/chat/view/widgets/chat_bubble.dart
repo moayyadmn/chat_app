@@ -24,6 +24,7 @@ class ChatBubbleWidget extends StatelessWidget {
               ? TextBubble(
                   message: message,
                   color: kChatBubbleColor,
+                  textColor: Colors.white,
                 )
               : ImageBubble(message: message),
           Padding(
@@ -62,7 +63,9 @@ class ChatBubbleWidgetForFriend extends StatelessWidget {
         children: [
           message.type == 'text'
               ? TextBubble(
-                  message: message, color: kChatBubbleColor2, isBlackText: true)
+                  message: message,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                )
               : ImageBubble(message: message),
           Padding(
             padding: const EdgeInsets.only(right: 15),
@@ -117,15 +120,16 @@ class ImageBubble extends StatelessWidget {
 }
 
 class TextBubble extends StatelessWidget {
-  const TextBubble(
-      {super.key,
-      required this.message,
-      required this.color,
-      this.isBlackText = false});
+  const TextBubble({
+    super.key,
+    required this.message,
+    required this.color,
+    this.textColor,
+  });
 
   final MessageModel message;
-  final bool isBlackText;
   final Color color;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +146,8 @@ class TextBubble extends StatelessWidget {
       child: Text(
         message.message,
         style: TextStyle(
-            color: isBlackText ? Colors.black : Colors.white, fontSize: 16),
+            color: textColor ?? Theme.of(context).primaryColorLight,
+            fontSize: 16),
       ),
     );
   }

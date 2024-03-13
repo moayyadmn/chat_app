@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:scholarchat_app/core/utils/theme/theme_controller.dart';
 import 'package:scholarchat_app/features/setting/view/widgets/setting_card.dart';
 
 class SettingItems extends StatelessWidget {
@@ -7,17 +9,22 @@ class SettingItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeController c = Get.find();
     return Expanded(
       child: SingleChildScrollView(
         child: Column(
           children: [
             SettingCard(
-                onTap: () {},
+                onTap: () {
+                  c.changeTheme(true);
+                },
                 leading: SvgPicture.asset("assets/svg/setting_key.svg"),
                 title: "Account",
                 subTitle: "Privacy, security, change number"),
             SettingCard(
-                onTap: () {},
+                onTap: () {
+                  c.changeTheme(false);
+                },
                 leading: SvgPicture.asset("assets/svg/setting_chat.svg"),
                 title: "Chat",
                 subTitle: "Chat history,theme,wallpapers"),
