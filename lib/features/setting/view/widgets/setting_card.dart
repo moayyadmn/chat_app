@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
+import 'package:chatbox/core/utils/constants.dart';
 
 class SettingCard extends StatelessWidget {
   final void Function()? onTap;

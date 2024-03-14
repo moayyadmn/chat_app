@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/utils/theme/theme_controller.dart';
-import 'package:scholarchat_app/features/setting/view/widgets/setting_card.dart';
+import 'package:chatbox/core/utils/theme/theme_controller.dart';
+import 'package:chatbox/features/setting/view/widgets/setting_card.dart';
 
 class SettingItems extends StatelessWidget {
   const SettingItems({super.key});

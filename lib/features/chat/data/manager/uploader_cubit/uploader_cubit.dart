@@ -2,11 +2,11 @@ import 'dart:io';
 import 'dart:math';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/core/colored/print_colored_text_in_flutter.dart';
-import 'package:scholarchat_app/core/colored/print_manager.dart';
-import 'package:scholarchat_app/core/helper/chat_room.dart';
-import 'package:scholarchat_app/core/utils/firebase_ref.dart';
-import 'package:scholarchat_app/features/chat/data/manager/uploader_cubit/uploader_state.dart';
+import 'package:chatbox/core/colored/print_colored_text_in_flutter.dart';
+import 'package:chatbox/core/colored/print_manager.dart';
+import 'package:chatbox/core/helper/chat_room.dart';
+import 'package:chatbox/core/utils/firebase_ref.dart';
+import 'package:chatbox/features/chat/data/manager/uploader_cubit/uploader_state.dart';
 // ignore_for_file: depend_on_referenced_packages
 import 'package:path/path.dart' as path;
 

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_event.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_state.dart';
-import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
-
-
+import 'package:chatbox/core/utils/theme/colors.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_bloc.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_event.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_state.dart';
+import 'package:chatbox/features/chat/data/models/message_model.dart';
 
 class SelectableMessage extends StatelessWidget {
   const SelectableMessage(

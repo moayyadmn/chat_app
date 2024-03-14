@@ -1,4 +1,4 @@
-import 'package:scholarchat_app/features/friends/data/models/chat_list_card_model.dart';
+import 'package:chatbox/features/friends/data/models/chat_list_card_model.dart';
 
 abstract class FetchFriendsSate {}
 

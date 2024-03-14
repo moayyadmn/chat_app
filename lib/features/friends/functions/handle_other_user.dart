@@ -1,5 +1,5 @@
-import 'package:scholarchat_app/core/utils/firebase_ref.dart';
-import 'package:scholarchat_app/features/friends/data/models/chat_list_card_model.dart';
+import 'package:chatbox/core/utils/firebase_ref.dart';
+import 'package:chatbox/features/friends/data/models/chat_list_card_model.dart';
 
 class HandleOtherUser {
   final ChatListCardModel cardModel;

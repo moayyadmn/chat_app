@@ -2,10 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/services/app_services.dart';
-import 'package:scholarchat_app/core/utils/bloc_providers.dart';
-import 'package:scholarchat_app/core/simple_bloc_observer.dart';
-import 'package:scholarchat_app/core/utils/theme/theme_controller.dart';
+import 'package:chatbox/core/services/app_services.dart';
+import 'package:chatbox/core/utils/bloc_providers.dart';
+import 'package:chatbox/core/simple_bloc_observer.dart';
+import 'package:chatbox/core/utils/theme/theme_controller.dart';
 import 'core/helper/app_screens.dart';
 import 'firebase_options.dart';
 

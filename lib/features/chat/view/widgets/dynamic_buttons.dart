@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/helper/pick_image.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
-import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_event.dart';
-import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_state.dart';
+import 'package:chatbox/core/helper/pick_image.dart';
+import 'package:chatbox/core/utils/constants.dart';
+import 'package:chatbox/features/chat/data/manager/chat_cubit/chat_cubit.dart';
+import 'package:chatbox/features/chat/data/manager/send_button_bloc/send_button_bloc.dart';
+import 'package:chatbox/features/chat/data/manager/send_button_bloc/send_button_event.dart';
+import 'package:chatbox/features/chat/data/manager/send_button_bloc/send_button_state.dart';
 import 'image_preview.dart';
 
 class DynamicButtons extends StatelessWidget {

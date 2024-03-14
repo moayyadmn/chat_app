@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/models/other_user_model.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_event.dart';
-import 'package:scholarchat_app/features/chat/view/widgets/chat_app_bar.dart';
-import 'package:scholarchat_app/features/chat/view/widgets/chat_body.dart';
-import 'package:scholarchat_app/features/chat/view/widgets/custom_box_message.dart';
+import 'package:chatbox/core/models/other_user_model.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_bloc.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_event.dart';
+import 'package:chatbox/features/chat/view/widgets/chat_app_bar.dart';
+import 'package:chatbox/features/chat/view/widgets/chat_body.dart';
+import 'package:chatbox/features/chat/view/widgets/custom_box_message.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});

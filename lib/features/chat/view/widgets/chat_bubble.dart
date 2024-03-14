@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:chatbox/features/chat/data/models/message_model.dart';
+import 'package:chatbox/core/utils/theme/colors.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:scholarchat_app/features/chat/view/widgets/custom_image_builder.dart';
+import 'package:chatbox/features/chat/view/widgets/custom_image_builder.dart';
 
 class ChatBubbleWidget extends StatelessWidget {
   const ChatBubbleWidget(

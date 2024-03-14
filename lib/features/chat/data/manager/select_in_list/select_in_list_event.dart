@@ -1,4 +1,4 @@
-import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
+import 'package:chatbox/features/chat/data/models/message_model.dart';
 
 abstract class SelectInListEvent {}
 

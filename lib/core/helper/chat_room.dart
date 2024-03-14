@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:scholarchat_app/core/utils/firebase_ref.dart';
+import 'package:chatbox/core/utils/firebase_ref.dart';
 
 class ChatRoom {
   // Get the id of the chat room

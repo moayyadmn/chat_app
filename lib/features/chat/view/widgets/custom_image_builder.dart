@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/manager/uploader_cubit/uploader_cubit.dart';
-import 'package:scholarchat_app/features/chat/data/manager/uploader_cubit/uploader_state.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:chatbox/features/chat/data/manager/uploader_cubit/uploader_cubit.dart';
+import 'package:chatbox/features/chat/data/manager/uploader_cubit/uploader_state.dart';
+import 'package:chatbox/core/utils/theme/colors.dart';
 
 class CustomImageBuilder extends StatelessWidget {
   final String image;

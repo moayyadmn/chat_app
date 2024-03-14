@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholarchat_app/core/helper/extensions.dart';
+import 'package:chatbox/core/helper/extensions.dart';
 
 class ContentArea extends StatelessWidget {
   final Widget child;

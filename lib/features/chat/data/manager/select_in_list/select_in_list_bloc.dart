@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/core/colored/print_colored_text_in_flutter.dart';
-import 'package:scholarchat_app/core/colored/print_manager.dart';
-import 'package:scholarchat_app/core/helper/chat_room.dart';
-import 'package:scholarchat_app/core/utils/firebase_ref.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_event.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_state.dart';
-import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
+import 'package:chatbox/core/colored/print_colored_text_in_flutter.dart';
+import 'package:chatbox/core/colored/print_manager.dart';
+import 'package:chatbox/core/helper/chat_room.dart';
+import 'package:chatbox/core/utils/firebase_ref.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_event.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_state.dart';
+import 'package:chatbox/features/chat/data/models/message_model.dart';
 
 // to handle the state of selection mode
 class SelectInListBloc extends Bloc<SelectInListEvent, SelectInListState> {

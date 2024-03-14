@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/core/helper/chat_room.dart';
-import 'package:scholarchat_app/core/utils/firebase_ref.dart';
-import 'package:scholarchat_app/features/chat/data/models/message_model.dart';
+import 'package:chatbox/core/helper/chat_room.dart';
+import 'package:chatbox/core/utils/firebase_ref.dart';
+import 'package:chatbox/features/chat/data/models/message_model.dart';
 import 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {

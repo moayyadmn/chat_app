@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/helper/extensions.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import 'package:scholarchat_app/features/setting/view/widgets/setting_app_bar.dart';
-import 'package:scholarchat_app/features/setting/view/widgets/setting_items.dart';
-import 'package:scholarchat_app/features/setting/view/widgets/setting_profile_card.dart';
+import 'package:chatbox/core/helper/extensions.dart';
+import 'package:chatbox/core/utils/theme/colors.dart';
+import 'package:chatbox/features/setting/view/widgets/setting_app_bar.dart';
+import 'package:chatbox/features/setting/view/widgets/setting_items.dart';
+import 'package:chatbox/features/setting/view/widgets/setting_profile_card.dart';
 import '../../../core/utils/widgets/content_area.dart';
 
 class SettingScreen extends StatelessWidget {

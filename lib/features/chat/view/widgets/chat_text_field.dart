@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:scholarchat_app/core/utils/constants.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_event.dart';
+import 'package:chatbox/core/utils/constants.dart';
+import 'package:chatbox/core/utils/theme/colors.dart';
+import 'package:chatbox/features/chat/data/manager/send_button_bloc/send_button_bloc.dart';
+import 'package:chatbox/features/chat/data/manager/send_button_bloc/send_button_event.dart';
 
 class ChatTextField extends StatelessWidget {
   const ChatTextField(

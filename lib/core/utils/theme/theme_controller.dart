@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/utils/theme/app_theme.dart';
+import 'package:chatbox/core/utils/theme/app_theme.dart';
 
 class ThemeController extends GetxController {
   late ThemeData appTheme;

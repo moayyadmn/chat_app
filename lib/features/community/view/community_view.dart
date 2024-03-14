@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:scholarchat_app/core/helper/extensions.dart';
-import 'package:scholarchat_app/core/utils/firebase_ref.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
-import 'package:scholarchat_app/core/utils/widgets/content_area.dart';
-import 'package:scholarchat_app/core/utils/widgets/custom_app_bar.dart';
-import 'package:scholarchat_app/features/community/data/manager/fetch_user_cubit/fetch_user_cubit.dart';
-import 'package:scholarchat_app/features/community/data/manager/fetch_user_cubit/fetch_user_state.dart';
-import 'package:scholarchat_app/features/community/view/widgets/user_card_widget.dart';
+import 'package:chatbox/core/helper/extensions.dart';
+import 'package:chatbox/core/utils/firebase_ref.dart';
+import 'package:chatbox/core/utils/theme/colors.dart';
+import 'package:chatbox/core/utils/widgets/content_area.dart';
+import 'package:chatbox/core/utils/widgets/custom_app_bar.dart';
+import 'package:chatbox/features/community/data/manager/fetch_user_cubit/fetch_user_cubit.dart';
+import 'package:chatbox/features/community/data/manager/fetch_user_cubit/fetch_user_state.dart';
+import 'package:chatbox/features/community/view/widgets/user_card_widget.dart';
 
 class CommunityView extends StatelessWidget {
   const CommunityView({super.key});

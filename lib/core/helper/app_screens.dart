@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:scholarchat_app/core/middleware/login_middleware.dart';
-import 'package:scholarchat_app/features/calls/view/calls_screen.dart';
-import 'package:scholarchat_app/features/chat/data/manager/send_button_bloc/send_button_bloc.dart';
-import 'package:scholarchat_app/features/community/view/community_view.dart';
+import 'package:chatbox/core/middleware/login_middleware.dart';
+import 'package:chatbox/features/calls/view/calls_screen.dart';
+import 'package:chatbox/features/chat/data/manager/send_button_bloc/send_button_bloc.dart';
+import 'package:chatbox/features/community/view/community_view.dart';
 import '../../features/friends/view/friends_view.dart';
 import '../utils/constants.dart';
 import '../../features/chat/view/chat_screen.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:scholarchat_app/core/helper/extensions.dart';
-import 'package:scholarchat_app/core/utils/theme/colors.dart';
+import 'package:chatbox/core/helper/extensions.dart';
+import 'package:chatbox/core/utils/theme/colors.dart';
 
 class CallCardWidget extends StatelessWidget {
   const CallCardWidget({

@@ -1,4 +1,4 @@
-import 'package:scholarchat_app/features/community/data/models/user_data_model.dart';
+import 'package:chatbox/features/community/data/models/user_data_model.dart';
 
 abstract class FetchUserState {}
 

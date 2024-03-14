@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scholarchat_app/core/utils/firebase_ref.dart';
-import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_cubit.dart';
-import 'package:scholarchat_app/features/chat/data/manager/chat_cubit/chat_state.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_bloc.dart';
-import 'package:scholarchat_app/features/chat/data/manager/select_in_list/select_in_list_state.dart';
-import 'package:scholarchat_app/features/chat/view/widgets/chat_bubble.dart';
-import 'package:scholarchat_app/features/chat/view/widgets/selectable_message.dart';
+import 'package:chatbox/core/utils/firebase_ref.dart';
+import 'package:chatbox/features/chat/data/manager/chat_cubit/chat_cubit.dart';
+import 'package:chatbox/features/chat/data/manager/chat_cubit/chat_state.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_bloc.dart';
+import 'package:chatbox/features/chat/data/manager/select_in_list/select_in_list_state.dart';
+import 'package:chatbox/features/chat/view/widgets/chat_bubble.dart';
+import 'package:chatbox/features/chat/view/widgets/selectable_message.dart';
 
 class ChatBody extends StatelessWidget {
   const ChatBody({
