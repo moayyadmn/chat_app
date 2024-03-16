@@ -1,3 +1,4 @@
+import 'package:chatbox/features/status/data/manager/cubit/status_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chatbox/core/blocs/app_root_bloc/app_root_bloc.dart';
 import 'package:chatbox/core/blocs/app_root_bloc/app_root_event.dart';
@@ -25,5 +26,6 @@ class MyProviders {
         BlocProvider(create: (context) => ChatCubit()),
         BlocProvider(create: (context) => UploaderCubit()),
         BlocProvider(create: (context) => SelectInListBloc()),
+        BlocProvider(create: (context) => StatusCubit()),
       ];
 }

@@ -8,3 +8,11 @@ extension SpaceXY on int {
         height: toDouble(),
       );
 }
+
+
+extension FirstName on String {
+  String getFirstName() {
+    List<String> nameParts = this.split(' ');
+    return nameParts[0];
+  }
+}

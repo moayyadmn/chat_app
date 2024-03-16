@@ -1,3 +1,6 @@
+import 'package:chatbox/features/status/data/manager/cubit/status_cubit.dart';
+import 'package:chatbox/features/status/data/manager/cubit/status_state.dart';
+import 'package:chatbox/features/status/view/widgets/status_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chatbox/core/helper/extensions.dart';
@@ -7,7 +10,6 @@ import 'package:chatbox/features/friends/data/manager/fetch_friends_cubit/fetch_
 import 'package:chatbox/features/friends/view/widgets/chat_card_widget.dart';
 import 'package:chatbox/features/friends/view/widgets/custom_home_app_bar.dart';
 import '../../../core/utils/widgets/content_area.dart';
-import 'widgets/status_avatar.dart';
 
 class FriendsView extends StatelessWidget {
   const FriendsView({super.key});
@@ -21,7 +23,17 @@ class FriendsView extends StatelessWidget {
           children: [
             10.spaceY,
             const CustomHomeAppBar(),
-            const StatusAvatar(),
+            BlocBuilder<StatusCubit, StatusState>(
+              builder: (context, state) {
+                if (state is StatusSuccess) {
+                  return StatusList(
+                    statusList: state.statusList,
+                  );
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            ),
             20.spaceY,
             ContentArea(
               child: Expanded(
